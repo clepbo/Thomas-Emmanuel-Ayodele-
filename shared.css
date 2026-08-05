@@ -275,3 +275,62 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   .dock-links a{padding:8px 10px;font-size:8px;letter-spacing:.12em}
   #peek{width:220px;height:98px}
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   The site was built desktop-only. These are the shared breakpoints;
+   each page adds its own for its specific grids.
+     1100px — tighter gutters, two-column grids start to collapse
+      760px — single column, the dock becomes the primary navigation
+      480px — small phones
+   ═══════════════════════════════════════════════════════════════════ */
+
+@media (max-width:1100px){
+  nav{padding:0 32px}
+  .nav-right{gap:28px}
+  .marquee-item{padding:0 34px;font-size:13px}
+  footer{padding:56px 32px 36px}
+  .footer-cols{gap:48px}
+  .footer-brand-name{font-size:36px}
+}
+
+@media (max-width:760px){
+  html{font-size:15px}
+
+  /* The top bar keeps the mark and the call to action; the dock carries
+     the actual navigation, so it is present from the top of the page
+     rather than waiting for a scroll. */
+  nav{padding:0 20px;height:62px}
+  .nav-right{gap:0}
+  .nav-right .nav-link{display:none}
+  .nav-btn{padding:10px 18px;font-size:9px;letter-spacing:.14em}
+  .nav-logo{font-size:18px}
+  .dock{opacity:1;visibility:visible;transform:translate(-50%,0)}
+
+  .marquee-outer{padding:12px 0}
+  .marquee-item{padding:0 24px;font-size:12px}
+
+  .btn-gold,.btn-outline{padding:14px 26px;font-size:9px;letter-spacing:.16em}
+  .label{font-size:8px;letter-spacing:.22em;gap:10px}
+  .label::before{width:16px}
+
+  /* Give the dock room so it never sits on top of the last line of text */
+  footer{padding:48px 20px 96px}
+  .footer-top{flex-direction:column;gap:36px;margin-bottom:32px;padding-bottom:32px}
+  .footer-brand-name{font-size:30px}
+  .footer-cols{gap:44px}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:12px}
+  .footer-col a{margin-bottom:11px}
+
+  /* Reveals travel less on a small screen — 30px of lift reads as a jump */
+  .r{transform:translateY(18px)}
+  .r.sl,.r.sr{transform:translateY(18px)}
+}
+
+@media (max-width:480px){
+  .dock-brand{padding:9px 13px;font-size:13px}
+  .dock-toggle{padding:8px 10px;letter-spacing:.12em}
+  .dock-links a{padding:7px 8px;letter-spacing:.08em}
+  .footer-cols{flex-direction:column;gap:28px}
+  .marquee-item{padding:0 18px}
+}

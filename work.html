@@ -63,6 +63,46 @@
 .wc-label{font-family:var(--mono);font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
 .wc-h{font-family:var(--serif);font-size:36px;font-weight:400;color:var(--off)}
 .wc-h i{font-style:italic;color:var(--gold)}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width:1100px){
+  .page-hero{padding:150px 40px 76px}
+  .filter-bar{padding:0 40px}
+  .work-section{padding:56px 40px 96px}
+  .work-cta{padding:64px 40px}
+  .ph-num{font-size:150px;right:32px;top:150px}
+  .project-card.s7,.project-card.s5{grid-column:span 6}
+  .project-card.s8,.project-card.s4{grid-column:span 6}
+  .project-card.s3{grid-column:span 6}
+}
+
+@media (max-width:860px){
+  .page-hero{padding:130px 28px 60px}
+  .ph-num{display:none}
+  .work-section{padding:44px 28px 80px}
+  /* Sticky + horizontally scrollable so every discipline stays reachable.
+     top matches the shorter mobile nav. */
+  .filter-bar{top:62px;padding:0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .filter-bar::-webkit-scrollbar{display:none}
+  .filter-btn{padding:16px 20px;white-space:nowrap;flex-shrink:0}
+  .filter-btn:first-child{padding-left:28px}
+  .work-cta{flex-direction:column;align-items:flex-start;gap:26px;padding:56px 28px}
+}
+
+@media (max-width:600px){
+  .page-hero{padding:112px 20px 48px}
+  .work-section{padding:36px 20px 72px}
+  .project-grid{grid-template-columns:1fr}
+  .project-card.s7,.project-card.s5,.project-card.s6,
+  .project-card.s4,.project-card.s8,.project-card.s3{grid-column:span 1}
+  .project-card.tall{aspect-ratio:4/5}
+  .project-card.wide{aspect-ratio:4/3}
+  .pc-inner{padding:22px}
+  .pc-arrow{top:18px;right:18px;width:34px;height:34px}
+  .filter-btn:first-child{padding-left:20px}
+  .work-cta{padding:48px 20px}
+  .wc-h{font-size:28px}
+}
 </style>
 </head>
 <body>

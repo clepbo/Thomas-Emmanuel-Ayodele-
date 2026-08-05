@@ -23,8 +23,12 @@
 
 /* Portrait */
 .portrait-wrap{position:relative}
-.portrait-frame{width:100%;aspect-ratio:3/4;background:var(--black3);border-radius:2px;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center}
-.portrait-svg{width:100%;height:100%}
+.portrait-frame{width:100%;aspect-ratio:4/5;background:var(--black3);border-radius:2px;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center}
+/* The photograph is shot on near-black, so it sits in the page without a
+   cut-out. A slow settle from a slight zoom gives it a little life on load. */
+.portrait-img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;display:block;transform:scale(1.06);transition:transform 1.8s var(--ease2),filter .6s var(--ease);filter:saturate(.92) contrast(1.04)}
+body.loaded .portrait-img{transform:scale(1)}
+.portrait-wrap:hover .portrait-img{transform:scale(1.03);filter:saturate(1) contrast(1.06);transition-duration:1s}
 .portrait-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,rgba(8,8,8,.65) 100%)}
 .portrait-caption{position:absolute;bottom:22px;left:22px;right:22px;background:rgba(8,8,8,.78);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(10px);padding:15px 18px;border-radius:2px;display:flex;align-items:center;justify-content:space-between}
 .pc-name-tag{font-family:var(--serif);font-size:15px;font-weight:400}
@@ -80,6 +84,43 @@
 .testi-quote::before{content:'\201C';font-size:44px;color:rgba(196,169,107,.3);line-height:0;vertical-align:-18px;margin-right:2px}
 .testi-name{font-size:13px;color:var(--off);margin-bottom:3px;font-weight:500;position:relative;z-index:1}
 .testi-co{font-size:11px;color:var(--muted);font-family:var(--mono);letter-spacing:.06em;position:relative;z-index:1}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width:1100px){
+  .about-intro{padding:150px 40px 76px;gap:56px}
+  .about-bio{padding:76px 40px;gap:56px}
+  .skills-section,.exp-section,.testi-section{padding:76px 40px}
+  .exp-layout{gap:56px;grid-template-columns:220px 1fr}
+  .skills-grid,.testi-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media (max-width:860px){
+  .about-intro{grid-template-columns:1fr;padding:120px 28px 64px;gap:56px;align-items:start}
+  .portrait-wrap{max-width:440px}
+  .years-badge{width:70px;height:70px;top:-14px;right:-8px}
+  .yb-num{font-size:23px}
+
+  .about-bio{grid-template-columns:1fr;padding:64px 28px;gap:36px}
+  .bio-left{position:static}
+  .bio-quote::before{font-size:56px;vertical-align:-20px}
+
+  .skills-section,.exp-section,.testi-section{padding:64px 28px}
+  .exp-layout{grid-template-columns:1fr;gap:36px}
+  /* Company and role on one line, dates beneath — three columns at this
+     width squeezes every one of them */
+  .exp-row{grid-template-columns:1fr;gap:6px;padding:20px 0}
+  .exp-period{text-align:left}
+}
+
+@media (max-width:600px){
+  .about-intro{padding:104px 20px 52px}
+  .about-bio,.skills-section,.exp-section,.testi-section{padding:52px 20px}
+  .skills-grid,.testi-grid{grid-template-columns:1fr}
+  .skill-card{padding:30px 26px}
+  .testi-card{padding:32px 26px}
+  .portrait-caption{left:14px;right:14px;bottom:14px;padding:12px 14px;flex-direction:column;align-items:flex-start;gap:6px}
+  .about-roles{margin-top:26px;gap:9px}
+}
 </style>
 </head>
 <body>
@@ -112,72 +153,22 @@
   <div class="r d2">
     <div class="portrait-wrap">
       <div class="portrait-frame">
-        <!-- SVG portrait illustration -->
-        <svg class="portrait-svg" viewBox="0 0 480 640" preserveAspectRatio="xMidYMid slice">
-          <defs>
-            <radialGradient id="skinGrad" cx="50%" cy="38%" r="55%">
-              <stop offset="0%" stop-color="#7a5038" stop-opacity=".9"/>
-              <stop offset="100%" stop-color="#3d2416" stop-opacity=".6"/>
-            </radialGradient>
-            <radialGradient id="bgGrad" cx="50%" cy="35%" r="70%">
-              <stop offset="0%" stop-color="#262626"/>
-              <stop offset="100%" stop-color="#161616"/>
-            </radialGradient>
-          </defs>
-          <!-- Background -->
-          <rect width="480" height="640" fill="url(#bgGrad)"/>
-          <!-- Subtle grid -->
-          <line x1="0" y1="320" x2="480" y2="320" stroke="rgba(255,255,255,.03)" stroke-width="1"/>
-          <line x1="240" y1="0" x2="240" y2="640" stroke="rgba(255,255,255,.03)" stroke-width="1"/>
-          <!-- Body/shoulders -->
-          <path d="M0 640 Q0 480 80 450 Q160 430 240 435 Q320 430 400 450 Q480 480 480 640 Z" fill="#1a1a1a"/>
-          <!-- Shirt/collar -->
-          <path d="M160 430 Q200 420 240 435 Q280 420 320 430 L340 480 Q290 510 240 510 Q190 510 140 480 Z" fill="#2a2a2a"/>
-          <!-- T-shirt text -->
-          <text x="240" y="488" font-family="Syne,sans-serif" font-size="11" font-weight="700" fill="rgba(255,255,255,.25)" text-anchor="middle" letter-spacing="2">DSGN</text>
-          <!-- Neck -->
-          <rect x="208" y="380" width="64" height="70" rx="8" fill="url(#skinGrad)"/>
-          <!-- Head -->
-          <ellipse cx="240" cy="310" rx="105" ry="125" fill="url(#skinGrad)"/>
-          <!-- Ear left -->
-          <ellipse cx="137" cy="310" rx="16" ry="22" fill="url(#skinGrad)"/>
-          <!-- Ear right -->
-          <ellipse cx="343" cy="310" rx="16" ry="22" fill="url(#skinGrad)"/>
-          <!-- Hair -->
-          <path d="M145 235 Q175 185 240 180 Q305 185 335 235 Q350 260 348 240 Q340 165 240 158 Q140 165 132 240 Q130 260 145 235 Z" fill="#1a0e06"/>
-          <!-- Low cut hair style -->
-          <path d="M148 236 Q180 208 240 204 Q300 208 332 236" fill="#1a0e06" stroke="#1a0e06" stroke-width="2"/>
-          <!-- Eyebrows -->
-          <path d="M180 268 Q200 260 220 266" stroke="#1a0e06" stroke-width="4" fill="none" stroke-linecap="round"/>
-          <path d="M260 266 Q280 260 300 268" stroke="#1a0e06" stroke-width="4" fill="none" stroke-linecap="round"/>
-          <!-- Eyes with glasses reflection -->
-          <ellipse cx="200" cy="285" rx="22" ry="18" fill="#3d2010" opacity=".8"/>
-          <ellipse cx="200" cy="285" rx="14" ry="12" fill="#1a0a04"/>
-          <circle cx="200" cy="285" r="7" fill="#0a0402"/>
-          <circle cx="204" cy="280" r="3" fill="rgba(255,255,255,.55)"/>
-          <ellipse cx="280" cy="285" rx="22" ry="18" fill="#3d2010" opacity=".8"/>
-          <ellipse cx="280" cy="285" rx="14" ry="12" fill="#1a0a04"/>
-          <circle cx="280" cy="285" r="7" fill="#0a0402"/>
-          <circle cx="284" cy="280" r="3" fill="rgba(255,255,255,.55)"/>
-          <!-- Glasses -->
-          <rect x="174" y="270" width="52" height="34" rx="10" stroke="rgba(196,169,107,.7)" stroke-width="2.5" fill="none"/>
-          <rect x="254" y="270" width="52" height="34" rx="10" stroke="rgba(196,169,107,.7)" stroke-width="2.5" fill="none"/>
-          <line x1="226" y1="282" x2="254" y2="282" stroke="rgba(196,169,107,.6)" stroke-width="2"/>
-          <line x1="137" y1="281" x2="174" y2="281" stroke="rgba(196,169,107,.55)" stroke-width="2"/>
-          <line x1="306" y1="281" x2="343" y2="281" stroke="rgba(196,169,107,.55)" stroke-width="2"/>
-          <!-- Nose -->
-          <path d="M230 295 Q235 325 240 330 Q245 325 250 295" stroke="rgba(0,0,0,.3)" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <!-- Smile -->
-          <path d="M210 350 Q240 368 270 350" stroke="#1a0e06" stroke-width="3" fill="none" stroke-linecap="round"/>
-          <!-- Lips -->
-          <path d="M215 345 Q240 352 265 345 Q258 355 240 358 Q222 355 215 345 Z" fill="#5a3020" opacity=".7"/>
-          <!-- Mustache hint -->
-          <path d="M220 338 Q230 342 240 340 Q250 342 260 338" stroke="rgba(0,0,0,.4)" stroke-width="2" fill="none"/>
-          <!-- Gold accent: necklace -->
-          <path d="M185 415 Q240 428 295 415" stroke="rgba(196,169,107,.35)" stroke-width="1.5" fill="none"/>
-          <!-- Background label -->
-          <text x="240" y="615" font-family="Syne Mono,monospace" font-size="8" fill="rgba(196,169,107,.25)" text-anchor="middle" letter-spacing="4">TEA DESIGN CO.</text>
-        </svg>
+        <picture>
+          <source type="image/webp"
+                  srcset="assets/images/portrait-600.webp 600w,
+                          assets/images/portrait-900.webp 900w,
+                          assets/images/portrait-1400.webp 1400w"
+                  sizes="(max-width:760px) 100vw, (max-width:1100px) 50vw, 42vw">
+          <img class="portrait-img"
+               src="assets/images/portrait-900.jpg"
+               srcset="assets/images/portrait-600.jpg 600w,
+                       assets/images/portrait-900.jpg 900w,
+                       assets/images/portrait-1400.jpg 1400w"
+               sizes="(max-width:760px) 100vw, (max-width:1100px) 50vw, 42vw"
+               width="3686" height="4470"
+               alt="Thomas Emmanuel Ayodele, brand designer and creative director"
+               fetchpriority="high" decoding="async">
+        </picture>
         <div class="portrait-overlay"></div>
         <div class="portrait-caption">
           <div class="pc-name-tag">Thomas E. Ayodele</div>

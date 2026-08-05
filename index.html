@@ -117,6 +117,67 @@ body:not(.loaded) .hero-scroll{animation-play-state:paused}
 
 /* Magnetic area */
 .magnetic{transition:transform .4s var(--ease)}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width:1100px){
+  .hero-left{padding:0 40px 64px}
+  .featured,.statement,.home-cta{padding:88px 40px}
+  .home-cta{padding:110px 40px}
+  .work-item{grid-template-columns:44px 1fr 150px auto;gap:24px;padding:24px 26px}
+  .wi-thumb{width:150px;height:48px}
+  .stmt-bg-text{font-size:210px;right:-40px}
+}
+
+@media (max-width:860px){
+  /* The mosaic moves below the copy and becomes a band rather than a
+     full-height column, so the headline still owns the first screen. */
+  .hero{grid-template-columns:1fr;min-height:auto}
+  /* Single column means the copy has the full width to itself — without
+     lifting these caps the text keeps its narrow desktop measure and
+     leaves half the screen empty. */
+  .hero-left{padding:124px 40px 60px;justify-content:flex-end}
+  .hero-title{font-size:clamp(48px,9vw,92px)}
+  .hero-desc{max-width:560px;font-size:15px}
+  .hero-divider{margin:28px 0}
+  .hero-actions{margin-top:38px}
+  .hero-right{height:64vh;min-height:380px}
+  .mosaic{padding-top:0}
+  .hero-scroll{display:none}
+  #particles{height:100%}
+
+  .section-head{flex-direction:column;align-items:flex-start;gap:22px;margin-bottom:44px}
+  .stats-row{grid-template-columns:1fr;gap:1px}
+  .stat-box{padding:28px 26px}
+  .stat-num{font-size:44px}
+  .stmt-quote{margin-bottom:36px}
+  .cta-btns{flex-direction:column;align-items:center;gap:12px}
+  .cta-btns a{width:100%;max-width:320px;justify-content:center}
+}
+
+@media (max-width:600px){
+  .hero-left{padding:104px 20px 44px}
+  .hero-right{height:52vh;min-height:300px}
+  .mosaic{grid-template-rows:58% 42%}
+  .mosaic-bot{grid-template-columns:1fr 1fr}
+  /* Five tiles is too many at this width — drop the last one */
+  .mosaic-bot .mc:nth-child(3){display:none}
+  .mc-label .n{font-size:12px}
+
+  .featured,.statement{padding:64px 20px}
+  .home-cta{padding:80px 20px}
+
+  /* The row becomes two stacked lines: number + title, then the arrow.
+     The thumbnail is decorative here and the peek preview is pointer-only. */
+  .work-item{grid-template-columns:auto 1fr auto;gap:16px;padding:20px 18px;align-items:center}
+  .wi-thumb{display:none}
+  .wi-name{font-size:19px}
+  .wi-tag{font-size:7px;padding:2px 7px}
+  .wi-arrow{width:34px;height:34px}
+  .wi-num{font-size:10px}
+
+  .stmt-bg-text{display:none}
+  .stat-num{font-size:38px}
+}
 </style>
 </head>
 <body>

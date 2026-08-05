@@ -57,6 +57,35 @@
 .post-read svg{transition:transform .2s}
 .post-card:hover .post-read svg{transform:translateX(4px)}
 .post-min{font-family:var(--mono);font-size:9px;color:var(--muted)}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width:1100px){
+  .journal-hero{padding:150px 40px 76px;gap:48px}
+  .journal-featured{padding:56px 40px}
+  .journal-grid{padding:56px 40px 96px}
+  .post-grid{grid-template-columns:repeat(2,1fr)}
+  .fp-content{padding:38px 34px}
+}
+
+@media (max-width:860px){
+  .journal-hero{grid-template-columns:1fr;padding:120px 28px 56px;gap:32px;align-items:start}
+  .journal-featured{padding:44px 28px}
+  .journal-grid{padding:44px 28px 80px}
+  .featured-post{grid-template-columns:1fr}
+  .fp-visual{aspect-ratio:16/9}
+  .jg-head{flex-direction:column;align-items:flex-start;gap:14px;margin-bottom:32px}
+}
+
+@media (max-width:600px){
+  .journal-hero{padding:104px 20px 44px}
+  .journal-featured{padding:36px 20px}
+  .journal-grid{padding:36px 20px 72px}
+  .post-grid{grid-template-columns:1fr}
+  .fp-content{padding:30px 24px}
+  .fp-read{margin-top:26px}
+  .jh-cats{gap:6px}
+  .jcat{padding:7px 12px;font-size:8px;letter-spacing:.12em}
+}
 </style>
 </head>
 <body>
