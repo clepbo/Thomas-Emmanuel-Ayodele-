@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>try{if(sessionStorage.getItem("tea-nav"))document.documentElement.classList.add("nav-in")}catch(e){}</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080808'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='15' fill='%23c4a96b' text-anchor='middle'%3ETEA%3C/text%3E%3C/svg%3E">
 <title>About — Thomas Emmanuel Ayodele · TEA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@300;400;500;700&family=Syne+Mono&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
@@ -80,22 +83,23 @@
 </style>
 </head>
 <body>
+<div id="curtain" aria-hidden="true"><div class="curtain-mark">T<i>EA</i></div></div>
 <div id="loader"><div class="loader-monogram">T<i>EA</i></div><div class="loader-bar-wrap"><div class="loader-bar"></div></div><div class="loader-text">About</div></div>
 <div id="cur"></div><div id="cur-ring"></div>
 <nav>
   <a href="index.html" class="nav-logo">T<i>EA</i></a>
   <div class="nav-right">
-    <a href="index.html" class="nav-link">Home</a><a href="work.html" class="nav-link">Work</a>
-    <a href="about.html" class="nav-link">About</a><a href="journal.html" class="nav-link">Journal</a>
+    <a href="index.html" class="nav-link" data-scramble>Home</a><a href="work.html" class="nav-link" data-scramble>Work</a>
+    <a href="about.html" class="nav-link" data-scramble>About</a><a href="journal.html" class="nav-link" data-scramble>Journal</a>
     <a href="contact.html" class="nav-btn"><span>Let's Talk</span></a>
   </div>
 </nav>
 <main>
-<section class="about-intro">
+<section class="about-intro spot">
   <div class="ai-bg"></div>
   <div>
     <div class="label r" style="margin-bottom:32px">About</div>
-    <h1 class="about-name r d1">Thomas<br>Emmanuel<br><i>Ayodele.</i></h1>
+    <h1 class="about-name r d1" data-split>Thomas<br>Emmanuel<br><i>Ayodele.</i></h1>
     <div class="about-roles r d2">
       <div class="about-role active"><span class="role-dot"></span>Brand Designer</div>
       <div class="about-role"><span class="role-dot"></span>3D Designer</div>
@@ -188,7 +192,7 @@
 <!-- BIO -->
 <section class="about-bio">
   <div class="bio-left r">
-    <div class="bio-quote">Detail-driven, finesse-obsessed, highly creative.</div>
+    <div class="bio-quote" data-split>Detail-driven, finesse-obsessed, highly creative.</div>
   </div>
   <div>
     <p class="bio-para r d1">Hi, I'm <strong>Thomas Emmanuel Ayodele</strong> — TEA. My six years in the design industry have allowed me to inhabit many roles: a brand designer working in-house at startups, a contractor at branding agencies, and a freelancer working one-on-one with founders who care deeply about the marks they leave on the world.</p>
@@ -199,7 +203,7 @@
 </section>
 
 <!-- SKILLS -->
-<section class="skills-section">
+<section class="skills-section spot">
   <div class="label r">Expertise — Multidisciplinary</div>
   <div class="skills-grid">
     <div class="skill-card r"><span class="sc-num">01</span><div class="sc-title">Brand Identity</div><div class="sc-desc">Logo systems, visual language, brand guidelines and identity assets that scale across every touchpoint.</div></div>
@@ -216,7 +220,7 @@
   <div class="label r">Experience</div>
   <div class="exp-layout">
     <div class="r">
-      <h2 class="exp-intro-title">A career built on <i>craft.</i></h2>
+      <h2 class="exp-intro-title" data-split>A career built on <i>craft.</i></h2>
       <p class="exp-intro-sub">From Lagos to London to the US — a track record across agencies, studios and product teams.</p>
     </div>
     <div class="r d1">
@@ -231,7 +235,7 @@
 </section>
 
 <!-- TESTIMONIALS -->
-<section class="testi-section">
+<section class="testi-section spot">
   <div class="label r">What Clients Say</div>
   <div class="testi-grid">
     <div class="testi-card r"><p class="testi-quote">With the Nomadi logo and brand system, we wanted to capture the essence of the nature of work of the digital nomad. Thomas was able to do just this, within a very short time frame.</p><div class="testi-name">Ebovi Wali</div><div class="testi-co">Founder, Nomadi</div></div>

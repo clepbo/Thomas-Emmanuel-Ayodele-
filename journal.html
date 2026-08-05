@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>try{if(sessionStorage.getItem("tea-nav"))document.documentElement.classList.add("nav-in")}catch(e){}</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080808'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='15' fill='%23c4a96b' text-anchor='middle'%3ETEA%3C/text%3E%3C/svg%3E">
 <title>Journal — Thomas Emmanuel Ayodele · TEA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@300;400;500;700&family=Syne+Mono&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
@@ -57,22 +60,23 @@
 </style>
 </head>
 <body>
+<div id="curtain" aria-hidden="true"><div class="curtain-mark">T<i>EA</i></div></div>
 <div id="loader"><div class="loader-monogram">T<i>EA</i></div><div class="loader-bar-wrap"><div class="loader-bar"></div></div><div class="loader-text">Journal</div></div>
 <div id="cur"></div><div id="cur-ring"></div>
 <nav>
   <a href="index.html" class="nav-logo">T<i>EA</i></a>
   <div class="nav-right">
-    <a href="index.html" class="nav-link">Home</a><a href="work.html" class="nav-link">Work</a>
-    <a href="about.html" class="nav-link">About</a><a href="journal.html" class="nav-link">Journal</a>
+    <a href="index.html" class="nav-link" data-scramble>Home</a><a href="work.html" class="nav-link" data-scramble>Work</a>
+    <a href="about.html" class="nav-link" data-scramble>About</a><a href="journal.html" class="nav-link" data-scramble>Journal</a>
     <a href="contact.html" class="nav-btn"><span>Let's Talk</span></a>
   </div>
 </nav>
 <main>
-<section class="journal-hero">
+<section class="journal-hero spot">
   <div class="jh-bg"></div>
   <div>
     <div class="label r" style="margin-bottom:24px">Journal</div>
-    <h1 class="jh-title r d1">Musings<br><i>&amp; Notes.</i></h1>
+    <h1 class="jh-title r d1" data-split>Musings<br><i>&amp; Notes.</i></h1>
   </div>
   <div class="r d2">
     <p class="jh-sub">Thoughts on design, career advice, and some personal razzle-dazzle. Written when the mood strikes.</p>
@@ -87,7 +91,7 @@
 
 <!-- Featured -->
 <section class="journal-featured">
-  <a href="#" class="featured-post r">
+  <a href="#" class="featured-post r" data-cursor="Read">
     <div class="fp-visual">
       <svg viewBox="0 0 600 450" preserveAspectRatio="xMidYMid slice">
         <rect width="600" height="450" fill="#0d0a10"/>
@@ -105,7 +109,7 @@
     <div class="fp-content">
       <div>
         <div class="fp-meta">15 March 2025 · 8 min read</div>
-        <h2 class="fp-title">Great <i>Ideas,</i><br>Great Execution</h2>
+        <h2 class="fp-title" data-split>Great <i>Ideas,</i><br>Great Execution</h2>
         <p class="fp-excerpt">Helpful tips on how to execute design ideas better, from sketch to digital. The gap between a good idea and a good execution is where most designers lose the project — here's how to bridge it with intention and craft.</p>
       </div>
       <div class="fp-read">Read Article <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
@@ -114,13 +118,13 @@
 </section>
 
 <!-- Grid -->
-<section class="journal-grid">
+<section class="journal-grid spot">
   <div class="jg-head r">
     <div class="label">More Articles</div>
     <div class="jg-count">4 articles published</div>
   </div>
   <div class="post-grid">
-    <a href="#" class="post-card r" data-cat="career">
+    <a href="#" class="post-card r" data-cursor="Read" data-cat="career">
       <div class="post-visual">
         <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice">
           <rect width="400" height="250" fill="#080d14"/>
@@ -137,7 +141,7 @@
         <div class="post-footer"><div class="post-read">Read <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="post-min">6 min</div></div>
       </div>
     </a>
-    <a href="#" class="post-card r d1" data-cat="career">
+    <a href="#" class="post-card r d1" data-cursor="Read" data-cat="career">
       <div class="post-visual">
         <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice">
           <rect width="400" height="250" fill="#0c0c0c"/>
@@ -156,7 +160,7 @@
         <div class="post-footer"><div class="post-read">Read <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="post-min">5 min</div></div>
       </div>
     </a>
-    <a href="#" class="post-card r d2" data-cat="personal">
+    <a href="#" class="post-card r d2" data-cursor="Read" data-cat="personal">
       <div class="post-visual">
         <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice">
           <rect width="400" height="250" fill="#0e0808"/>

@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>try{if(sessionStorage.getItem("tea-nav"))document.documentElement.classList.add("nav-in")}catch(e){}</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080808'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='15' fill='%23c4a96b' text-anchor='middle'%3ETEA%3C/text%3E%3C/svg%3E">
 <title>Thomas Emmanuel Ayodele — Brand Designer & Creative Director</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@300;400;500;700&family=Syne+Mono&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
@@ -27,8 +30,22 @@
 .mosaic{position:absolute;inset:0;display:grid;grid-template-rows:55% 45%;gap:2px;padding-top:76px}
 .mosaic-top{display:grid;grid-template-columns:1fr 1fr;gap:2px}
 .mosaic-bot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:2px}
-.mc{position:relative;overflow:hidden;background:var(--black3);display:flex;align-items:center;justify-content:center}
-.mc svg{width:100%;height:100%;position:absolute;inset:0}
+.mc{position:relative;overflow:hidden;background:var(--black3);display:flex;align-items:center;justify-content:center;opacity:0}
+/* Cells fade up one after another once the loader clears. Only opacity is
+   animated here — the artwork inside carries the movement, which leaves the
+   cell's own transform free for the hover treatment. */
+body.loaded .mc{animation:mcin .9s var(--ease) forwards}
+@keyframes mcin{from{opacity:0}to{opacity:1}}
+.mosaic-top .mc:nth-child(1){animation-delay:.34s}
+.mosaic-top .mc:nth-child(2){animation-delay:.44s}
+.mosaic-bot .mc:nth-child(1){animation-delay:.54s}
+.mosaic-bot .mc:nth-child(2){animation-delay:.62s}
+.mosaic-bot .mc:nth-child(3){animation-delay:.70s}
+.mc svg{width:100%;height:100%;position:absolute;inset:0;transform:scale(1.14);transition:transform 1.6s var(--ease2)}
+body.loaded .mc svg{transform:scale(1)}
+.mc:hover svg{transform:scale(1.07);transition-duration:.9s}
+.mc-label{transition:transform .5s var(--ease2)}
+.mc:hover .mc-label{transform:translateY(-4px)}
 .mc-label{position:absolute;bottom:14px;left:16px;right:16px;z-index:2}
 .mc-label .t{font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.35)}
 .mc-label .n{font-family:var(--serif);font-size:13px;color:var(--off2);margin-top:2px}
@@ -42,6 +59,13 @@
 .scroll-text{font-family:var(--mono);font-size:8px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
 @keyframes sline{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 @keyframes hf{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+/* Hold the hero's entrance until the loader is out of the way, otherwise it
+   plays behind the curtain and the page just appears fully formed. */
+body:not(.loaded) .hero-overline,
+body:not(.loaded) .hero-divider,
+body:not(.loaded) .hero-desc,
+body:not(.loaded) .hero-actions,
+body:not(.loaded) .hero-scroll{animation-play-state:paused}
 
 /* Particle canvas */
 #particles{position:absolute;inset:0;pointer-events:none;z-index:1}
@@ -96,6 +120,7 @@
 </style>
 </head>
 <body>
+<div id="curtain" aria-hidden="true"><div class="curtain-mark">T<i>EA</i></div></div>
 <div id="loader"><div class="loader-monogram">T<i>EA</i></div><div class="loader-bar-wrap"><div class="loader-bar"></div></div><div class="loader-text">Loading Portfolio</div></div>
 <div id="cur"></div><div id="cur-ring"></div>
 
@@ -116,7 +141,7 @@
   <canvas id="particles" style="position:absolute;inset:0;pointer-events:none;z-index:1"></canvas>
   <div class="hero-left">
     <div class="hero-overline">Brand Designer · Creative Director</div>
-    <h1 class="hero-title">
+    <h1 class="hero-title" data-split>
       Shaping<br><i>brands</i><span class="sub">that last.</span>
     </h1>
     <div class="hero-divider"></div>
@@ -134,7 +159,7 @@
     <div class="mosaic">
       <!-- DABA Skincare card -->
       <div class="mosaic-top">
-        <div class="mc" style="background:#1a0e07">
+        <div class="mc" data-cursor="View" style="background:#1a0e07">
           <svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice">
             <defs><radialGradient id="g1" cx="50%" cy="50%" r="70%"><stop offset="0%" stop-color="#8B4513" stop-opacity=".5"/><stop offset="100%" stop-color="#1a0e07" stop-opacity="0"/></radialGradient></defs>
             <rect width="400" height="260" fill="#1a0e07"/>
@@ -157,7 +182,7 @@
           <div class="mc-label" style="z-index:2"><div class="t">Packaging · Brand Identity</div><div class="n">DABA Skincare</div></div>
         </div>
         <!-- Type explorations card -->
-        <div class="mc" style="background:#0a0a12">
+        <div class="mc" data-cursor="View" style="background:#0a0a12">
           <svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice">
             <rect width="400" height="260" fill="#0a0a12"/>
             <text x="20" y="200" font-family="Playfair Display,serif" font-size="180" font-weight="700" fill="rgba(255,255,255,.07)">O</text>
@@ -178,7 +203,7 @@
       </div>
       <div class="mosaic-bot">
         <!-- Sugar Alley -->
-        <div class="mc" style="background:#100c07">
+        <div class="mc" data-cursor="View" style="background:#100c07">
           <svg viewBox="0 0 260 200" preserveAspectRatio="xMidYMid slice">
             <defs><radialGradient id="g2" cx="40%" cy="60%" r="70%"><stop offset="0%" stop-color="#8B6914" stop-opacity=".4"/><stop offset="100%" stop-color="#100c07" stop-opacity="0"/></radialGradient></defs>
             <rect width="260" height="200" fill="#100c07"/>
@@ -203,7 +228,7 @@
           <div class="mc-label" style="z-index:2"><div class="t">Brand Identity</div><div class="n">Sugar Alley</div></div>
         </div>
         <!-- MO Food -->
-        <div class="mc" style="background:#0d1008">
+        <div class="mc" data-cursor="View" style="background:#0d1008">
           <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice">
             <rect width="200" height="200" fill="#0d1008"/>
             <!-- Packaging bag -->
@@ -222,7 +247,7 @@
           <div class="mc-label" style="z-index:2"><div class="t">Packaging · 3D</div><div class="n">M.O. Food</div></div>
         </div>
         <!-- TEA Monogram card -->
-        <div class="mc" style="background:#0c080f">
+        <div class="mc" data-cursor="View" style="background:#0c080f">
           <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice">
             <rect width="200" height="200" fill="#0c080f"/>
             <circle cx="100" cy="100" r="75" stroke="rgba(196,169,107,.2)" stroke-width="1" fill="none"/>
@@ -256,9 +281,9 @@
 </div>
 
 <!-- ── WORK LIST ── -->
-<section class="featured">
+<section class="featured spot">
   <div class="section-head r">
-    <h2 class="section-title">Selected<br><i>Work.</i></h2>
+    <h2 class="section-title" data-split>Selected<br><i>Work.</i></h2>
     <a href="work.html" class="section-link">All Projects <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
   </div>
   <div class="work-list r d1">
@@ -311,11 +336,11 @@
 </section>
 
 <!-- ── STATEMENT ── -->
-<section class="statement">
-  <div class="stmt-bg-text">TEA</div>
+<section class="statement spot">
+  <div class="stmt-bg-text" data-parallax="-0.22">TEA</div>
   <div class="stmt-inner">
     <div class="label r" style="margin-bottom:44px">Philosophy</div>
-    <p class="stmt-quote r d1">Great brands are not made — they are <i>discovered.</i> My role is to translate a brand's truest self into marks that endure, systems that scale, and stories worth telling.</p>
+    <p class="stmt-quote r d1" data-split>Great brands are not made — they are <i>discovered.</i> My role is to translate a brand's truest self into marks that endure, systems that scale, and stories worth telling.</p>
     <div class="stats-row r d2">
       <div class="stat-box"><div class="stat-num"><span data-count="6">0</span><span>+</span></div><div class="stat-label">Years of Practice</div></div>
       <div class="stat-box"><div class="stat-num"><span data-count="40">0</span><span>+</span></div><div class="stat-label">Brands Shaped</div></div>
@@ -325,10 +350,10 @@
 </section>
 
 <!-- ── CTA ── -->
-<section class="home-cta">
+<section class="home-cta spot">
   <div class="home-cta-bg"></div>
   <div class="label r" style="justify-content:center;margin-bottom:32px">Start a Project</div>
-  <h2 class="cta-title r d1">Got a brand<br><i>in mind?</i></h2>
+  <h2 class="cta-title r d1" data-split>Got a brand<br><i>in mind?</i></h2>
   <p class="cta-sub r d2">Tell me about your project, your timeline, your ambitions. The more detail, the better we can build together.</p>
   <div class="cta-btns r d3">
     <a href="contact.html" class="btn-gold magnetic"><span>Get in Touch</span> <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>

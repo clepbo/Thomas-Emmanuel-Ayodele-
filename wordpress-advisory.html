@@ -108,9 +108,8 @@ code{font-family:var(--mono);font-size:12px;background:rgba(255,255,255,.06);col
   </ul>
   <h3>Optional but Useful</h3>
   <ul>
-    <li><strong>GSAP (via CDN)</strong> — not a plugin, but enqueue GreenSock in <code>functions.php</code> for timeline-based animations.</li>
-    <li><strong>Lenis (via CDN)</strong> — smooth scroll library that replaces native browser scroll with buttery momentum scrolling.</li>
-    <li><strong>SplitType (via CDN)</strong> — splits text into characters/words for character-by-character reveal animations on headings.</li>
+    <li><strong>None required.</strong> Scroll reveals, masked word reveals, the scroll-reactive marquee, magnetic buttons, card tilt, the custom cursor, the floating dock and page transitions are all in <code>shared.js</code> — roughly 20KB unminified, no dependencies.</li>
+    <li><strong>GSAP (optional, via CDN)</strong> — only worth adding if you later need timeline choreography that <code>shared.js</code> does not cover. It duplicates what is already there, so do not enqueue it "just in case".</li>
   </ul>
 
   <div class="divider"></div>
@@ -127,28 +126,22 @@ code{font-family:var(--mono);font-size:12px;background:rgba(255,255,255,.06);col
   <p>Add the class <code>r</code> to any element you want to animate in. The <code>shared.js</code> IntersectionObserver watches all <code>.r</code> elements and adds <code>.on</code> when they enter the viewport. Delay variants <code>.d1</code> through <code>.d5</code> stagger children.</p>
   <p><strong>In Bricks Builder:</strong> Add <code>r</code> to the element's Custom CSS Class field. No PHP needed.</p>
 
-  <h3>GSAP for Advanced Timelines</h3>
-  <p>For the hero heading staggered reveal and the stat counter animation, use GSAP's ScrollTrigger plugin. Enqueue from CDN:</p>
+  <h3>Masked Word Reveal (data-split)</h3>
+  <p>The large serif headings animate word by word out from behind a mask. This is built into <code>shared.js</code> — no GSAP or SplitType needed. Add the attribute <code>data-split</code> to any heading:</p>
   <div class="card">
-    <div class="card-title">Enqueue GSAP + ScrollTrigger</div>
-    <p><code>wp_enqueue_script('gsap', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js', [], null, true);</code><br>
-    <code>wp_enqueue_script('scrolltrigger', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js', ['gsap'], null, true);</code></p>
+    <div class="card-title">Markup</div>
+    <p><code>&lt;h1 class="hero-title" data-split&gt;Shaping&lt;br&gt;&lt;i&gt;brands&lt;/i&gt;&lt;/h1&gt;</code></p>
   </div>
-  <p>Then in your custom JS file, register ScrollTrigger and animate headings:</p>
-  <div class="card">
-    <div class="card-title">Hero Title GSAP Animation</div>
-    <p><code>gsap.registerPlugin(ScrollTrigger);</code><br>
-    <code>gsap.from('.hero-title', {opacity:0, y:40, duration:1.1, ease:'power3.out', delay:0.4});</code><br>
-    <code>gsap.from('.hero-desc', {opacity:0, y:24, duration:0.9, ease:'power3.out', delay:0.7});</code></p>
-  </div>
+  <p>The splitter walks child elements rather than flattening them, so nested <code>&lt;i&gt;</code>, <code>&lt;br&gt;</code> and <code>&lt;span&gt;</code> tags keep their styling. Headings inside <code>.hero</code>, <code>.page-hero</code>, <code>.journal-hero</code>, <code>.about-intro</code> or <code>.contact-left</code> are treated as above-the-fold and play as one sequence after the loader clears; everything else reveals on scroll.</p>
+  <div class="warn"><p><strong>Bricks/Elementor note:</strong> add <code>data-split</code> in the element's Attributes panel. Do not also apply a builder entrance animation to the same element — the two will fight over <code>opacity</code>.</p></div>
 
-  <h3>SplitType for Text Reveals</h3>
-  <p>To animate the large serif headings character by character (as seen on the homepage "Shaping brands that last"):</p>
-  <div class="card">
-    <div class="card-title">Character-level reveal</div>
-    <p><code>const split = new SplitType('.hero-title', {types:'chars'});</code><br>
-    <code>gsap.from(split.chars, {opacity:0, y:60, stagger:0.04, duration:0.8, ease:'power4.out'});</code></p>
-  </div>
+  <h3>Scroll-Reactive Marquee, Tilt and Spotlight</h3>
+  <p>Three more opt-in hooks, all handled by <code>shared.js</code>:</p>
+  <ul>
+    <li><code>data-parallax="0.3"</code> — element drifts at 30% of scroll speed. Written to the standalone <code>translate</code> property, so it stacks with any <code>transform</code> the element already has.</li>
+    <li><code>class="spot"</code> — a soft gold wash follows the pointer across the section.</li>
+    <li><code>data-cursor="View project"</code> — swaps the cursor for a labelled pill while hovering.</li>
+  </ul>
 
   <div class="divider"></div>
 
@@ -175,19 +168,30 @@ code{font-family:var(--mono);font-size:12px;background:rgba(255,255,255,.06);col
     <code>&nbsp;&nbsp;&lt;div class="loader-text"&gt;Loading&lt;/div&gt;</code><br>
     <code>&lt;/div&gt;</code></p>
   </div>
-  <p>The <code>shared.js</code> listens for <code>window.load</code> and adds the class <code>done</code> to <code>#loader</code>, which CSS transitions to <code>opacity:0; visibility:hidden</code>. This works identically in WordPress.</p>
+  <p><code>shared.js</code> listens for <code>window.load</code> and adds the class <code>done</code> to <code>#loader</code>, which CSS transitions to <code>opacity:0; visibility:hidden</code>. A 3.5s failsafe clears it even if an asset never resolves.</p>
+  <h3>Page Transitions</h3>
+  <p>The loader only plays on the first page of a session. Every navigation after that uses a curtain that wipes up on exit and peels down on arrival. Two pieces of markup are required in <code>header.php</code>:</p>
+  <div class="card">
+    <div class="card-title">1. First thing in &lt;head&gt;, before any stylesheet</div>
+    <p><code>&lt;script&gt;try{if(sessionStorage.getItem("tea-nav"))document.documentElement.classList.add("nav-in")}catch(e){}&lt;/script&gt;</code></p>
+  </div>
+  <div class="card">
+    <div class="card-title">2. Immediately after &lt;body&gt;, before #loader</div>
+    <p><code>&lt;div id="curtain" aria-hidden="true"&gt;&lt;div class="curtain-mark"&gt;T&lt;i&gt;EA&lt;/i&gt;&lt;/div&gt;&lt;/div&gt;</code></p>
+  </div>
+  <div class="warn"><p><strong>Order matters.</strong> A pending <code>&lt;link rel="stylesheet"&gt;</code> blocks execution of every script after it. If that inline script sits below the Google Fonts link, the incoming page paints before the curtain is in place and the transition flashes.</p></div>
 
   <div class="divider"></div>
 
   <!-- 06 PARALLAX & PARTICLES -->
   <h2 id="parallax">06 — Parallax <i>&amp; Particles</i></h2>
   <h3>Floating Particle Canvas</h3>
-  <p>The animated gold dust particles on the homepage hero use an HTML5 <code>&lt;canvas&gt;</code> element driven by <code>shared.js</code>'s <code>initParticles()</code> function. In WordPress, include the canvas in your hero template part:</p>
+  <p>The animated gold dust particles on the homepage hero use an HTML5 <code>&lt;canvas&gt;</code> element driven by <code>shared.js</code>. In WordPress, include the canvas in your hero template part:</p>
   <div class="card">
     <div class="card-title">In hero template (page-home.php or Bricks widget)</div>
     <p><code>&lt;canvas id="particles" style="position:absolute;inset:0;pointer-events:none;z-index:1"&gt;&lt;/canvas&gt;</code></p>
   </div>
-  <p><code>shared.js</code> auto-initialises <code>initParticles('particles')</code> on load. The canvas auto-resizes using a <code>ResizeObserver</code>.</p>
+  <p><code>shared.js</code> picks the canvas up by its <code>id</code> automatically. It resizes via <code>ResizeObserver</code>, accounts for device pixel ratio, and stops drawing entirely whenever the canvas scrolls off screen or the tab is hidden — so it costs nothing on the rest of the page.</p>
 
   <h3>CSS Parallax (Background elements)</h3>
   <p>The large background glyph text that shifts on scroll uses the <code>data-parallax</code> attribute approach in <code>shared.js</code>. Add <code>data-parallax="0.3"</code> to any element to make it scroll at 30% speed. Works in any WordPress page builder by adding a custom attribute.</p>
@@ -196,7 +200,7 @@ code{font-family:var(--mono);font-size:12px;background:rgba(255,255,255,.06);col
 
   <!-- 07 MARQUEE -->
   <h2 id="marquee">07 — Scrolling <i>Marquee</i></h2>
-  <p>The discipline marquee uses pure CSS <code>@keyframes</code> animation with <code>width:max-content</code>. To make it dynamic in WordPress (editable from the admin), use ACF to create a repeater field <code>marquee_items</code> and loop through it:</p>
+  <p>The discipline marquee drifts on its own and then speeds up, slows down and reverses with the scroll. <code>shared.js</code> adds a <code>js</code> class to <code>.marquee-outer</code> and drives the transform per frame; the CSS <code>@keyframes</code> version stays in place as the no-JS fallback. Set <code>data-speed</code> on <code>.marquee-outer</code> to change the resting drift (default <code>0.9</code>). To make it dynamic in WordPress (editable from the admin), use ACF to create a repeater field <code>marquee_items</code> and loop through it:</p>
   <div class="card">
     <div class="card-title">Dynamic marquee with ACF repeater</div>
     <p><code>&lt;div class="marquee-outer"&gt;</code><br>
@@ -266,10 +270,10 @@ code{font-family:var(--mono);font-size:12px;background:rgba(255,255,255,.06);col
   <!-- 11 PERFORMANCE -->
   <h2 id="performance">11 — Performance <i>Tips</i></h2>
   <ul>
-    <li><strong>Defer non-critical JS</strong> — add <code>defer</code> to <code>shared.js</code> and GSAP in your <code>wp_enqueue_script</code> call via the <code>$in_footer = true</code> argument.</li>
+    <li><strong>Defer non-critical JS</strong> — pass <code>true</code> for <code>$in_footer</code> in <code>wp_enqueue_script</code> so <code>shared.js</code> loads at the end of the body. Do <em>not</em> defer the inline <code>nav-in</code> snippet: it has to run before first paint.</li>
     <li><strong>Replace SVG artwork with real photos</strong> — when actual project photography is available, use <code>&lt;img&gt;</code> with <code>loading="lazy"</code> and WebP format. The SVG placeholders are designed to be dropped in place.</li>
     <li><strong>Avoid animation on mobile</strong> — add a media query: <code>@media (prefers-reduced-motion: reduce) { .r { transition: none; opacity: 1; transform: none; } }</code>. Also conditionally disable the particle canvas on mobile using JS: <code>if(window.innerWidth &lt; 768) return;</code> in <code>initParticles</code>.</li>
-    <li><strong>WP Rocket settings</strong> — enable "Delay JavaScript Execution", exclude <code>shared.js</code> and GSAP from delay. Enable CSS minification but exclude <code>shared.css</code> to avoid selector mangling.</li>
+    <li><strong>WP Rocket settings</strong> — enable "Delay JavaScript Execution" but exclude <code>shared.js</code>: delaying it leaves the loader on screen until first interaction. Enable CSS minification but exclude <code>shared.css</code> to avoid selector mangling.</li>
     <li><strong>Disable unused animations on pages</strong> — the particle canvas, scramble effect, and magnetic buttons are optional. Conditionally load them only on the homepage using <code>is_front_page()</code> in a PHP check before enqueuing the relevant JS block.</li>
     <li><strong>Core Web Vitals</strong> — the custom cursor can cause LCP issues if the body cursor:none style is applied before the font loads. Wrap cursor init in a <code>DOMContentLoaded</code> listener, not just inline.</li>
   </ul>
@@ -283,8 +287,8 @@ code{font-family:var(--mono);font-size:12px;background:rgba(255,255,255,.06);col
       <li><strong>Custom Post Types:</strong> CPT UI — tea_project, tea_journal</li>
       <li><strong>Custom Fields:</strong> Advanced Custom Fields (ACF) Pro</li>
       <li><strong>Forms:</strong> WPForms Pro with custom CSS classes</li>
-      <li><strong>Animation:</strong> GSAP 3 + ScrollTrigger + SplitType (CDN)</li>
-      <li><strong>Smooth Scroll:</strong> Lenis.js (CDN)</li>
+      <li><strong>Animation:</strong> <code>shared.js</code> — IntersectionObserver + a single requestAnimationFrame loop, no dependencies</li>
+      <li><strong>Accessibility:</strong> honours <code>prefers-reduced-motion</code>; the custom cursor and hover-only effects switch off on touch and coarse pointers</li>
       <li><strong>Portfolio Filter:</strong> Isotope.js or native JS data-cat filter</li>
       <li><strong>Fonts:</strong> Google Fonts via OMGF (self-hosted)</li>
       <li><strong>Performance:</strong> WP Rocket + Smush/ShortPixel</li>
