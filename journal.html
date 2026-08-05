@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>try{if(sessionStorage.getItem("tea-nav"))document.documentElement.classList.add("nav-in")}catch(e){}</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080808'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='15' fill='%23c4a96b' text-anchor='middle'%3ETEA%3C/text%3E%3C/svg%3E">
+<title>Journal — Thomas Emmanuel Ayodele · TEA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@300;400;500;700&family=Syne+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.journal-hero{padding:180px 60px 100px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.06)}
+.jh-bg{position:absolute;inset:0;background:radial-gradient(ellipse 50% 70% at 80% 30%,rgba(196,169,107,.04) 0%,transparent 65%);pointer-events:none}
+.jh-title{font-family:var(--serif);font-size:clamp(64px,9vw,116px);font-weight:400;line-height:.88;letter-spacing:-.03em;color:var(--off)}
+.jh-title i{font-style:italic;color:var(--gold)}
+.jh-sub{font-size:14px;color:var(--muted);line-height:1.85;font-weight:300;max-width:380px;margin-bottom:32px}
+.jh-cats{display:flex;gap:8px;flex-wrap:wrap}
+.jcat{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;border:1px solid rgba(255,255,255,.1);color:var(--muted);padding:8px 16px;border-radius:1px;cursor:none;transition:border-color .2s,color .2s,background .2s;background:none}
+.jcat.active,.jcat:hover{border-color:var(--gold);color:var(--gold)}
+
+/* Featured */
+.journal-featured{padding:80px 60px;border-bottom:1px solid rgba(255,255,255,.06)}
+.featured-post{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--black2);transition:opacity .2s}
+.featured-post:hover{opacity:.96}
+.fp-visual{aspect-ratio:4/3;background:var(--black3);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.fp-cat{position:absolute;top:24px;left:24px;font-family:var(--mono);font-size:8px;letter-spacing:.2em;text-transform:uppercase;background:var(--gold);color:var(--black);padding:5px 12px;font-weight:700;z-index:2}
+.fp-content{padding:52px 46px;display:flex;flex-direction:column;justify-content:space-between}
+.fp-meta{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--muted);margin-bottom:20px}
+.fp-title{font-family:var(--serif);font-size:clamp(26px,2.8vw,40px);font-weight:400;line-height:1.2;color:var(--off);margin-bottom:18px}
+.fp-title i{font-style:italic;color:var(--gold)}
+.fp-excerpt{font-size:13px;color:var(--muted);line-height:1.8;font-weight:300;flex:1}
+.fp-read{display:inline-flex;align-items:center;gap:10px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:36px;transition:gap .22s}
+.fp-read:hover{gap:16px}
+
+/* Grid */
+.journal-grid{padding:80px 60px 120px}
+.jg-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:48px}
+.jg-count{font-family:var(--serif);font-size:13px;color:var(--muted);font-style:italic}
+.post-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.post-card{background:var(--black2);display:flex;flex-direction:column;border-top:2px solid transparent;transition:border-color .32s,background .3s}
+.post-card:hover{background:var(--black3);border-color:var(--gold)}
+.post-visual{aspect-ratio:16/10;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.post-visual svg{width:100%;height:100%;transition:transform .6s var(--ease)}
+.post-card:hover .post-visual svg{transform:scale(1.04)}
+.pcat{position:absolute;top:14px;left:14px;font-family:var(--mono);font-size:7px;letter-spacing:.18em;text-transform:uppercase;padding:4px 10px;border-radius:1px}
+.cat-d{background:rgba(196,169,107,.15);color:var(--gold)}
+.cat-c{background:rgba(255,255,255,.07);color:var(--muted2)}
+.cat-p{background:rgba(100,150,255,.1);color:#8ab4ff}
+.post-body{padding:26px 26px 30px;flex:1;display:flex;flex-direction:column}
+.post-meta{font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:var(--muted);margin-bottom:12px}
+.post-title{font-family:var(--serif);font-size:19px;font-weight:400;color:var(--off);line-height:1.3;margin-bottom:10px}
+.post-title i{font-style:italic}
+.post-excerpt{font-size:12px;color:var(--muted);line-height:1.75;font-weight:300;flex:1}
+.post-footer{display:flex;justify-content:space-between;align-items:center;margin-top:22px;padding-top:14px;border-top:1px solid rgba(255,255,255,.05)}
+.post-read{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:8px}
+.post-read svg{transition:transform .2s}
+.post-card:hover .post-read svg{transform:translateX(4px)}
+.post-min{font-family:var(--mono);font-size:9px;color:var(--muted)}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width:1100px){
+  .journal-hero{padding:150px 40px 76px;gap:48px}
+  .journal-featured{padding:56px 40px}
+  .journal-grid{padding:56px 40px 96px}
+  .post-grid{grid-template-columns:repeat(2,1fr)}
+  .fp-content{padding:38px 34px}
+}
+
+@media (max-width:860px){
+  .journal-hero{grid-template-columns:1fr;padding:120px 28px 56px;gap:32px;align-items:start}
+  .journal-featured{padding:44px 28px}
+  .journal-grid{padding:44px 28px 80px}
+  .featured-post{grid-template-columns:1fr}
+  .fp-visual{aspect-ratio:16/9}
+  .jg-head{flex-direction:column;align-items:flex-start;gap:14px;margin-bottom:32px}
+}
+
+@media (max-width:600px){
+  .journal-hero{padding:104px 20px 44px}
+  .journal-featured{padding:36px 20px}
+  .journal-grid{padding:36px 20px 72px}
+  .post-grid{grid-template-columns:1fr}
+  .fp-content{padding:30px 24px}
+  .fp-read{margin-top:26px}
+  .jh-cats{gap:6px}
+  .jcat{padding:7px 12px;font-size:8px;letter-spacing:.12em}
+}
+</style>
+</head>
+<body>
+<div id="curtain" aria-hidden="true"><div class="curtain-mark">T<i>EA</i></div></div>
+<div id="loader"><div class="loader-monogram">T<i>EA</i></div><div class="loader-bar-wrap"><div class="loader-bar"></div></div><div class="loader-text">Journal</div></div>
+<div id="cur"></div><div id="cur-ring"></div>
+<nav>
+  <a href="index.html" class="nav-logo">T<i>EA</i></a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-link" data-scramble>Home</a><a href="work.html" class="nav-link" data-scramble>Work</a>
+    <a href="about.html" class="nav-link" data-scramble>About</a><a href="journal.html" class="nav-link" data-scramble>Journal</a>
+    <a href="contact.html" class="nav-btn"><span>Let's Talk</span></a>
+  </div>
+</nav>
+<main>
+<section class="journal-hero spot">
+  <div class="jh-bg"></div>
+  <div>
+    <div class="label r" style="margin-bottom:24px">Journal</div>
+    <h1 class="jh-title r d1" data-split>Musings<br><i>&amp; Notes.</i></h1>
+  </div>
+  <div class="r d2">
+    <p class="jh-sub">Thoughts on design, career advice, and some personal razzle-dazzle. Written when the mood strikes.</p>
+    <div class="jh-cats">
+      <button class="jcat active" onclick="filterCat(this,'all')">All</button>
+      <button class="jcat" onclick="filterCat(this,'design')">Design</button>
+      <button class="jcat" onclick="filterCat(this,'career')">Career</button>
+      <button class="jcat" onclick="filterCat(this,'personal')">Personal</button>
+    </div>
+  </div>
+</section>
+
+<!-- Featured -->
+<section class="journal-featured">
+  <a href="#" class="featured-post r" data-cursor="Read">
+    <div class="fp-visual">
+      <svg viewBox="0 0 600 450" preserveAspectRatio="xMidYMid slice">
+        <rect width="600" height="450" fill="#0d0a10"/>
+        <text x="300" y="340" font-family="Playfair Display,serif" font-size="280" font-weight="700" font-style="italic" fill="rgba(255,255,255,.04)" text-anchor="middle">E</text>
+        <!-- Two hands / high five -->
+        <text x="300" y="240" font-family="Syne,sans-serif" font-size="32" font-weight="700" fill="rgba(255,255,255,.5)" text-anchor="middle">IDEAS</text>
+        <text x="300" y="285" font-family="Playfair Display,serif" font-size="22" font-style="italic" fill="rgba(196,169,107,.6)" text-anchor="middle">× Execution</text>
+        <!-- decorative circles -->
+        <circle cx="100" cy="80" r="40" stroke="rgba(196,169,107,.08)" stroke-width="1" fill="none"/>
+        <circle cx="500" cy="380" r="60" stroke="rgba(255,255,255,.04)" stroke-width="1" fill="none"/>
+        <line x1="0" y1="360" x2="600" y2="360" stroke="rgba(196,169,107,.08)" stroke-width=".5"/>
+      </svg>
+      <div class="fp-cat">Design</div>
+    </div>
+    <div class="fp-content">
+      <div>
+        <div class="fp-meta">15 March 2025 · 8 min read</div>
+        <h2 class="fp-title" data-split>Great <i>Ideas,</i><br>Great Execution</h2>
+        <p class="fp-excerpt">Helpful tips on how to execute design ideas better, from sketch to digital. The gap between a good idea and a good execution is where most designers lose the project — here's how to bridge it with intention and craft.</p>
+      </div>
+      <div class="fp-read">Read Article <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+  </a>
+</section>
+
+<!-- Grid -->
+<section class="journal-grid spot">
+  <div class="jg-head r">
+    <div class="label">More Articles</div>
+    <div class="jg-count">4 articles published</div>
+  </div>
+  <div class="post-grid">
+    <a href="#" class="post-card r" data-cursor="Read" data-cat="career">
+      <div class="post-visual">
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="250" fill="#080d14"/>
+          <text x="200" y="185" font-family="Playfair Display,serif" font-size="130" font-weight="700" fill="rgba(255,255,255,.055)" text-anchor="middle">W</text>
+          <text x="200" y="100" font-family="Syne,sans-serif" font-size="28" font-weight="700" fill="rgba(255,255,255,.45)" text-anchor="middle">WORLD</text>
+          <text x="200" y="135" font-family="Playfair Display,serif" font-size="24" font-style="italic" fill="rgba(196,169,107,.6)" text-anchor="middle">CLASS</text>
+        </svg>
+        <span class="pcat cat-c">Career</span>
+      </div>
+      <div class="post-body">
+        <div class="post-meta">02 Jan 2025</div>
+        <div class="post-title">Champion Locale to <i>World Class</i></div>
+        <div class="post-excerpt">Practical, honest tips on how the Nigerian designer can rise above mediocrity and achieve world class standards of craft.</div>
+        <div class="post-footer"><div class="post-read">Read <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="post-min">6 min</div></div>
+      </div>
+    </a>
+    <a href="#" class="post-card r d1" data-cursor="Read" data-cat="career">
+      <div class="post-visual">
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="250" fill="#0c0c0c"/>
+          <text x="200" y="200" font-family="Playfair Display,serif" font-size="170" font-weight="700" fill="rgba(255,255,255,.05)" text-anchor="middle">N</text>
+          <!-- Abstract silhouette hint -->
+          <ellipse cx="200" cy="90" rx="52" ry="52" fill="rgba(255,255,255,.07)"/>
+          <text x="200" y="97" font-family="Syne,sans-serif" font-size="22" font-weight="700" fill="rgba(255,255,255,.5)" text-anchor="middle">NEW</text>
+          <text x="200" y="145" font-family="Syne Mono,monospace" font-size="9" fill="rgba(196,169,107,.45)" text-anchor="middle" letter-spacing="3">BEGINNINGS</text>
+        </svg>
+        <span class="pcat cat-c">Career</span>
+      </div>
+      <div class="post-body">
+        <div class="post-meta">14 Aug 2024</div>
+        <div class="post-title"><i>New</i> Beginnings</div>
+        <div class="post-excerpt">My career journey over the last 7 years, and how I landed my current design role at Pioneer Design. What I learned, what I'd do differently.</div>
+        <div class="post-footer"><div class="post-read">Read <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="post-min">5 min</div></div>
+      </div>
+    </a>
+    <a href="#" class="post-card r d2" data-cursor="Read" data-cat="personal">
+      <div class="post-visual">
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="250" fill="#0e0808"/>
+          <!-- BuyChicken bag art -->
+          <path d="M130 60 L270 60 L280 190 L120 190 Z" fill="#cc2222" opacity=".65"/>
+          <circle cx="200" cy="48" r="20" fill="#ffcc00" opacity=".8"/>
+          <text x="200" y="53" font-family="Syne,sans-serif" font-size="7" font-weight="700" fill="#cc2222" text-anchor="middle">BC</text>
+          <text x="200" y="135" font-family="Syne,sans-serif" font-size="11" font-weight="700" fill="rgba(255,255,255,.6)" text-anchor="middle">BuyChicken</text>
+          <text x="200" y="215" font-family="Syne Mono,monospace" font-size="7" fill="rgba(196,169,107,.35)" text-anchor="middle" letter-spacing="3">A BREAKOUT STORY</text>
+        </svg>
+        <span class="pcat cat-p">Personal</span>
+      </div>
+      <div class="post-body">
+        <div class="post-meta">03 Mar 2024</div>
+        <div class="post-title">BuyChicken — A <i>Breakout</i> Story</div>
+        <div class="post-excerpt">The full story of what truly inspired the BuyChicken brand, how it started, how it ended, and what it led to in my career.</div>
+        <div class="post-footer"><div class="post-read">Read <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="post-min">9 min</div></div>
+      </div>
+    </a>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="footer-top">
+    <div><div class="footer-brand-name">Thomas <i>Emmanuel</i><br>Ayodele</div><div class="footer-tagline">Brand Designer & Creative Director · TEA Design Co.</div></div>
+    <div class="footer-cols">
+      <div class="footer-col"><div class="footer-col-label">Navigate</div><a href="index.html">Home</a><a href="work.html">Work</a><a href="about.html">About</a><a href="journal.html">Journal</a></div>
+      <div class="footer-col"><div class="footer-col-label">Elsewhere</div><a href="#">Twitter / X</a><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">Behance</a></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><div class="footer-copy">© 2025 TEA Design Co. All rights reserved.</div><a href="mailto:hello@teadesign.co" class="footer-email">hello@teadesign.co</a></div>
+</footer>
+<script src="shared.js"></script>
+<script>
+function filterCat(btn, cat) {
+  document.querySelectorAll('.jcat').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.post-card').forEach(card => {
+    if(cat === 'all' || card.dataset.cat === cat) {
+      card.style.opacity = '1'; card.style.pointerEvents = 'auto';
+    } else {
+      card.style.opacity = '.25'; card.style.pointerEvents = 'none';
+    }
+  });
+}
+</script>
+</body>
+</html>
