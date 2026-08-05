@@ -21,6 +21,13 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    # GitHub Pages only serves private repositories on paid plans, so on a
+    # free plan the very first step fails with "Resource not accessible by
+    # integration" and every push to main gets a red cross for a reason
+    # nobody can act on from here. Skipping while the repo is private keeps
+    # the run green, and the deploy starts happening on its own the moment
+    # the repo is made public.
+    if: ${{ !github.event.repository.private }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
