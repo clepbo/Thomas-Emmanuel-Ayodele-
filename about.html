@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>About — Thomas Emmanuel Ayodele · TEA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@300;400;500;700&family=Syne+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* INTRO */
+.about-intro{padding:180px 60px 100px;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:end;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.06)}
+.ai-bg{position:absolute;inset:0;background:radial-gradient(ellipse 55% 75% at 85% 40%,rgba(196,169,107,.05) 0%,transparent 60%);pointer-events:none}
+.about-name{font-family:var(--serif);font-size:clamp(56px,8vw,108px);font-weight:400;line-height:.88;letter-spacing:-.03em;color:var(--off)}
+.about-name i{font-style:italic;color:var(--gold);display:block}
+.about-roles{margin-top:32px;display:flex;flex-direction:column;gap:11px}
+.about-role{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px;transition:color .4s}
+.role-dot{width:5px;height:5px;border-radius:50%;background:rgba(196,169,107,.3);flex-shrink:0;transition:background .4s,transform .4s}
+.about-role.active{color:var(--gold)}
+.about-role.active .role-dot{background:var(--gold);transform:scale(1.8)}
+
+/* Portrait */
+.portrait-wrap{position:relative}
+.portrait-frame{width:100%;aspect-ratio:3/4;background:var(--black3);border-radius:2px;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center}
+.portrait-svg{width:100%;height:100%}
+.portrait-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,rgba(8,8,8,.65) 100%)}
+.portrait-caption{position:absolute;bottom:22px;left:22px;right:22px;background:rgba(8,8,8,.78);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(10px);padding:15px 18px;border-radius:2px;display:flex;align-items:center;justify-content:space-between}
+.pc-name-tag{font-family:var(--serif);font-size:15px;font-weight:400}
+.pc-status{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--muted)}
+.pulse-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;animation:pdot 2.2s ease-in-out infinite;flex-shrink:0}
+@keyframes pdot{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(74,222,128,.4)}50%{opacity:.3;box-shadow:0 0 0 6px rgba(74,222,128,0)}}
+.years-badge{position:absolute;top:-18px;right:-18px;width:86px;height:86px;border-radius:50%;background:var(--black3);border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 0 0 6px var(--black)}
+.yb-num{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--gold);line-height:1}
+.yb-label{font-family:var(--mono);font-size:7px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;margin-top:2px}
+
+/* BIO */
+.about-bio{padding:100px 60px;display:grid;grid-template-columns:1fr 1.4fr;gap:100px;align-items:start}
+.bio-left{position:sticky;top:110px}
+.bio-quote{font-family:var(--serif);font-size:clamp(20px,2.5vw,32px);font-weight:400;font-style:italic;line-height:1.45;color:var(--off2)}
+.bio-quote::before{content:'\201C';font-size:72px;color:rgba(196,169,107,.3);line-height:0;vertical-align:-28px;margin-right:-2px;font-style:normal;display:block;margin-bottom:10px}
+.bio-para{font-size:15px;line-height:1.9;color:var(--muted);font-weight:300;margin-bottom:26px}
+.bio-para strong{color:var(--off2);font-weight:400}
+.bio-para:last-of-type{margin-bottom:0}
+
+/* SKILLS */
+.skills-section{padding:100px 60px;background:var(--black2);border-top:1px solid rgba(255,255,255,.06)}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:52px}
+.skill-card{padding:38px 34px;background:var(--black);transition:background .3s;border-top:2px solid transparent;transition:border-color .32s,background .3s;position:relative;overflow:hidden}
+.skill-card::before{content:'';position:absolute;bottom:0;right:0;width:0;height:0;border-style:solid;border-width:0 0 40px 40px;border-color:transparent transparent rgba(196,169,107,.06) transparent;transition:border-width .3s var(--ease)}
+.skill-card:hover{background:var(--black3);border-color:var(--gold)}
+.skill-card:hover::before{border-width:0 0 70px 70px}
+.sc-num{font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:.14em;display:block;margin-bottom:14px}
+.sc-title{font-family:var(--serif);font-size:21px;font-weight:400;color:var(--off);margin-bottom:10px}
+.sc-desc{font-size:12px;color:var(--muted);line-height:1.75;font-weight:300}
+
+/* EXPERIENCE */
+.exp-section{padding:100px 60px;border-top:1px solid rgba(255,255,255,.06)}
+.exp-layout{display:grid;grid-template-columns:280px 1fr;gap:96px;margin-top:52px}
+.exp-intro-title{font-family:var(--serif);font-size:clamp(32px,3.8vw,50px);font-weight:400;line-height:1.1;color:var(--off);margin-bottom:16px}
+.exp-intro-title i{font-style:italic;color:var(--gold)}
+.exp-intro-sub{font-size:13px;color:var(--muted);line-height:1.75;font-weight:300}
+.exp-row{display:grid;grid-template-columns:1.5fr 1.2fr 1fr;align-items:center;padding:26px 0;border-bottom:1px solid rgba(255,255,255,.06);gap:20px;transition:padding-left .25s;cursor:default}
+.exp-row:first-child{border-top:1px solid rgba(255,255,255,.06)}
+.exp-row:hover{padding-left:8px}
+.exp-co{font-family:var(--serif);font-size:19px;font-weight:400;color:var(--off)}
+.exp-role-txt{font-size:12px;color:var(--muted);letter-spacing:.02em}
+.exp-period{font-family:var(--mono);font-size:10px;color:var(--muted);text-align:right;letter-spacing:.08em}
+.exp-cur{display:inline-block;background:rgba(196,169,107,.1);color:var(--gold);font-family:var(--mono);font-size:7px;letter-spacing:.18em;text-transform:uppercase;padding:3px 8px;border-radius:1px;margin-left:8px;vertical-align:middle}
+
+/* TESTIMONIALS */
+.testi-section{padding:100px 60px;background:var(--black2);border-top:1px solid rgba(255,255,255,.06)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:52px}
+.testi-card{background:var(--black);padding:42px 34px;border-top:2px solid transparent;transition:border-color .32s;position:relative;overflow:hidden}
+.testi-card::after{content:'';position:absolute;top:0;left:0;right:0;height:0;background:linear-gradient(to bottom,rgba(196,169,107,.04),transparent);transition:height .4s}
+.testi-card:hover{border-color:var(--gold)}
+.testi-card:hover::after{height:100%}
+.testi-quote{font-family:var(--serif);font-style:italic;font-size:16px;line-height:1.7;color:var(--off2);margin-bottom:30px;position:relative;z-index:1}
+.testi-quote::before{content:'\201C';font-size:44px;color:rgba(196,169,107,.3);line-height:0;vertical-align:-18px;margin-right:2px}
+.testi-name{font-size:13px;color:var(--off);margin-bottom:3px;font-weight:500;position:relative;z-index:1}
+.testi-co{font-size:11px;color:var(--muted);font-family:var(--mono);letter-spacing:.06em;position:relative;z-index:1}
+</style>
+</head>
+<body>
+<div id="loader"><div class="loader-monogram">T<i>EA</i></div><div class="loader-bar-wrap"><div class="loader-bar"></div></div><div class="loader-text">About</div></div>
+<div id="cur"></div><div id="cur-ring"></div>
+<nav>
+  <a href="index.html" class="nav-logo">T<i>EA</i></a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-link">Home</a><a href="work.html" class="nav-link">Work</a>
+    <a href="about.html" class="nav-link">About</a><a href="journal.html" class="nav-link">Journal</a>
+    <a href="contact.html" class="nav-btn"><span>Let's Talk</span></a>
+  </div>
+</nav>
+<main>
+<section class="about-intro">
+  <div class="ai-bg"></div>
+  <div>
+    <div class="label r" style="margin-bottom:32px">About</div>
+    <h1 class="about-name r d1">Thomas<br>Emmanuel<br><i>Ayodele.</i></h1>
+    <div class="about-roles r d2">
+      <div class="about-role active"><span class="role-dot"></span>Brand Designer</div>
+      <div class="about-role"><span class="role-dot"></span>3D Designer</div>
+      <div class="about-role"><span class="role-dot"></span>Motion Designer</div>
+      <div class="about-role"><span class="role-dot"></span>Type Enthusiast</div>
+      <div class="about-role"><span class="role-dot"></span>Creative Director</div>
+      <div class="about-role"><span class="role-dot"></span>Design Generalist</div>
+    </div>
+  </div>
+  <div class="r d2">
+    <div class="portrait-wrap">
+      <div class="portrait-frame">
+        <!-- SVG portrait illustration -->
+        <svg class="portrait-svg" viewBox="0 0 480 640" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <radialGradient id="skinGrad" cx="50%" cy="38%" r="55%">
+              <stop offset="0%" stop-color="#7a5038" stop-opacity=".9"/>
+              <stop offset="100%" stop-color="#3d2416" stop-opacity=".6"/>
+            </radialGradient>
+            <radialGradient id="bgGrad" cx="50%" cy="35%" r="70%">
+              <stop offset="0%" stop-color="#262626"/>
+              <stop offset="100%" stop-color="#161616"/>
+            </radialGradient>
+          </defs>
+          <!-- Background -->
+          <rect width="480" height="640" fill="url(#bgGrad)"/>
+          <!-- Subtle grid -->
+          <line x1="0" y1="320" x2="480" y2="320" stroke="rgba(255,255,255,.03)" stroke-width="1"/>
+          <line x1="240" y1="0" x2="240" y2="640" stroke="rgba(255,255,255,.03)" stroke-width="1"/>
+          <!-- Body/shoulders -->
+          <path d="M0 640 Q0 480 80 450 Q160 430 240 435 Q320 430 400 450 Q480 480 480 640 Z" fill="#1a1a1a"/>
+          <!-- Shirt/collar -->
+          <path d="M160 430 Q200 420 240 435 Q280 420 320 430 L340 480 Q290 510 240 510 Q190 510 140 480 Z" fill="#2a2a2a"/>
+          <!-- T-shirt text -->
+          <text x="240" y="488" font-family="Syne,sans-serif" font-size="11" font-weight="700" fill="rgba(255,255,255,.25)" text-anchor="middle" letter-spacing="2">DSGN</text>
+          <!-- Neck -->
+          <rect x="208" y="380" width="64" height="70" rx="8" fill="url(#skinGrad)"/>
+          <!-- Head -->
+          <ellipse cx="240" cy="310" rx="105" ry="125" fill="url(#skinGrad)"/>
+          <!-- Ear left -->
+          <ellipse cx="137" cy="310" rx="16" ry="22" fill="url(#skinGrad)"/>
+          <!-- Ear right -->
+          <ellipse cx="343" cy="310" rx="16" ry="22" fill="url(#skinGrad)"/>
+          <!-- Hair -->
+          <path d="M145 235 Q175 185 240 180 Q305 185 335 235 Q350 260 348 240 Q340 165 240 158 Q140 165 132 240 Q130 260 145 235 Z" fill="#1a0e06"/>
+          <!-- Low cut hair style -->
+          <path d="M148 236 Q180 208 240 204 Q300 208 332 236" fill="#1a0e06" stroke="#1a0e06" stroke-width="2"/>
+          <!-- Eyebrows -->
+          <path d="M180 268 Q200 260 220 266" stroke="#1a0e06" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M260 266 Q280 260 300 268" stroke="#1a0e06" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <!-- Eyes with glasses reflection -->
+          <ellipse cx="200" cy="285" rx="22" ry="18" fill="#3d2010" opacity=".8"/>
+          <ellipse cx="200" cy="285" rx="14" ry="12" fill="#1a0a04"/>
+          <circle cx="200" cy="285" r="7" fill="#0a0402"/>
+          <circle cx="204" cy="280" r="3" fill="rgba(255,255,255,.55)"/>
+          <ellipse cx="280" cy="285" rx="22" ry="18" fill="#3d2010" opacity=".8"/>
+          <ellipse cx="280" cy="285" rx="14" ry="12" fill="#1a0a04"/>
+          <circle cx="280" cy="285" r="7" fill="#0a0402"/>
+          <circle cx="284" cy="280" r="3" fill="rgba(255,255,255,.55)"/>
+          <!-- Glasses -->
+          <rect x="174" y="270" width="52" height="34" rx="10" stroke="rgba(196,169,107,.7)" stroke-width="2.5" fill="none"/>
+          <rect x="254" y="270" width="52" height="34" rx="10" stroke="rgba(196,169,107,.7)" stroke-width="2.5" fill="none"/>
+          <line x1="226" y1="282" x2="254" y2="282" stroke="rgba(196,169,107,.6)" stroke-width="2"/>
+          <line x1="137" y1="281" x2="174" y2="281" stroke="rgba(196,169,107,.55)" stroke-width="2"/>
+          <line x1="306" y1="281" x2="343" y2="281" stroke="rgba(196,169,107,.55)" stroke-width="2"/>
+          <!-- Nose -->
+          <path d="M230 295 Q235 325 240 330 Q245 325 250 295" stroke="rgba(0,0,0,.3)" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <!-- Smile -->
+          <path d="M210 350 Q240 368 270 350" stroke="#1a0e06" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <!-- Lips -->
+          <path d="M215 345 Q240 352 265 345 Q258 355 240 358 Q222 355 215 345 Z" fill="#5a3020" opacity=".7"/>
+          <!-- Mustache hint -->
+          <path d="M220 338 Q230 342 240 340 Q250 342 260 338" stroke="rgba(0,0,0,.4)" stroke-width="2" fill="none"/>
+          <!-- Gold accent: necklace -->
+          <path d="M185 415 Q240 428 295 415" stroke="rgba(196,169,107,.35)" stroke-width="1.5" fill="none"/>
+          <!-- Background label -->
+          <text x="240" y="615" font-family="Syne Mono,monospace" font-size="8" fill="rgba(196,169,107,.25)" text-anchor="middle" letter-spacing="4">TEA DESIGN CO.</text>
+        </svg>
+        <div class="portrait-overlay"></div>
+        <div class="portrait-caption">
+          <div class="pc-name-tag">Thomas E. Ayodele</div>
+          <div class="pc-status"><div class="pulse-dot"></div>Available for work</div>
+        </div>
+      </div>
+      <div class="years-badge"><div class="yb-num">6+</div><div class="yb-label">Years</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BIO -->
+<section class="about-bio">
+  <div class="bio-left r">
+    <div class="bio-quote">Detail-driven, finesse-obsessed, highly creative.</div>
+  </div>
+  <div>
+    <p class="bio-para r d1">Hi, I'm <strong>Thomas Emmanuel Ayodele</strong> — TEA. My six years in the design industry have allowed me to inhabit many roles: a brand designer working in-house at startups, a contractor at branding agencies, and a freelancer working one-on-one with founders who care deeply about the marks they leave on the world.</p>
+    <p class="bio-para r d2">Working across these different fields has enabled me to pick up several skills alongside graphic and brand design, such as <strong>motion design, illustration, 3D, copywriting, type design and creative direction.</strong> However, I have honed my expertise most sharply in branding and brand identity design.</p>
+    <p class="bio-para r d3">I combine my experience in graphic design and these disciplines to solve problems, tell stories, and help brands discover their truest selves. Through consistent practice, I've developed a <strong>systematic and meticulous approach</strong> that has yielded exceptional results for clients and their businesses.</p>
+    <div style="margin-top:40px" class="r d4"><a href="contact.html" class="btn-gold magnetic"><span>Work With Me</span> <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section">
+  <div class="label r">Expertise — Multidisciplinary</div>
+  <div class="skills-grid">
+    <div class="skill-card r"><span class="sc-num">01</span><div class="sc-title">Brand Identity</div><div class="sc-desc">Logo systems, visual language, brand guidelines and identity assets that scale across every touchpoint.</div></div>
+    <div class="skill-card r d1"><span class="sc-num">02</span><div class="sc-title">Packaging Design</div><div class="sc-desc">Structural and graphic packaging that turns products into shelf presences worth picking up.</div></div>
+    <div class="skill-card r d2"><span class="sc-num">03</span><div class="sc-title">Type Design</div><div class="sc-desc">Custom typefaces and lettering with character — built from cultural references and genuine craft.</div></div>
+    <div class="skill-card r d1"><span class="sc-num">04</span><div class="sc-title">Motion & 3D</div><div class="sc-desc">Animated brand identities and 3D visualisations that bring static marks to life.</div></div>
+    <div class="skill-card r d2"><span class="sc-num">05</span><div class="sc-title">Creative Direction</div><div class="sc-desc">Art direction for campaigns, photo shoots and multi-channel brand activations.</div></div>
+    <div class="skill-card r d3"><span class="sc-num">06</span><div class="sc-title">Web Design</div><div class="sc-desc">Brand-aligned digital experiences — from marketing sites to product landing pages.</div></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="exp-section">
+  <div class="label r">Experience</div>
+  <div class="exp-layout">
+    <div class="r">
+      <h2 class="exp-intro-title">A career built on <i>craft.</i></h2>
+      <p class="exp-intro-sub">From Lagos to London to the US — a track record across agencies, studios and product teams.</p>
+    </div>
+    <div class="r d1">
+      <div class="exp-row"><div class="exp-co">Pioneer Design, US <span class="exp-cur">Now</span></div><div class="exp-role-txt">Brand / Motion Designer</div><div class="exp-period">2024 — Present</div></div>
+      <div class="exp-row"><div class="exp-co">YADA Agency, UK</div><div class="exp-role-txt">Senior Design Partner</div><div class="exp-period">2020 — 2024</div></div>
+      <div class="exp-row"><div class="exp-co">Canta Global, NG</div><div class="exp-role-txt">Brand Design Lead</div><div class="exp-period">2022 — 2024</div></div>
+      <div class="exp-row"><div class="exp-co">TEA Design Co.</div><div class="exp-role-txt">Creative Director</div><div class="exp-period">2018 — Present</div></div>
+      <div class="exp-row"><div class="exp-co">Check DC Agency, NG</div><div class="exp-role-txt">Brand Designer</div><div class="exp-period">2022</div></div>
+      <div class="exp-row"><div class="exp-co">Christian Union, NG</div><div class="exp-role-txt">Graphic Designer</div><div class="exp-period">2017 — 2018</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+  <div class="label r">What Clients Say</div>
+  <div class="testi-grid">
+    <div class="testi-card r"><p class="testi-quote">With the Nomadi logo and brand system, we wanted to capture the essence of the nature of work of the digital nomad. Thomas was able to do just this, within a very short time frame.</p><div class="testi-name">Ebovi Wali</div><div class="testi-co">Founder, Nomadi</div></div>
+    <div class="testi-card r d1"><p class="testi-quote">In his time at Check DC, Thomas brought a refreshing perspective to every project. He has a unique ability to pick out key brand information and translate it into outstanding identity systems.</p><div class="testi-name">Charles Eke</div><div class="testi-co">Co-founder, Check DC</div></div>
+    <div class="testi-card r d2"><p class="testi-quote">An incredibly devoted and skilled designer. We're consistently impressed by his attention to detail and the outstanding quality of the projects he has completed for our team.</p><div class="testi-name">Ime Bassey</div><div class="testi-co">Managing Director, YADA</div></div>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="footer-top">
+    <div><div class="footer-brand-name">Thomas <i>Emmanuel</i><br>Ayodele</div><div class="footer-tagline">Brand Designer & Creative Director · TEA Design Co.</div></div>
+    <div class="footer-cols">
+      <div class="footer-col"><div class="footer-col-label">Navigate</div><a href="index.html">Home</a><a href="work.html">Work</a><a href="about.html">About</a><a href="journal.html">Journal</a></div>
+      <div class="footer-col"><div class="footer-col-label">Elsewhere</div><a href="#">Twitter / X</a><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">Behance</a></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><div class="footer-copy">© 2025 TEA Design Co. All rights reserved.</div><a href="mailto:hello@teadesign.co" class="footer-email">hello@teadesign.co</a></div>
+</footer>
+<script src="shared.js"></script>
+<script>
+const roles = document.querySelectorAll('.about-role');
+let cur = 0;
+setInterval(() => {
+  roles[cur].classList.remove('active');
+  cur = (cur + 1) % roles.length;
+  roles[cur].classList.add('active');
+}, 1900);
+</script>
+</body>
+</html>
