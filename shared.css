@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@300;400;500;700&family=Syne+Mono&display=swap');
+/* No @import for the webfonts here.
+   A stylesheet is not applied until its @import rules resolve, so importing
+   the font CDN at the top of this file meant a slow or blocked
+   fonts.googleapis.com held back EVERY rule below — the page rendered
+   unstyled white until the request settled. The fonts are requested from
+   each page's <head> instead, without blocking the first paint. */
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -49,11 +54,13 @@ body.cur-label #cur-ring{opacity:0}
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.03;pointer-events:none;z-index:7000}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:0 60px;height:76px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,box-shadow .4s,transform .55s var(--ease2),opacity .4s}
-nav.scrolled{background:rgba(8,8,8,.97);box-shadow:0 1px 0 rgba(255,255,255,.05);backdrop-filter:blur(16px)}
+/* Scoped to the direct child of <body>: a page is free to use <nav> for its
+   own in-page navigation without inheriting the fixed site header. */
+body>nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:0 60px;height:76px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,box-shadow .4s,transform .55s var(--ease2),opacity .4s}
+body>nav.scrolled{background:rgba(8,8,8,.97);box-shadow:0 1px 0 rgba(255,255,255,.05);backdrop-filter:blur(16px)}
 /* Once the dock takes over, the top bar retracts so only one nav is on screen */
-nav.retracted{transform:translateY(-100%);opacity:0;pointer-events:none}
-nav::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,8,.88) 0%,transparent 100%);pointer-events:none}
+body>nav.retracted{transform:translateY(-100%);opacity:0;pointer-events:none}
+body>nav::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,8,.88) 0%,transparent 100%);pointer-events:none}
 .nav-logo{font-family:var(--serif);font-size:20px;font-weight:400;letter-spacing:.05em;color:var(--off);position:relative;z-index:1;transition:color .25s}
 .nav-logo i{font-style:italic;color:var(--gold)}
 .nav-logo:hover{color:var(--gold)}
@@ -144,6 +151,16 @@ html.nav-in #curtain{transform:scaleY(1);transform-origin:0 0;transition:none}
 html.nav-in #curtain .curtain-mark{opacity:1}
 html.nav-in.open #curtain{transform:scaleY(0);transition:transform .62s var(--ease2)}
 html.nav-in.open #curtain .curtain-mark{opacity:0;transition:opacity .25s}
+
+/* FAILSAFES — pure CSS, no JS involved.
+   Both the loader and the arrival curtain cover the whole viewport and are
+   normally retired by shared.js. If that script fails to load or throws,
+   nothing would ever uncover the page. These animations sit dormant behind
+   a delay the happy path never reaches, and uncover it regardless. */
+#loader{animation:loader-failsafe .5s linear 6s forwards}
+@keyframes loader-failsafe{to{opacity:0;visibility:hidden;pointer-events:none}}
+html.nav-in #curtain{animation:curtain-failsafe .5s var(--ease2) 2.5s forwards}
+@keyframes curtain-failsafe{to{transform:scaleY(0)}}
 
 /* ── SPLIT-TEXT REVEAL ──
    Words ride up from behind a mask. The padding/margin pair gives

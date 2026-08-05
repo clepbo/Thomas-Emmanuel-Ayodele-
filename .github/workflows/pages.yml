@@ -43,7 +43,7 @@ jobs:
       - name: Assemble site
         run: |
           mkdir -p _site
-          cp ./*.html shared.css shared.js _site/
+          cp ./*.html shared.css shared.js content.js _site/
           cp -r assets _site/
           # Pages runs Jekyll by default, which would skip files it does
           # not recognise. This opts out and publishes the tree as-is.

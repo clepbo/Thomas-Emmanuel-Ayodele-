@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>try{if(sessionStorage.getItem("tea-nav"))document.documentElement.classList.add("nav-in")}catch(e){}</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080808'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='15' fill='%23c4a96b' text-anchor='middle'%3ETEA%3C/text%3E%3C/svg%3E">
+<title>Journal — Thomas Emmanuel Ayodele · TEA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@300;400;500;700&family=Syne+Mono&display=swap" media="print" onload="this.media='all';this.onload=null">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@300;400;500;700&family=Syne+Mono&display=swap"></noscript>
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ═══ ARTICLE ═══ */
+.ar-head{padding:170px 24px 60px;text-align:center;position:relative;overflow:hidden}
+.ar-head-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 50% 0%,rgba(196,169,107,.055) 0%,transparent 65%);pointer-events:none}
+.ar-inner{max-width:760px;margin:0 auto;position:relative;z-index:1}
+.ar-eyebrow{display:flex;align-items:center;justify-content:center;gap:14px;font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:30px;flex-wrap:wrap}
+.ar-eyebrow b{color:var(--gold);font-weight:400}
+.ar-eyebrow span{width:3px;height:3px;border-radius:50%;background:var(--muted);flex-shrink:0}
+.ar-title{font-family:var(--serif);font-size:clamp(36px,5.6vw,72px);font-weight:400;line-height:1.08;letter-spacing:-.025em;color:var(--off);text-wrap:balance}
+.ar-title i{font-style:italic;color:var(--gold)}
+.ar-lead{font-size:17px;line-height:1.85;color:var(--muted2);font-weight:300;margin-top:28px;max-width:60ch;margin-left:auto;margin-right:auto}
+
+/* Cover */
+.ar-cover{max-width:1100px;margin:0 auto 84px;padding:0 24px}
+.ar-cover-frame{aspect-ratio:16/8;overflow:hidden;border-radius:2px;background:var(--black2);position:relative}
+.ar-cover-frame svg{width:100%;height:100%;display:block;transform:scale(1.06);transition:transform 2s var(--ease2)}
+body.loaded .ar-cover-frame svg{transform:scale(1)}
+
+/* Body */
+.ar-body{max-width:680px;margin:0 auto;padding:0 24px 96px}
+.ar-body p{font-size:17px;line-height:1.95;color:var(--muted2);font-weight:300;margin-bottom:30px}
+.ar-body p strong{color:var(--off2);font-weight:400}
+.ar-body h2{font-family:var(--serif);font-size:clamp(24px,3vw,34px);font-weight:400;color:var(--off);line-height:1.25;margin:56px 0 22px}
+.ar-body h2::before{content:'';display:block;width:32px;height:1px;background:var(--gold);margin-bottom:22px}
+.ar-quote{font-family:var(--serif);font-style:italic;font-size:clamp(21px,2.7vw,29px);line-height:1.5;color:var(--off);border-left:2px solid var(--gold);padding:6px 0 6px 30px;margin:48px 0}
+
+/* Footer of the piece */
+.ar-foot{max-width:680px;margin:0 auto;padding:0 24px 96px}
+.ar-tags{display:flex;gap:8px;flex-wrap:wrap;padding-bottom:34px;border-bottom:1px solid rgba(255,255,255,.07)}
+.ar-tag{font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);border:1px solid rgba(255,255,255,.1);padding:5px 12px;border-radius:1px}
+.ar-author{display:flex;align-items:center;gap:18px;padding-top:34px}
+.ar-avatar{width:56px;height:56px;border-radius:50%;overflow:hidden;flex-shrink:0;background:var(--black3);border:1px solid rgba(196,169,107,.25)}
+.ar-avatar img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.ar-author-n{font-family:var(--serif);font-size:17px;color:var(--off)}
+.ar-author-r{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+
+/* Related */
+.ar-more{background:var(--black2);border-top:1px solid rgba(255,255,255,.06);padding:84px 60px}
+.ar-more-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:44px}
+.ar-card{background:var(--black);display:block;padding:34px 30px;border-top:2px solid transparent;transition:border-color .32s,background .3s}
+.ar-card:hover{border-color:var(--gold);background:var(--black3)}
+.ar-card-k{font-family:var(--mono);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.ar-card-t{font-family:var(--serif);font-size:21px;color:var(--off);line-height:1.25;margin-bottom:12px}
+.ar-card-t i{font-style:italic;color:var(--gold)}
+.ar-card-x{font-size:12px;line-height:1.8;color:var(--muted);font-weight:300}
+
+.ar-404{min-height:70svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px 24px 90px;gap:22px}
+.ar-404-t{font-family:var(--serif);font-size:clamp(30px,4.5vw,52px);color:var(--off);line-height:1.2}
+.ar-404-t i{font-style:italic;color:var(--gold)}
+.ar-404-s{font-size:14px;color:var(--muted);max-width:44ch;line-height:1.85}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width:1100px){
+  .ar-more{padding:64px 40px}
+  .ar-more-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:860px){
+  .ar-head{padding:130px 20px 46px}
+  .ar-cover{margin-bottom:58px}
+  .ar-cover-frame{aspect-ratio:16/10}
+  .ar-body{padding-bottom:68px}
+  .ar-more{padding:56px 28px}
+}
+@media (max-width:600px){
+  .ar-head{padding:112px 20px 38px}
+  .ar-eyebrow{gap:9px;font-size:8px;letter-spacing:.16em}
+  .ar-lead{font-size:15px;margin-top:22px}
+  .ar-cover{padding:0 20px;margin-bottom:44px}
+  .ar-cover-frame{aspect-ratio:3/2}
+  .ar-body{padding:0 20px 56px}
+  .ar-body p{font-size:15.5px;line-height:1.9;margin-bottom:24px}
+  .ar-body h2{margin:40px 0 18px}
+  .ar-quote{padding-left:20px;margin:34px 0}
+  .ar-foot{padding:0 20px 64px}
+  .ar-more{padding:48px 20px}
+  .ar-more-grid{grid-template-columns:1fr}
+  .ar-card{padding:26px 22px}
+}
+</style>
+</head>
+<body>
+<div id="curtain" aria-hidden="true"><div class="curtain-mark">T<i>EA</i></div></div>
+<div id="loader"><div class="loader-monogram">T<i>EA</i></div><div class="loader-bar-wrap"><div class="loader-bar"></div></div><div class="loader-text">Journal</div></div>
+<div id="cur"></div><div id="cur-ring"></div>
+<nav>
+  <a href="index.html" class="nav-logo">T<i>EA</i></a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-link" data-scramble>Home</a><a href="work.html" class="nav-link" data-scramble>Work</a>
+    <a href="about.html" class="nav-link" data-scramble>About</a><a href="journal.html" class="nav-link" data-scramble>Journal</a>
+    <a href="contact.html" class="nav-btn"><span>Let's Talk</span></a>
+  </div>
+</nav>
+
+<main id="ar-root"></main>
+
+<footer>
+  <div class="footer-top">
+    <div><div class="footer-brand-name">Thomas <i>Emmanuel</i><br>Ayodele</div><div class="footer-tagline">Brand Designer &amp; Creative Director · TEA Design Co.</div></div>
+    <div class="footer-cols">
+      <div class="footer-col"><div class="footer-col-label">Navigate</div><a href="index.html">Home</a><a href="work.html">Work</a><a href="about.html">About</a><a href="journal.html">Journal</a></div>
+      <div class="footer-col"><div class="footer-col-label">Elsewhere</div><a href="#">Twitter / X</a><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">Behance</a></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><div class="footer-copy">© 2025 TEA Design Co. All rights reserved.</div><a href="mailto:hello@teadesign.co" class="footer-email">hello@teadesign.co</a></div>
+</footer>
+
+<script src="content.js"></script>
+<script>
+/* Renders one journal piece from TEA_CONTENT, chosen by ?a=slug. */
+(function () {
+  const root = document.getElementById('ar-root');
+  const data = window.TEA_CONTENT;
+  if (!root || !data) return;
+
+  const slug = new URLSearchParams(location.search).get('a');
+  const i = data.articles.findIndex(a => a.slug === slug);
+
+  if (i < 0) {
+    root.innerHTML =
+      '<section class="ar-404">' +
+        '<div class="label" style="justify-content:center">Not found</div>' +
+        '<h1 class="ar-404-t">That piece <i>isn\'t here.</i></h1>' +
+        '<p class="ar-404-s">The link may be out of date, or the article may have moved. Everything published so far is in the journal.</p>' +
+        '<a href="journal.html" class="btn-gold magnetic"><span>Back to the journal</span></a>' +
+      '</section>';
+    document.title = 'Not found — Thomas Emmanuel Ayodele · TEA';
+    return;
+  }
+
+  const a = data.articles[i];
+  document.title = a.plain + ' — Thomas Emmanuel Ayodele · TEA';
+
+  const body = a.body.map(b => {
+    if (b.t === 'h') return `<h2 class="r">${b.v}</h2>`;
+    if (b.t === 'quote') return `<blockquote class="ar-quote r">${b.v}</blockquote>`;
+    return `<p class="r">${b.v}</p>`;
+  }).join('');
+
+  // Everything except this piece, nearest first.
+  const related = data.articles.filter((_, n) => n !== i).slice(0, 3);
+
+  root.innerHTML = `
+    <article>
+      <header class="ar-head">
+        <div class="ar-head-bg"></div>
+        <div class="ar-inner">
+          <div class="ar-eyebrow r"><b>${a.cat}</b><span></span>${a.date}<span></span>${a.read}</div>
+          <h1 class="ar-title" data-split>${a.title}</h1>
+          <p class="ar-lead r d1">${a.lead}</p>
+        </div>
+      </header>
+
+      <div class="ar-cover r d2">
+        <div class="ar-cover-frame">${data.svg(a.motif, a.colors, 1200, 600)}</div>
+      </div>
+
+      <div class="ar-body">${body}</div>
+
+      <div class="ar-foot">
+        <div class="ar-tags r">${a.tags.map(t => `<span class="ar-tag">${t}</span>`).join('')}</div>
+        <div class="ar-author r d1">
+          <div class="ar-avatar">
+            <img src="assets/images/portrait-600.jpg" alt="" width="600" height="728" loading="lazy" decoding="async">
+          </div>
+          <div>
+            <div class="ar-author-n">Thomas Emmanuel Ayodele</div>
+            <div class="ar-author-r">Brand Designer &amp; Creative Director</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <section class="ar-more">
+      <div class="label r">Keep reading</div>
+      <div class="ar-more-grid">
+        ${related.map(r => `
+          <a href="article.html?a=${r.slug}" class="ar-card r">
+            <div class="ar-card-k">${r.cat} · ${r.read}</div>
+            <div class="ar-card-t">${r.title}</div>
+            <div class="ar-card-x">${r.lead}</div>
+          </a>`).join('')}
+      </div>
+    </section>`;
+})();
+</script>
+<script src="shared.js"></script>
+</body>
+</html>

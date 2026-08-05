@@ -212,7 +212,7 @@
   }
 
   /* ── TOP NAV ─────────────────────────────────────────────────────── */
-  const nav = $('nav');
+  const nav = $('body > nav');   // the site header, not a page's own <nav>
   const here = location.pathname.split('/').pop() || 'index.html';
   $$('.nav-link').forEach(a => {
     if (a.getAttribute('href') === here) a.classList.add('active');
