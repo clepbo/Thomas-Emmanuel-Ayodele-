@@ -107,6 +107,16 @@
 
       e.preventDefault();
       body.classList.add('leaving');
+
+      /* A host that owns its own routing — a single-page bundle, or a
+         framework router — can define TEA_NAVIGATE to take over here. It
+         is called once the curtain has finished closing, and is then
+         responsible for opening it again. */
+      if (typeof window.TEA_NAVIGATE === 'function') {
+        setTimeout(() => window.TEA_NAVIGATE(href, a.href), 560);
+        return;
+      }
+
       sessionStorage.setItem('tea-nav', '1');
       setTimeout(() => { location.href = a.href; }, 560);
     });
