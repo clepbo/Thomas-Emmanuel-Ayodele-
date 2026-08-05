@@ -143,6 +143,10 @@ code{font-family:var(--mono);font-size:12px;background:rgba(255,255,255,.06);col
     <li><code>data-cursor="View project"</code> — swaps the cursor for a labelled pill while hovering.</li>
   </ul>
 
+  <h3>Case Studies and Journal Articles</h3>
+  <p>Detail pages are two templates rather than one file per project: <code>project.html?p=slug</code> and <code>article.html?a=slug</code>, both rendered from the arrays in <code>content.js</code>. Previous/next links, related-article lists and the 404 fallbacks all derive from that data, so adding an entry is the only step needed.</p>
+  <p><strong>In WordPress:</strong> map each array to a custom post type — <code>project</code> and <code>article</code> — and move the per-item fields (client, sector, palette, stats, approach steps) to ACF field groups. The templates become <code>single-project.php</code> and <code>single-article.php</code>, and previous/next come from <code>get_adjacent_post()</code>. The inline SVG motif library in <code>content.js</code> can stay as-is or be replaced with real photography via a featured-image field.</p>
+
   <div class="divider"></div>
 
   <!-- 04 CURSOR -->

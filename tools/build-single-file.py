@@ -147,7 +147,13 @@ ROUTER = r"""
 
   function show(name, instant) {
     const target = byName(name);
-    if (!target) return;
+    if (!target) {
+      // Not a page in this bundle (a case study, say). Uncover and hand
+      // off to a real navigation rather than sitting behind the curtain.
+      document.body.classList.remove('leaving');
+      location.href = name;
+      return;
+    }
 
     pages.forEach(p => p.classList.toggle('on', p === target));
     document.title = target.dataset.title;
