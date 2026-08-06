@@ -91,6 +91,11 @@ def data_uri(rel, mime):
 # the payload for a page that is only ever viewed at one size at a time.
 portrait = data_uri("assets/images/portrait-900.jpg", "image/jpeg")
 
+# The TEA wordmark appears in the header, the loader and the curtain, and
+# those live outside <main> — so they are copied verbatim rather than built
+# from TEA_CONTENT, and their src/srcset have to be rewritten here.
+logo = data_uri("assets/img/tea-logo-720.webp", "image/webp")
+
 shared_css = read("shared.css")
 shared_css = shared_css.replace(
     "@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@300;400;500;700&family=Syne+Mono&display=swap');",
@@ -360,6 +365,16 @@ doc = """<title>Thomas Emmanuel Ayodele — Brand Designer &amp; Illustrator</ti
     banner=BANNER,
     page_js="\n\n".join(page_js),
 )
+
+# Collapse the wordmark's srcset to the one embedded copy. Left alone, both
+# candidates would stay as relative paths that resolve to nothing in a file
+# with no origin, and the header would render an empty box.
+doc = re.sub(
+    r'srcset="assets/img/tea-logo-240\.webp 240w, assets/img/tea-logo-720\.webp 720w"\s*'
+    r'sizes="[^"]*"\s*', "", doc)
+doc = doc.replace("assets/img/tea-logo-240.webp", logo)
+if "assets/img/tea-logo" in doc:
+    sys.exit("a tea-logo path survived inlining — the markup has changed")
 
 OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text(doc)
