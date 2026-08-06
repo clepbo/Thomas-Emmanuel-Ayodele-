@@ -16,10 +16,18 @@ name: Publish site to the gh-pages branch
 # nothing serves it — the live site keeps coming from whatever the current
 # source is.
 #
-# The two publishers are mutually exclusive by nature: whichever one matches
-# the configured Source wins, and the other is inert. Once you have settled
-# on one, delete the other rather than leaving a workflow that can only ever
-# fail.
+# There used to be a second workflow here, pages.yml, deploying through the
+# Actions pipeline. It is deleted, and it must stay deleted while Source is
+# a branch. The two were not merely redundant — they deadlocked. Pages
+# allows one deployment at a time per repository, pages.yml grabbed that
+# lock on every push to main, and because its route no longer matched the
+# configured Source it held the lock for its full ten-minute timeout. The
+# branch deployment that would have worked was refused outright:
+#
+#   Failed to create deployment (status: 400) ... due to in progress
+#   deployment. Please cancel <main sha> first or wait for it to complete.
+#
+# So: one publisher, matching the configured Source. Never two.
 
 on:
   push:
