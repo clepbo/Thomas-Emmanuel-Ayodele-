@@ -6,7 +6,7 @@
 <style>html{background-color:#080808}</style>
 <script>try{if(sessionStorage.getItem("tea-nav"))document.documentElement.classList.add("nav-in")}catch(e){}</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080808'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='15' fill='%23c4a96b' text-anchor='middle'%3ETEA%3C/text%3E%3C/svg%3E">
-<title>Thomas Emmanuel Ayodele — Brand Designer & Creative Director</title>
+<title>Thomas Emmanuel Ayodele — Brand Designer & Illustrator</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@300;400;500;700&family=Syne+Mono&display=swap" media="print" onload="this.media='all';this.onload=null">
@@ -44,9 +44,9 @@ body.loaded .mc{animation:mcin .9s var(--ease) forwards}
 .mosaic-bot .mc:nth-child(1){animation-delay:.54s}
 .mosaic-bot .mc:nth-child(2){animation-delay:.62s}
 .mosaic-bot .mc:nth-child(3){animation-delay:.70s}
-.mc svg{width:100%;height:100%;position:absolute;inset:0;transform:scale(1.14);transition:transform 1.6s var(--ease2)}
-body.loaded .mc svg{transform:scale(1)}
-.mc:hover svg{transform:scale(1.07);transition-duration:.9s}
+.mc img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;transform:scale(1.12);transition:transform 1.8s var(--ease2)}
+body.loaded .mc img{transform:scale(1)}
+.mc:hover img{transform:scale(1.06);transition-duration:.9s}
 .mc-label{transition:transform .5s var(--ease2)}
 .mc:hover .mc-label{transform:translateY(-4px)}
 .mc-label{position:absolute;bottom:14px;left:16px;right:16px;z-index:2}
@@ -58,7 +58,7 @@ body.loaded .mc svg{transform:scale(1)}
 
 /* Scroll cue */
 .hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:hf .8s 1.3s forwards}
-.scroll-line{width:1px;height:52px;background:linear-gradient(to bottom,rgba(196,169,107,.7),transparent);animation:sline 2s ease-in-out infinite}
+.scroll-line{width:1px;height:52px;background:linear-gradient(to bottom,rgba(218,213,202,.7),transparent);animation:sline 2s ease-in-out infinite}
 .scroll-text{font-family:var(--mono);font-size:8px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
 @keyframes sline{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 @keyframes hf{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
@@ -70,8 +70,6 @@ body:not(.loaded) .hero-desc,
 body:not(.loaded) .hero-actions,
 body:not(.loaded) .hero-scroll{animation-play-state:paused}
 
-/* Particle canvas */
-#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
 
 /* ── WORK LIST ── */
 .featured{padding:120px 60px}
@@ -85,7 +83,7 @@ body:not(.loaded) .hero-scroll{animation-play-state:paused}
 
 .work-list{display:flex;flex-direction:column;gap:2px}
 .work-item{display:grid;grid-template-columns:56px 1fr 200px auto;align-items:center;gap:36px;padding:28px 36px;background:var(--black2);border-left:2px solid transparent;transition:background .3s,border-color .3s;position:relative;overflow:hidden}
-.work-item::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(196,169,107,.04) 0%,transparent 60%);opacity:0;transition:opacity .3s}
+.work-item::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(218,213,202,.04) 0%,transparent 60%);opacity:0;transition:opacity .3s}
 .work-item:hover{background:var(--black3);border-color:var(--gold)}
 .work-item:hover::before{opacity:1}
 .wi-num{font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:.12em}
@@ -94,7 +92,7 @@ body:not(.loaded) .hero-scroll{animation-play-state:paused}
 .wi-tags{display:flex;gap:8px;flex-wrap:wrap}
 .wi-tag{font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border:1px solid rgba(255,255,255,.08);padding:3px 9px;border-radius:1px}
 .wi-thumb{width:200px;height:56px;background:var(--black4);overflow:hidden;position:relative;border-radius:1px}
-.wi-thumb svg{width:100%;height:100%}
+.wi-thumb img{width:100%;height:100%;object-fit:cover;display:block}
 .wi-arrow{width:42px;height:42px;border:1px solid rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:border-color .3s,color .3s,transform .4s;flex-shrink:0}
 .work-item:hover .wi-arrow{border-color:var(--gold);color:var(--gold);transform:rotate(45deg)}
 
@@ -112,7 +110,7 @@ body:not(.loaded) .hero-scroll{animation-play-state:paused}
 
 /* ── HOME CTA ── */
 .home-cta{padding:160px 60px;text-align:center;position:relative;overflow:hidden}
-.home-cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 55% 55% at 50% 50%,rgba(196,169,107,.055) 0%,transparent 70%);pointer-events:none}
+.home-cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 55% 55% at 50% 50%,rgba(218,213,202,.055) 0%,transparent 70%);pointer-events:none}
 .cta-title{font-family:var(--serif);font-size:clamp(52px,7vw,100px);font-weight:400;line-height:.92;color:var(--off);margin-bottom:36px}
 .cta-title i{font-style:italic;color:var(--gold);display:block}
 .cta-sub{font-size:14px;color:var(--muted);max-width:420px;margin:0 auto 52px;line-height:1.85}
@@ -146,7 +144,6 @@ body:not(.loaded) .hero-scroll{animation-play-state:paused}
   .hero-right{height:64vh;min-height:380px}
   .mosaic{padding-top:0}
   .hero-scroll{display:none}
-  #particles{height:100%}
 
   .section-head{flex-direction:column;align-items:flex-start;gap:22px;margin-bottom:44px}
   .stats-row{grid-template-columns:1fr;gap:1px}
@@ -202,15 +199,14 @@ body:not(.loaded) .hero-scroll{animation-play-state:paused}
 <main>
 <!-- ── HERO ── -->
 <section class="hero">
-  <canvas id="particles" style="position:absolute;inset:0;pointer-events:none;z-index:1"></canvas>
   <div class="hero-left">
-    <div class="hero-overline">Brand Designer · Creative Director</div>
+    <div class="hero-overline">Brand Designer · Illustrator</div>
     <h1 class="hero-title" data-split>
       Shaping<br><i>brands</i><span class="sub">that last.</span>
     </h1>
     <div class="hero-divider"></div>
     <p class="hero-desc">
-      <strong>Thomas Emmanuel Ayodele</strong> — a multi-disciplinary designer whose practice spans brand identity, packaging, 3D, motion and type design, with 6+ years building marks for forward-thinking brands worldwide.
+      <strong>Thomas Emmanuel Ayodele</strong> — a brand designer and illustrator working out of Nigeria, building identity systems, logo marks and packaging for founders and small teams.
     </p>
     <div class="hero-actions">
       <a href="work.html" class="btn-gold magnetic"><span>View Work</span><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
@@ -220,112 +216,7 @@ body:not(.loaded) .hero-scroll{animation-play-state:paused}
 
   <!-- Right mosaic with real SVG artwork -->
   <div class="hero-right">
-    <div class="mosaic">
-      <!-- DABA Skincare card -->
-      <div class="mosaic-top">
-        <div class="mc" data-cursor="View" style="background:#1a0e07">
-          <svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice">
-            <defs><radialGradient id="g1" cx="50%" cy="50%" r="70%"><stop offset="0%" stop-color="#8B4513" stop-opacity=".5"/><stop offset="100%" stop-color="#1a0e07" stop-opacity="0"/></radialGradient></defs>
-            <rect width="400" height="260" fill="#1a0e07"/>
-            <ellipse cx="200" cy="130" rx="160" ry="100" fill="url(#g1)"/>
-            <!-- Bottle left -->
-            <rect x="112" y="50" width="52" height="160" rx="26" fill="#5c2e0a" opacity=".9"/>
-            <rect x="130" y="38" width="16" height="18" rx="4" fill="#3d1e06"/>
-            <rect x="128" y="30" width="20" height="12" rx="2" fill="#8B4513" opacity=".8"/>
-            <text x="138" y="135" font-family="Syne Mono,monospace" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" letter-spacing="2">DABA</text>
-            <!-- Bottle right -->
-            <rect x="178" y="45" width="60" height="175" rx="30" fill="#7a3a10" opacity=".85"/>
-            <rect x="197" y="33" width="22" height="18" rx="4" fill="#4a1e08"/>
-            <rect x="194" y="24" width="28" height="14" rx="2" fill="#c4a96b" opacity=".7"/>
-            <text x="208" y="140" font-family="Syne Mono,monospace" font-size="9" fill="rgba(255,255,255,.6)" text-anchor="middle" letter-spacing="2">DABA</text>
-            <!-- Gold accent lines -->
-            <line x1="80" y1="220" x2="320" y2="220" stroke="rgba(196,169,107,.25)" stroke-width=".5"/>
-            <text x="200" y="245" font-family="Syne Mono,monospace" font-size="7" fill="rgba(196,169,107,.4)" text-anchor="middle" letter-spacing="3">ORGANIC SKINCARE</text>
-          </svg>
-          <div class="mc-over"></div><div class="mc-hover-line"></div>
-          <div class="mc-label" style="z-index:2"><div class="t">Packaging · Brand Identity</div><div class="n">DABA Skincare</div></div>
-        </div>
-        <!-- Type explorations card -->
-        <div class="mc" data-cursor="View" style="background:#0a0a12">
-          <svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice">
-            <rect width="400" height="260" fill="#0a0a12"/>
-            <text x="20" y="200" font-family="Playfair Display,serif" font-size="180" font-weight="700" fill="rgba(255,255,255,.07)">O</text>
-            <text x="160" y="240" font-family="Playfair Display,serif" font-size="200" font-weight="700" fill="rgba(196,169,107,.08)">X</text>
-            <!-- Circular frames -->
-            <circle cx="130" cy="100" r="64" stroke="rgba(255,255,255,.18)" stroke-width="1.5" fill="none"/>
-            <circle cx="130" cy="100" r="44" stroke="rgba(255,255,255,.08)" stroke-width="1" fill="none"/>
-            <line x1="66" y1="100" x2="194" y2="100" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
-            <line x1="130" y1="36" x2="130" y2="164" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
-            <!-- Letter X with serifs -->
-            <line x1="104" y1="74" x2="156" y2="126" stroke="white" stroke-width="7" stroke-linecap="round"/>
-            <line x1="156" y1="74" x2="104" y2="126" stroke="white" stroke-width="7" stroke-linecap="round"/>
-            <text x="360" y="80" font-family="Syne Mono,monospace" font-size="7" fill="rgba(196,169,107,.5)" text-anchor="middle" letter-spacing="2">2024</text>
-          </svg>
-          <div class="mc-over"></div><div class="mc-hover-line"></div>
-          <div class="mc-label" style="z-index:2"><div class="t">Type Design</div><div class="n">Type Explorations</div></div>
-        </div>
-      </div>
-      <div class="mosaic-bot">
-        <!-- Sugar Alley -->
-        <div class="mc" data-cursor="View" style="background:#100c07">
-          <svg viewBox="0 0 260 200" preserveAspectRatio="xMidYMid slice">
-            <defs><radialGradient id="g2" cx="40%" cy="60%" r="70%"><stop offset="0%" stop-color="#8B6914" stop-opacity=".4"/><stop offset="100%" stop-color="#100c07" stop-opacity="0"/></radialGradient></defs>
-            <rect width="260" height="200" fill="#100c07"/>
-            <ellipse cx="120" cy="120" rx="110" ry="80" fill="url(#g2)"/>
-            <!-- Coffee cup illustration -->
-            <ellipse cx="120" cy="80" rx="55" ry="14" fill="#4a3010" opacity=".9"/>
-            <path d="M65 80 Q65 155 120 155 Q175 155 175 80" fill="#3d2508" opacity=".9"/>
-            <ellipse cx="120" cy="80" rx="55" ry="14" fill="#5a3a14"/>
-            <ellipse cx="120" cy="80" rx="48" ry="11" fill="#6b4418" opacity=".6"/>
-            <!-- Handle -->
-            <path d="M175 100 Q210 100 210 125 Q210 150 175 150" stroke="#4a3010" stroke-width="12" fill="none" stroke-linecap="round"/>
-            <!-- Saucer -->
-            <ellipse cx="120" cy="160" rx="75" ry="18" fill="#2d1a06" opacity=".8"/>
-            <!-- Text on cup -->
-            <text x="120" y="125" font-family="Playfair Display,serif" font-size="12" font-style="italic" fill="rgba(196,169,107,.8)" text-anchor="middle">Sugar Alley</text>
-            <!-- Steam -->
-            <path d="M100 65 Q95 50 100 38" stroke="rgba(255,255,255,.15)" stroke-width="2" fill="none" stroke-linecap="round"/>
-            <path d="M120 62 Q115 45 120 30" stroke="rgba(255,255,255,.12)" stroke-width="2" fill="none" stroke-linecap="round"/>
-            <path d="M140 65 Q145 50 140 38" stroke="rgba(255,255,255,.1)" stroke-width="2" fill="none" stroke-linecap="round"/>
-          </svg>
-          <div class="mc-over"></div><div class="mc-hover-line"></div>
-          <div class="mc-label" style="z-index:2"><div class="t">Brand Identity</div><div class="n">Sugar Alley</div></div>
-        </div>
-        <!-- MO Food -->
-        <div class="mc" data-cursor="View" style="background:#0d1008">
-          <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice">
-            <rect width="200" height="200" fill="#0d1008"/>
-            <!-- Packaging bag -->
-            <path d="M50 70 Q50 55 65 55 L135 55 Q150 55 150 70 L155 160 Q155 170 145 170 L55 170 Q45 170 45 160 Z" fill="#c0522a" opacity=".85"/>
-            <path d="M65 55 L135 55 L130 30 Q100 22 70 30 Z" fill="#8b3318"/>
-            <!-- Packaging text -->
-            <text x="100" y="95" font-family="Syne,sans-serif" font-size="10" font-weight="700" fill="white" text-anchor="middle" letter-spacing="1">MOFOOD</text>
-            <rect x="60" y="100" width="80" height="1" fill="rgba(255,255,255,.3)"/>
-            <text x="100" y="115" font-family="Syne Mono,monospace" font-size="7" fill="rgba(255,255,255,.7)" text-anchor="middle" letter-spacing="1">DRIED SHRIMP</text>
-            <!-- Shrimp dots -->
-            <circle cx="75" cy="140" r="6" fill="#e8a080" opacity=".7"/>
-            <circle cx="100" cy="135" r="5" fill="#e8a080" opacity=".6"/>
-            <circle cx="125" cy="142" r="7" fill="#e8a080" opacity=".65"/>
-          </svg>
-          <div class="mc-over"></div><div class="mc-hover-line"></div>
-          <div class="mc-label" style="z-index:2"><div class="t">Packaging · 3D</div><div class="n">M.O. Food</div></div>
-        </div>
-        <!-- TEA Monogram card -->
-        <div class="mc" data-cursor="View" style="background:#0c080f">
-          <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice">
-            <rect width="200" height="200" fill="#0c080f"/>
-            <circle cx="100" cy="100" r="75" stroke="rgba(196,169,107,.2)" stroke-width="1" fill="none"/>
-            <circle cx="100" cy="100" r="60" stroke="rgba(196,169,107,.08)" stroke-width=".5" fill="none"/>
-            <text x="100" y="116" font-family="Playfair Display,serif" font-size="44" font-weight="700" fill="rgba(196,169,107,.9)" text-anchor="middle">TEA</text>
-            <text x="100" y="140" font-family="Syne Mono,monospace" font-size="7" fill="rgba(196,169,107,.4)" text-anchor="middle" letter-spacing="4">DESIGN CO.</text>
-            <path d="M25 100 L35 100" stroke="rgba(196,169,107,.4)" stroke-width="1"/>
-            <path d="M165 100 L175 100" stroke="rgba(196,169,107,.4)" stroke-width="1"/>
-          </svg>
-          <div class="mc-over"></div><div class="mc-hover-line"></div>
-          <div class="mc-label" style="z-index:2"><div class="t">Logo Design</div><div class="n">Logofolio Vol. 2</div></div>
-        </div>
-      </div>
-    </div>
+    <div class="mosaic" id="hero-mosaic"></div>
   </div>
   <div class="hero-scroll"><div class="scroll-line"></div><div class="scroll-text">Scroll</div></div>
 </section>
@@ -350,53 +241,7 @@ body:not(.loaded) .hero-scroll{animation-play-state:paused}
     <h2 class="section-title" data-split>Selected<br><i>Work.</i></h2>
     <a href="work.html" class="section-link">All Projects <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
   </div>
-  <div class="work-list r d1">
-    <a href="project.html?p=type-explorations" class="work-item">
-      <div class="wi-num">01</div>
-      <div class="wi-info">
-        <div class="wi-name">Type <i>Explorations</i></div>
-        <div class="wi-tags"><span class="wi-tag">Type Design</span><span class="wi-tag">Personal</span><span class="wi-tag">2024</span></div>
-      </div>
-      <div class="wi-thumb"><svg viewBox="0 0 200 56" preserveAspectRatio="xMidYMid slice"><rect width="200" height="56" fill="#0a0a12"/><text x="10" y="46" font-family="Playfair Display,serif" font-size="42" font-weight="700" fill="rgba(255,255,255,.12)">OXO</text><circle cx="50" cy="28" r="22" stroke="rgba(255,255,255,.2)" stroke-width="1" fill="none"/></svg></div>
-      <div class="wi-arrow"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
-    </a>
-    <a href="project.html?p=daba-skincare" class="work-item">
-      <div class="wi-num">02</div>
-      <div class="wi-info">
-        <div class="wi-name">DABA <i>Skincare</i></div>
-        <div class="wi-tags"><span class="wi-tag">Brand Identity</span><span class="wi-tag">Packaging</span><span class="wi-tag">2023</span></div>
-      </div>
-      <div class="wi-thumb"><svg viewBox="0 0 200 56" preserveAspectRatio="xMidYMid slice"><rect width="200" height="56" fill="#1a0e07"/><rect x="70" y="6" width="28" height="48" rx="14" fill="#5c2e0a" opacity=".9"/><rect x="105" y="4" width="34" height="52" rx="17" fill="#7a3a10"/><text x="170" y="35" font-family="Syne Mono,monospace" font-size="7" fill="rgba(196,169,107,.5)" text-anchor="middle" letter-spacing="1">DABA</text></svg></div>
-      <div class="wi-arrow"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
-    </a>
-    <a href="project.html?p=mo-food-shrimps" class="work-item">
-      <div class="wi-num">03</div>
-      <div class="wi-info">
-        <div class="wi-name">M.O. Food <i>Shrimps</i></div>
-        <div class="wi-tags"><span class="wi-tag">Packaging</span><span class="wi-tag">3D</span><span class="wi-tag">Web</span></div>
-      </div>
-      <div class="wi-thumb"><svg viewBox="0 0 200 56" preserveAspectRatio="xMidYMid slice"><rect width="200" height="56" fill="#0d1008"/><path d="M60 14 Q60 8 68 8 L132 8 Q140 8 140 14 L144 50 Q144 54 140 54 L60 54 Q56 54 56 50 Z" fill="#c0522a" opacity=".7"/><text x="100" y="34" font-family="Syne,sans-serif" font-size="9" font-weight="700" fill="white" text-anchor="middle">MOFOOD</text></svg></div>
-      <div class="wi-arrow"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
-    </a>
-    <a href="project.html?p=sugar-alley" class="work-item">
-      <div class="wi-num">04</div>
-      <div class="wi-info">
-        <div class="wi-name">Sugar <i>Alley</i></div>
-        <div class="wi-tags"><span class="wi-tag">Brand Identity</span><span class="wi-tag">2023</span></div>
-      </div>
-      <div class="wi-thumb"><svg viewBox="0 0 200 56" preserveAspectRatio="xMidYMid slice"><rect width="200" height="56" fill="#100c07"/><ellipse cx="100" cy="35" rx="42" ry="12" fill="#4a3010" opacity=".9"/><path d="M58 35 Q58 54 100 54 Q142 54 142 35" fill="#3d2508"/><text x="100" y="44" font-family="Playfair Display,serif" font-size="9" font-style="italic" fill="rgba(196,169,107,.8)" text-anchor="middle">Sugar Alley</text></svg></div>
-      <div class="wi-arrow"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
-    </a>
-    <a href="project.html?p=logofolio-vol-2" class="work-item">
-      <div class="wi-num">05</div>
-      <div class="wi-info">
-        <div class="wi-name">Logofolio <i>Vol. 2</i></div>
-        <div class="wi-tags"><span class="wi-tag">Logo Design</span><span class="wi-tag">2022</span></div>
-      </div>
-      <div class="wi-thumb"><svg viewBox="0 0 200 56" preserveAspectRatio="xMidYMid slice"><rect width="200" height="56" fill="#0c080f"/><circle cx="100" cy="28" r="22" stroke="rgba(196,169,107,.4)" stroke-width="1" fill="none"/><text x="100" y="34" font-family="Playfair Display,serif" font-size="18" font-weight="700" fill="rgba(196,169,107,.8)" text-anchor="middle">TEA</text></svg></div>
-      <div class="wi-arrow"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
-    </a>
-  </div>
+  <div class="work-list r d1" id="home-work"></div>
 </section>
 
 <!-- ── STATEMENT ── -->
@@ -428,7 +273,7 @@ body:not(.loaded) .hero-scroll{animation-play-state:paused}
 
 <footer>
   <div class="footer-top">
-    <div><div class="footer-brand-name">Thomas <i>Emmanuel</i><br>Ayodele</div><div class="footer-tagline">Brand Designer & Creative Director · TEA Design Co.</div></div>
+    <div><div class="footer-brand-name">Thomas <i>Emmanuel</i><br>Ayodele</div><div class="footer-tagline">Brand Designer & Illustrator · TEA Design Co.</div></div>
     <div class="footer-cols">
       <div class="footer-col"><div class="footer-col-label">Navigate</div><a href="index.html">Home</a><a href="work.html">Work</a><a href="about.html">About</a><a href="journal.html">Journal</a></div>
       <div class="footer-col"><div class="footer-col-label">Elsewhere</div><a href="https://x.com/teastudios_" target="_blank" rel="noopener">Twitter / X</a><a href="https://www.instagram.com/teastudios_/" target="_blank" rel="noopener">Instagram</a><a href="https://www.behance.net/thomasemmanuel1" target="_blank" rel="noopener">Behance</a><a href="https://www.pinterest.com/teastudios_/" target="_blank" rel="noopener">Pinterest</a></div>
@@ -436,6 +281,42 @@ body:not(.loaded) .hero-scroll{animation-play-state:paused}
   </div>
   <div class="footer-bottom"><div class="footer-copy">© 2025 TEA Design Co. All rights reserved.</div><a href="mailto:hello@teadesign.co" class="footer-email">hello@teadesign.co</a></div>
 </footer>
+<script src="content.js?v=4"></script>
+<script>
+/* Home hero mosaic and the featured work list, both from TEA_CONTENT. */
+(function () {
+  const data = window.TEA_CONTENT;
+  if (!data) return;
+  const feat = data.projects.filter(p => p.feature).slice(0, 5);
+
+  const mosaic = document.getElementById('hero-mosaic');
+  if (mosaic && feat.length >= 5) {
+    const cell = (p, eager) => `
+      <a class="mc" href="project.html?p=${p.slug}" data-cursor="View">
+        ${data.img(p.slug, 1, '(max-width:860px) 50vw, 25vw', '', eager)}
+        <div class="mc-over"></div><div class="mc-hover-line"></div>
+        <div class="mc-label"><div class="t">${p.discipline}</div><div class="n">${p.name}</div></div>
+      </a>`;
+    mosaic.innerHTML =
+      `<div class="mosaic-top">${cell(feat[0], true)}${cell(feat[1], true)}</div>` +
+      `<div class="mosaic-bot">${cell(feat[2])}${cell(feat[3])}${cell(feat[4])}</div>`;
+  }
+
+  const list = document.getElementById('home-work');
+  if (list) {
+    list.innerHTML = data.projects.slice(0, 5).map((p, i) => `
+      <a href="project.html?p=${p.slug}" class="work-item">
+        <div class="wi-num">0${i + 1}</div>
+        <div class="wi-info">
+          <div class="wi-name">${p.display}</div>
+          <div class="wi-tags">${p.tags.map(t => `<span class="wi-tag">${t}</span>`).join('')}<span class="wi-tag">${p.year}</span></div>
+        </div>
+        <div class="wi-thumb">${data.img(p.slug, 2 <= p.imgs ? 2 : 1, '200px')}</div>
+        <div class="wi-arrow"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+      </a>`).join('');
+  }
+})();
+</script>
 <script src="shared.js?v=3"></script>
 </body>
 </html>

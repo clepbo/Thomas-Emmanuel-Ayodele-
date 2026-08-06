@@ -1,0 +1,759 @@
+{
+ "danny-s-foods": {
+  "name": "Danny's Foods",
+  "images": [
+   {
+    "ar": 0.8,
+    "base": "danny-s-foods-1",
+    "sizes": [
+     600,
+     1200
+    ]
+   },
+   {
+    "ar": 0.8,
+    "base": "danny-s-foods-2",
+    "sizes": [
+     600,
+     1200
+    ]
+   },
+   {
+    "ar": 0.8,
+    "base": "danny-s-foods-3",
+    "sizes": [
+     600,
+     1200
+    ]
+   },
+   {
+    "ar": 0.8,
+    "base": "danny-s-foods-4",
+    "sizes": [
+     600,
+     1200
+    ]
+   },
+   {
+    "ar": 0.8,
+    "base": "danny-s-foods-5",
+    "sizes": [
+     600,
+     1200
+    ]
+   }
+  ]
+ },
+ "effyz-avalon": {
+  "name": "Effyz Avalon",
+  "images": [
+   {
+    "ar": 1.0,
+    "base": "effyz-avalon-1",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "effyz-avalon-2",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "effyz-avalon-3",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "effyz-avalon-4",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "effyz-avalon-5",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "effyz-avalon-6",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "effyz-avalon-7",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "effyz-avalon-8",
+    "sizes": [
+     600
+    ]
+   }
+  ]
+ },
+ "emerald-clipz": {
+  "name": "Emerald Clipz",
+  "images": [
+   {
+    "ar": 1.0,
+    "base": "emerald-clipz-1",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "emerald-clipz-2",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "emerald-clipz-3",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "emerald-clipz-4",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "emerald-clipz-5",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "emerald-clipz-6",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "emerald-clipz-7",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "emerald-clipz-8",
+    "sizes": [
+     600
+    ]
+   }
+  ]
+ },
+ "flex2ride": {
+  "name": "Flex2Ride",
+  "images": [
+   {
+    "ar": 0.8,
+    "base": "flex2ride-1",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 0.8,
+    "base": "flex2ride-2",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 0.8,
+    "base": "flex2ride-3",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 0.8,
+    "base": "flex2ride-4",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 0.8,
+    "base": "flex2ride-5",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 0.8,
+    "base": "flex2ride-6",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 0.8,
+    "base": "flex2ride-7",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 0.8,
+    "base": "flex2ride-8",
+    "sizes": [
+     600
+    ]
+   }
+  ]
+ },
+ "footstepz-ng": {
+  "name": "Footstepz.ng",
+  "images": [
+   {
+    "ar": 1.0,
+    "base": "footstepz-ng-1",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "footstepz-ng-2",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "footstepz-ng-3",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "footstepz-ng-4",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "footstepz-ng-5",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "footstepz-ng-6",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "footstepz-ng-7",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "footstepz-ng-8",
+    "sizes": [
+     600
+    ]
+   }
+  ]
+ },
+ "herome": {
+  "name": "Herome",
+  "images": [
+   {
+    "ar": 1.0,
+    "base": "herome-1",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "herome-2",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "herome-3",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "herome-4",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "herome-5",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "herome-6",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "herome-7",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "herome-8",
+    "sizes": [
+     600
+    ]
+   }
+  ]
+ },
+ "peakfort": {
+  "name": "Peakfort",
+  "images": [
+   {
+    "ar": 1.0,
+    "base": "peakfort-1",
+    "sizes": [
+     600,
+     1200
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "peakfort-2",
+    "sizes": [
+     600,
+     1200
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "peakfort-3",
+    "sizes": [
+     600,
+     1200
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "peakfort-4",
+    "sizes": [
+     600,
+     1200
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "peakfort-5",
+    "sizes": [
+     600,
+     1200
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "peakfort-6",
+    "sizes": [
+     600,
+     1200
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "peakfort-7",
+    "sizes": [
+     600,
+     1200
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "peakfort-8",
+    "sizes": [
+     600,
+     1200
+    ]
+   }
+  ]
+ },
+ "permanent-voter-s-card": {
+  "name": "Permanent Voter's Card",
+  "images": [
+   {
+    "ar": 0.8,
+    "base": "permanent-voter-s-card-1",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 0.8,
+    "base": "permanent-voter-s-card-2",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 0.8,
+    "base": "permanent-voter-s-card-3",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 0.8,
+    "base": "permanent-voter-s-card-4",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 0.8,
+    "base": "permanent-voter-s-card-5",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 0.8,
+    "base": "permanent-voter-s-card-6",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 0.8,
+    "base": "permanent-voter-s-card-7",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 0.8,
+    "base": "permanent-voter-s-card-8",
+    "sizes": [
+     600
+    ]
+   }
+  ]
+ },
+ "petharry-photography": {
+  "name": "Petharry Photography",
+  "images": [
+   {
+    "ar": 1.0,
+    "base": "petharry-photography-1",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "petharry-photography-2",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "petharry-photography-3",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "petharry-photography-4",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "petharry-photography-5",
+    "sizes": [
+     600
+    ]
+   }
+  ]
+ },
+ "tvc": {
+  "name": "TVC",
+  "images": [
+   {
+    "ar": 1.0,
+    "base": "tvc-1",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "tvc-2",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "tvc-3",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "tvc-4",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "tvc-5",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "tvc-6",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "tvc-7",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "tvc-8",
+    "sizes": [
+     600
+    ]
+   }
+  ]
+ },
+ "tonya-smalls": {
+  "name": "Tonya Smalls",
+  "images": [
+   {
+    "ar": 1.0,
+    "base": "tonya-smalls-1",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "tonya-smalls-2",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "tonya-smalls-3",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "tonya-smalls-4",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "tonya-smalls-5",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "tonya-smalls-6",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "tonya-smalls-7",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "tonya-smalls-8",
+    "sizes": [
+     600
+    ]
+   }
+  ]
+ },
+ "women-watchers": {
+  "name": "Women Watchers",
+  "images": [
+   {
+    "ar": 1.0,
+    "base": "women-watchers-1",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "women-watchers-2",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "women-watchers-3",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "women-watchers-4",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "women-watchers-5",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "women-watchers-6",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "women-watchers-7",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 1.0,
+    "base": "women-watchers-8",
+    "sizes": [
+     600
+    ]
+   }
+  ]
+ },
+ "wose-co": {
+  "name": "Wose.co",
+  "images": [
+   {
+    "ar": 0.8,
+    "base": "wose-co-1",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 0.8,
+    "base": "wose-co-2",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 0.8,
+    "base": "wose-co-3",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 0.8,
+    "base": "wose-co-4",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 0.8,
+    "base": "wose-co-5",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 0.8,
+    "base": "wose-co-6",
+    "sizes": [
+     600
+    ]
+   },
+   {
+    "ar": 0.8,
+    "base": "wose-co-7",
+    "sizes": [
+     600
+    ]
+   }
+  ]
+ }
+}
