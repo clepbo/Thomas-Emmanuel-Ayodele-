@@ -58,10 +58,10 @@ jobs:
           path: _site
 
       - id: deployment
+        # Do not try to raise `timeout` past 600000 — that is a hard cap in
+        # the action, and anything larger is silently clamped back to it
+        # with only a warning ("timeout value is greater than the allowed
+        # maximum"). If a deploy dies on "Timeout reached, aborting!" after
+        # ten minutes of `deployment_queued`, Pages is sitting on the
+        # deployment and the fix is to re-run, not to wait longer.
         uses: actions/deploy-pages@v4
-        with:
-          # Default is 600000ms. The first deploy of the image-carrying
-          # artifact sat in `deployment_queued` for the whole ten minutes
-          # and the step aborted while Pages was still working. Waiting is
-          # cheap here; a false failure is not.
-          timeout: 1800000
