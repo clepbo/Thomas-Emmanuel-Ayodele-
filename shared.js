@@ -665,13 +665,13 @@
       new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(canvas);
     }
 
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 16; i++) {
       pts.push({
         x: Math.random(), y: Math.random(),
-        r: Math.random() * 1.7 + 0.3,
+        r: Math.random() * 1.2 + 0.25,
         vx: (Math.random() - 0.5) * 0.16,
-        vy: -Math.random() * 0.24 - 0.06,
-        o: Math.random() * 0.42 + 0.1,
+        vy: -Math.random() * 0.16 - 0.04,
+        o: Math.random() * 0.22 + 0.05,
         life: Math.random()
       });
     }
