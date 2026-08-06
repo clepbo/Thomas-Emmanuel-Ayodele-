@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<style>html{background-color:#080808}</style>
 <script>try{if(sessionStorage.getItem("tea-nav"))document.documentElement.classList.add("nav-in")}catch(e){}</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080808'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='15' fill='%23c4a96b' text-anchor='middle'%3ETEA%3C/text%3E%3C/svg%3E">
 <title>Journal — Thomas Emmanuel Ayodele · TEA</title>
@@ -9,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@300;400;500;700&family=Syne+Mono&display=swap" media="print" onload="this.media='all';this.onload=null">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@300;400;500;700&family=Syne+Mono&display=swap"></noscript>
-<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="shared.css?v=3">
 <style>
 /* ═══ ARTICLE ═══ */
 .ar-head{padding:170px 24px 60px;text-align:center;position:relative;overflow:hidden}
@@ -97,8 +99,8 @@ body.loaded .ar-cover-frame svg{transform:scale(1)}
 <nav>
   <a href="index.html" class="nav-logo">T<i>EA</i></a>
   <div class="nav-right">
-    <a href="index.html" class="nav-link" data-scramble>Home</a><a href="work.html" class="nav-link" data-scramble>Work</a>
-    <a href="about.html" class="nav-link" data-scramble>About</a><a href="journal.html" class="nav-link" data-scramble>Journal</a>
+    <a href="index.html" class="nav-link">Home</a><a href="work.html" class="nav-link">Work</a>
+    <a href="about.html" class="nav-link">About</a><a href="journal.html" class="nav-link">Journal</a>
     <a href="contact.html" class="nav-btn"><span>Let's Talk</span></a>
   </div>
 </nav>
@@ -116,7 +118,7 @@ body.loaded .ar-cover-frame svg{transform:scale(1)}
   <div class="footer-bottom"><div class="footer-copy">© 2025 TEA Design Co. All rights reserved.</div><a href="mailto:hello@teadesign.co" class="footer-email">hello@teadesign.co</a></div>
 </footer>
 
-<script src="content.js"></script>
+<script src="content.js?v=3"></script>
 <script>
 /* Renders one journal piece from TEA_CONTENT, chosen by ?a=slug. */
 (function () {
@@ -195,6 +197,6 @@ body.loaded .ar-cover-frame svg{transform:scale(1)}
     </section>`;
 })();
 </script>
-<script src="shared.js"></script>
+<script src="shared.js?v=3"></script>
 </body>
 </html>
