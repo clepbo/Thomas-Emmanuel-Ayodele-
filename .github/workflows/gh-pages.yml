@@ -1,0 +1,62 @@
+name: Publish site to the gh-pages branch
+
+# FALLBACK PUBLISHER. This exists because the Actions deployment pipeline
+# stalled: three runs in a row uploaded a valid artifact, registered the
+# deployment, and then sat in `deployment_queued` until deploy-pages gave up
+# ("Timeout reached, aborting!"). Nothing in a workflow reaches that queue.
+#
+# This path avoids it entirely. Instead of handing an artifact to the Pages
+# deployment API, it commits the built site to a `gh-pages` branch and lets
+# the older branch-based Pages builder serve it — a different code path on
+# GitHub's side, so a stalled Actions deployment queue does not affect it.
+#
+# TO ACTUALLY USE IT: Settings -> Pages -> Build and deployment -> Source ->
+# "Deploy from a branch", branch `gh-pages`, folder `/ (root)`. Until that
+# switch is made this workflow still runs and still updates the branch, but
+# nothing serves it — the live site keeps coming from whatever the current
+# source is.
+#
+# The two publishers are mutually exclusive by nature: whichever one matches
+# the configured Source wins, and the other is inert. Once you have settled
+# on one, delete the other rather than leaving a workflow that can only ever
+# fail.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Force-pushing a branch from two runs at once would interleave badly.
+concurrency:
+  group: gh-pages-branch
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Assemble site
+        run: tools/build-site.sh _site
+
+      - name: Push to gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd _site
+          # A fresh repo every run, force-pushed. The branch is build output,
+          # not history worth keeping — carrying it forward would only grow a
+          # log of binary image churn nobody reads.
+          git init -q -b gh-pages
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Publish ${GITHUB_SHA}"
+          git push -q --force \
+            "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
+            gh-pages
+          echo "pushed $(git rev-parse --short HEAD) to gh-pages"
