@@ -44,7 +44,11 @@ jobs:
         run: |
           mkdir -p _site
           cp ./*.html shared.css shared.js content.js _site/
-          cp -r assets _site/
+          # Only the directories the site actually links to. assets/projects
+          # holds the full-size originals the WebP variants in assets/img
+          # were derived from — 6.6MB nothing on the site requests.
+          mkdir -p _site/assets
+          cp -r assets/img assets/images _site/assets/
           # Pages runs Jekyll by default, which would skip files it does
           # not recognise. This opts out and publishes the tree as-is.
           touch _site/.nojekyll

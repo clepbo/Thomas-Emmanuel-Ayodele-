@@ -321,7 +321,12 @@
         el.classList.add('on');
         obs.unobserve(el);
       });
-    }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+    /* threshold 0, not a percentage: a very tall container — the work grid
+       on a narrow screen is several thousand pixels — never reaches 7%
+       visibility as it enters, so a percentage threshold left it hidden.
+       The negative rootMargin still requires it to be meaningfully on
+       screen before it reveals. */
+    }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
     $$('.r').forEach(el => io.observe(el));
   }
 
@@ -636,85 +641,6 @@
       i = (i + 1) % items.length;
       paint();
     }, 2300);
-  })();
-
-  /* ── HERO PARTICLES ──────────────────────────────────────────────
-     Gold motes drifting upward, with a light push away from the pointer.
-     Sleeps whenever the canvas is off screen or the tab is hidden. */
-  (function particles() {
-    const canvas = $('#particles');
-    if (!canvas) return;
-    if (reduced) { canvas.style.display = 'none'; return; }
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let W = 0, H = 0, visible = true;
-    const pts = [];
-
-    function resize() {
-      W = canvas.offsetWidth; H = canvas.offsetHeight;
-      canvas.width = W * dpr; canvas.height = H * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    resize();
-    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas);
-    else addEventListener('resize', resize);
-
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(canvas);
-    }
-
-    for (let i = 0; i < 16; i++) {
-      pts.push({
-        x: Math.random(), y: Math.random(),
-        r: Math.random() * 1.2 + 0.25,
-        vx: (Math.random() - 0.5) * 0.16,
-        vy: -Math.random() * 0.16 - 0.04,
-        o: Math.random() * 0.22 + 0.05,
-        life: Math.random()
-      });
-    }
-
-    let pmx = -9999, pmy = -9999;
-    const host = canvas.parentElement;
-    if (fancy && host) {
-      host.addEventListener('mousemove', e => {
-        const r = canvas.getBoundingClientRect();
-        pmx = e.clientX - r.left; pmy = e.clientY - r.top;
-      });
-      host.addEventListener('mouseleave', () => { pmx = pmy = -9999; });
-    }
-
-    onTick(dt => {
-      if (!visible || document.hidden || !W) return;
-      ctx.clearRect(0, 0, W, H);
-      for (const p of pts) {
-        // Normalised coords survive resizes without teleporting.
-        p.x += (p.vx * dt) / W;
-        p.y += (p.vy * dt) / H;
-        p.life += 0.0035 * dt;
-
-        if (p.y < -0.02 || p.life > 1) { p.y = 1.02; p.x = Math.random(); p.life = 0; }
-        if (p.x < 0) p.x += 1;
-        if (p.x > 1) p.x -= 1;
-
-        const ax = p.x * W, ay = p.y * H;
-        const dx = ax - pmx, dy = ay - pmy;
-        const dist = Math.hypot(dx, dy);
-        let ox = 0, oy = 0;
-        if (dist < 150) {                       // nudge aside near the pointer
-          const f = (1 - dist / 150) * 16;
-          ox = (dx / (dist || 1)) * f;
-          oy = (dy / (dist || 1)) * f;
-        }
-
-        ctx.beginPath();
-        ctx.arc(ax + ox, ay + oy, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(196,169,107,' + (p.o * Math.sin(p.life * Math.PI)).toFixed(3) + ')';
-        ctx.fill();
-      }
-    });
   })();
 
   /* ── ANCHOR SCROLL ──────────────────────────────────────────────── */

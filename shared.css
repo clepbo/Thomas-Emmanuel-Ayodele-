@@ -9,7 +9,11 @@
 :root{
   --black:#080808;--black2:#0f0f0f;--black3:#161616;--black4:#1e1e1e;--black5:#2a2a2a;
   --off:#f4f1ea;--off2:#e8e4db;--off3:#d8d3c8;
-  --gold:#c4a96b;--gold2:#dbbf85;--gold3:#967640;
+  /* The accent is a warm bone, not a gold. Every project on this site
+     brings its own strong colour — cobalt, coral, acid green — and a gold
+     UI competed with all of them. A near-neutral lets the work be the only
+     colour on the page, which is what a gallery wall is for. */
+  --gold:#DAD5CA;--gold2:#F1EDE4;--gold3:#8C877C;
   --muted:#68655e;--muted2:#8a877f;
   --serif:'Playfair Display',Georgia,serif;
   --sans:'Syne',sans-serif;--mono:'Syne Mono',monospace;
@@ -51,7 +55,7 @@ button{cursor:none;font-family:var(--sans)}
 #cur{position:fixed;left:0;top:0;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:8999;transform:translate(-50%,-50%);transition:width .28s var(--ease3),height .28s var(--ease3),background .25s,opacity .3s}
 /* The ring is squashed along its direction of travel — the faster the pointer
    moves the more it stretches, which reads as weight rather than decoration. */
-#cur-ring{position:fixed;left:0;top:0;width:36px;height:36px;border:1px solid rgba(196,169,107,.38);border-radius:50%;pointer-events:none;z-index:8998;transform:translate(-50%,-50%) rotate(var(--ring-rot,0deg)) scale(var(--ring-sx,1),var(--ring-sy,1));transition:width .38s var(--ease),height .38s var(--ease),border-color .3s,opacity .3s}
+#cur-ring{position:fixed;left:0;top:0;width:36px;height:36px;border:1px solid rgba(218,213,202,.38);border-radius:50%;pointer-events:none;z-index:8998;transform:translate(-50%,-50%) rotate(var(--ring-rot,0deg)) scale(var(--ring-sx,1),var(--ring-sy,1));transition:width .38s var(--ease),height .38s var(--ease),border-color .3s,opacity .3s}
 body.link-hover #cur{width:20px;height:20px;background:var(--gold2)}
 body.link-hover #cur-ring{width:58px;height:58px;border-color:var(--gold)}
 body.click #cur{width:30px;height:30px;background:var(--off)}
@@ -87,7 +91,7 @@ body>nav::before{content:'';position:absolute;inset:0;background:linear-gradient
 .nav-btn::before{content:'';position:absolute;inset:0;background:var(--off);transform:translateX(-101%);transition:transform .34s var(--ease2)}
 .nav-btn span{position:relative;z-index:1}
 .nav-btn:hover::before{transform:translateX(0)}
-.nav-btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(196,169,107,.28)}
+.nav-btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(218,213,202,.28)}
 
 /* MARQUEE */
 .marquee-outer{overflow:hidden;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);background:var(--black2);padding:16px 0}
@@ -120,7 +124,7 @@ body>nav::before{content:'';position:absolute;inset:0;background:linear-gradient
 .btn-gold::before{content:'';position:absolute;inset:0;background:var(--off);transform:translateX(-101%);transition:transform .34s var(--ease2)}
 .btn-gold>*{position:relative;z-index:1}
 .btn-gold:hover::before{transform:translateX(0)}
-.btn-gold:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(196,169,107,.32)}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(218,213,202,.32)}
 
 .btn-outline{display:inline-flex;align-items:center;gap:12px;border:1px solid rgba(255,255,255,.15);color:var(--muted2);padding:14px 36px;border-radius:1px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;transition:border-color .25s,color .25s,transform .25s}
 .btn-outline:hover{border-color:var(--muted2);color:var(--off);transform:translateY(-2px)}
@@ -198,7 +202,7 @@ html.nav-in #curtain{animation:curtain-failsafe .5s var(--ease2) 2.5s forwards}
 .dock-brand:hover{background:var(--gold2);transform:translateY(-2px)}
 
 .dock-menu{display:flex;align-items:center;background:rgba(22,22,22,.86);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.08);border-radius:100px;padding:4px;transition:border-color .3s,background .3s}
-.dock-menu:hover{border-color:rgba(196,169,107,.28)}
+.dock-menu:hover{border-color:rgba(218,213,202,.28)}
 .dock-toggle{display:flex;align-items:center;gap:10px;background:none;border:none;padding:8px 16px;border-radius:100px;color:var(--muted2);font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;transition:color .25s,background .25s;flex-shrink:0}
 .dock-toggle:hover{color:var(--off)}
 .dock-toggle[aria-expanded="true"]{color:var(--gold)}
@@ -244,7 +248,7 @@ body.docked .filter-bar{top:0}
 /* ── CURSOR SPOTLIGHT ──
    A soft gold wash that tracks the pointer across a section. */
 .spot{position:relative;isolation:isolate}
-.spot::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .5s var(--ease);background:radial-gradient(380px circle at var(--sx,50%) var(--sy,50%),rgba(196,169,107,.055),transparent 70%)}
+.spot::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .5s var(--ease);background:radial-gradient(380px circle at var(--sx,50%) var(--sy,50%),rgba(218,213,202,.055),transparent 70%)}
 .spot.lit::after{opacity:1}
 
 /* ── WORK-LIST PEEK ──
@@ -252,7 +256,7 @@ body.docked .filter-bar{top:0}
 #peek{position:fixed;left:0;top:0;z-index:400;width:340px;height:150px;pointer-events:none;opacity:0;overflow:hidden;border-radius:2px;box-shadow:0 30px 70px rgba(0,0,0,.6);transform:translate(-50%,-50%) rotate(var(--peek-r,0deg)) scale(.86);transition:opacity .38s var(--ease),transform .5s var(--ease3)}
 #peek.on{opacity:1;transform:translate(-50%,-50%) rotate(var(--peek-r,0deg)) scale(1)}
 #peek svg{width:100%;height:100%;display:block}
-#peek::after{content:'';position:absolute;inset:0;border:1px solid rgba(196,169,107,.35)}
+#peek::after{content:'';position:absolute;inset:0;border:1px solid rgba(218,213,202,.35)}
 
 /* ── ROLE TICKER ──
    Vertical list where the active line lifts into gold, one at a time. */

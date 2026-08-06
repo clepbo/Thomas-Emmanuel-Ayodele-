@@ -15,12 +15,12 @@
 <style>
 /* INTRO */
 .about-intro{padding:180px 60px 100px;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:end;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.06)}
-.ai-bg{position:absolute;inset:0;background:radial-gradient(ellipse 55% 75% at 85% 40%,rgba(196,169,107,.05) 0%,transparent 60%);pointer-events:none}
+.ai-bg{position:absolute;inset:0;background:radial-gradient(ellipse 55% 75% at 85% 40%,rgba(218,213,202,.05) 0%,transparent 60%);pointer-events:none}
 .about-name{font-family:var(--serif);font-size:clamp(56px,8vw,108px);font-weight:400;line-height:.88;letter-spacing:-.03em;color:var(--off)}
 .about-name i{font-style:italic;color:var(--gold);display:block}
 .about-roles{margin-top:32px;display:flex;flex-direction:column;gap:11px}
 .about-role{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px;transition:color .4s}
-.role-dot{width:5px;height:5px;border-radius:50%;background:rgba(196,169,107,.3);flex-shrink:0;transition:background .4s,transform .4s}
+.role-dot{width:5px;height:5px;border-radius:50%;background:rgba(218,213,202,.3);flex-shrink:0;transition:background .4s,transform .4s}
 .about-role.active{color:var(--gold)}
 .about-role.active .role-dot{background:var(--gold);transform:scale(1.8)}
 
@@ -46,7 +46,7 @@ body.loaded .portrait-img{transform:scale(1)}
 .about-bio{padding:100px 60px;display:grid;grid-template-columns:1fr 1.4fr;gap:100px;align-items:start}
 .bio-left{position:sticky;top:110px}
 .bio-quote{font-family:var(--serif);font-size:clamp(20px,2.5vw,32px);font-weight:400;font-style:italic;line-height:1.45;color:var(--off2)}
-.bio-quote::before{content:'\201C';font-size:72px;color:rgba(196,169,107,.3);line-height:0;vertical-align:-28px;margin-right:-2px;font-style:normal;display:block;margin-bottom:10px}
+.bio-quote::before{content:'\201C';font-size:72px;color:rgba(218,213,202,.3);line-height:0;vertical-align:-28px;margin-right:-2px;font-style:normal;display:block;margin-bottom:10px}
 .bio-para{font-size:15px;line-height:1.9;color:var(--muted);font-weight:300;margin-bottom:26px}
 .bio-para strong{color:var(--off2);font-weight:400}
 .bio-para:last-of-type{margin-bottom:0}
@@ -55,7 +55,7 @@ body.loaded .portrait-img{transform:scale(1)}
 .skills-section{padding:100px 60px;background:var(--black2);border-top:1px solid rgba(255,255,255,.06)}
 .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:52px}
 .skill-card{padding:38px 34px;background:var(--black);transition:background .3s;border-top:2px solid transparent;transition:border-color .32s,background .3s;position:relative;overflow:hidden}
-.skill-card::before{content:'';position:absolute;bottom:0;right:0;width:0;height:0;border-style:solid;border-width:0 0 40px 40px;border-color:transparent transparent rgba(196,169,107,.06) transparent;transition:border-width .3s var(--ease)}
+.skill-card::before{content:'';position:absolute;bottom:0;right:0;width:0;height:0;border-style:solid;border-width:0 0 40px 40px;border-color:transparent transparent rgba(218,213,202,.06) transparent;transition:border-width .3s var(--ease)}
 .skill-card:hover{background:var(--black3);border-color:var(--gold)}
 .skill-card:hover::before{border-width:0 0 70px 70px}
 .sc-num{font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:.14em;display:block;margin-bottom:14px}
@@ -74,17 +74,17 @@ body.loaded .portrait-img{transform:scale(1)}
 .exp-co{font-family:var(--serif);font-size:19px;font-weight:400;color:var(--off)}
 .exp-role-txt{font-size:12px;color:var(--muted);letter-spacing:.02em}
 .exp-period{font-family:var(--mono);font-size:10px;color:var(--muted);text-align:right;letter-spacing:.08em}
-.exp-cur{display:inline-block;background:rgba(196,169,107,.1);color:var(--gold);font-family:var(--mono);font-size:7px;letter-spacing:.18em;text-transform:uppercase;padding:3px 8px;border-radius:1px;margin-left:8px;vertical-align:middle}
+.exp-cur{display:inline-block;background:rgba(218,213,202,.1);color:var(--gold);font-family:var(--mono);font-size:7px;letter-spacing:.18em;text-transform:uppercase;padding:3px 8px;border-radius:1px;margin-left:8px;vertical-align:middle}
 
 /* TESTIMONIALS */
 .testi-section{padding:100px 60px;background:var(--black2);border-top:1px solid rgba(255,255,255,.06)}
 .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:52px}
 .testi-card{background:var(--black);padding:42px 34px;border-top:2px solid transparent;transition:border-color .32s;position:relative;overflow:hidden}
-.testi-card::after{content:'';position:absolute;top:0;left:0;right:0;height:0;background:linear-gradient(to bottom,rgba(196,169,107,.04),transparent);transition:height .4s}
+.testi-card::after{content:'';position:absolute;top:0;left:0;right:0;height:0;background:linear-gradient(to bottom,rgba(218,213,202,.04),transparent);transition:height .4s}
 .testi-card:hover{border-color:var(--gold)}
 .testi-card:hover::after{height:100%}
 .testi-quote{font-family:var(--serif);font-style:italic;font-size:16px;line-height:1.7;color:var(--off2);margin-bottom:30px;position:relative;z-index:1}
-.testi-quote::before{content:'\201C';font-size:44px;color:rgba(196,169,107,.3);line-height:0;vertical-align:-18px;margin-right:2px}
+.testi-quote::before{content:'\201C';font-size:44px;color:rgba(218,213,202,.3);line-height:0;vertical-align:-18px;margin-right:2px}
 .testi-name{font-size:13px;color:var(--off);margin-bottom:3px;font-weight:500;position:relative;z-index:1}
 .testi-co{font-size:11px;color:var(--muted);font-family:var(--mono);letter-spacing:.06em;position:relative;z-index:1}
 
@@ -149,7 +149,7 @@ body.loaded .portrait-img{transform:scale(1)}
       <div class="about-role"><span class="role-dot"></span>3D Designer</div>
       <div class="about-role"><span class="role-dot"></span>Motion Designer</div>
       <div class="about-role"><span class="role-dot"></span>Type Enthusiast</div>
-      <div class="about-role"><span class="role-dot"></span>Creative Director</div>
+      <div class="about-role"><span class="role-dot"></span>Illustrator</div>
       <div class="about-role"><span class="role-dot"></span>Design Generalist</div>
     </div>
   </div>
@@ -189,9 +189,9 @@ body.loaded .portrait-img{transform:scale(1)}
     <div class="bio-quote" data-split>Detail-driven, finesse-obsessed, highly creative.</div>
   </div>
   <div>
-    <p class="bio-para r d1">Hi, I'm <strong>Thomas Emmanuel Ayodele</strong> — TEA. My six years in the design industry have allowed me to inhabit many roles: a brand designer working in-house at startups, a contractor at branding agencies, and a freelancer working one-on-one with founders who care deeply about the marks they leave on the world.</p>
-    <p class="bio-para r d2">Working across these different fields has enabled me to pick up several skills alongside graphic and brand design, such as <strong>motion design, illustration, 3D, copywriting, type design and creative direction.</strong> However, I have honed my expertise most sharply in branding and brand identity design.</p>
-    <p class="bio-para r d3">I combine my experience in graphic design and these disciplines to solve problems, tell stories, and help brands discover their truest selves. Through consistent practice, I've developed a <strong>systematic and meticulous approach</strong> that has yielded exceptional results for clients and their businesses.</p>
+    <p class="bio-para r d1">Hi, I'm <strong>Thomas Emmanuel Ayodele</strong> — TEA Studios. I'm a brand designer and illustrator based in Nigeria, working with founders and small teams on identity systems, logo marks and packaging.</p>
+    <p class="bio-para r d2">Most of what I do starts with a mark and ends with a system — construction grids, a palette, type, and the applications the client will actually use. <strong>Badges, packaging, apparel, app icons and campaign work</strong> across grooming, fashion, food, music, civic and mobility.</p>
+    <p class="bio-para r d3">The work is on <strong>Behance</strong> and <strong>Instagram</strong>, and there is more of it than is shown here. If something in it looks like the problem you have, get in touch.</p>
     <div style="margin-top:40px" class="r d4"><a href="contact.html" class="btn-gold magnetic"><span>Work With Me</span> <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
   </div>
 </section>
@@ -210,37 +210,12 @@ body.loaded .portrait-img{transform:scale(1)}
 </section>
 
 <!-- EXPERIENCE -->
-<section class="exp-section">
-  <div class="label r">Experience</div>
-  <div class="exp-layout">
-    <div class="r">
-      <h2 class="exp-intro-title" data-split>A career built on <i>craft.</i></h2>
-      <p class="exp-intro-sub">From Lagos to London to the US — a track record across agencies, studios and product teams.</p>
-    </div>
-    <div class="r d1">
-      <div class="exp-row"><div class="exp-co">Pioneer Design, US <span class="exp-cur">Now</span></div><div class="exp-role-txt">Brand / Motion Designer</div><div class="exp-period">2024 — Present</div></div>
-      <div class="exp-row"><div class="exp-co">YADA Agency, UK</div><div class="exp-role-txt">Senior Design Partner</div><div class="exp-period">2020 — 2024</div></div>
-      <div class="exp-row"><div class="exp-co">Canta Global, NG</div><div class="exp-role-txt">Brand Design Lead</div><div class="exp-period">2022 — 2024</div></div>
-      <div class="exp-row"><div class="exp-co">TEA Design Co.</div><div class="exp-role-txt">Creative Director</div><div class="exp-period">2018 — Present</div></div>
-      <div class="exp-row"><div class="exp-co">Check DC Agency, NG</div><div class="exp-role-txt">Brand Designer</div><div class="exp-period">2022</div></div>
-      <div class="exp-row"><div class="exp-co">Christian Union, NG</div><div class="exp-role-txt">Graphic Designer</div><div class="exp-period">2017 — 2018</div></div>
-    </div>
-  </div>
-</section>
 
 <!-- TESTIMONIALS -->
-<section class="testi-section spot">
-  <div class="label r">What Clients Say</div>
-  <div class="testi-grid">
-    <div class="testi-card r"><p class="testi-quote">With the Nomadi logo and brand system, we wanted to capture the essence of the nature of work of the digital nomad. Thomas was able to do just this, within a very short time frame.</p><div class="testi-name">Ebovi Wali</div><div class="testi-co">Founder, Nomadi</div></div>
-    <div class="testi-card r d1"><p class="testi-quote">In his time at Check DC, Thomas brought a refreshing perspective to every project. He has a unique ability to pick out key brand information and translate it into outstanding identity systems.</p><div class="testi-name">Charles Eke</div><div class="testi-co">Co-founder, Check DC</div></div>
-    <div class="testi-card r d2"><p class="testi-quote">An incredibly devoted and skilled designer. We're consistently impressed by his attention to detail and the outstanding quality of the projects he has completed for our team.</p><div class="testi-name">Ime Bassey</div><div class="testi-co">Managing Director, YADA</div></div>
-  </div>
-</section>
 </main>
 <footer>
   <div class="footer-top">
-    <div><div class="footer-brand-name">Thomas <i>Emmanuel</i><br>Ayodele</div><div class="footer-tagline">Brand Designer & Creative Director · TEA Design Co.</div></div>
+    <div><div class="footer-brand-name">Thomas <i>Emmanuel</i><br>Ayodele</div><div class="footer-tagline">Brand Designer & Illustrator · TEA Design Co.</div></div>
     <div class="footer-cols">
       <div class="footer-col"><div class="footer-col-label">Navigate</div><a href="index.html">Home</a><a href="work.html">Work</a><a href="about.html">About</a><a href="journal.html">Journal</a></div>
       <div class="footer-col"><div class="footer-col-label">Elsewhere</div><a href="https://x.com/teastudios_" target="_blank" rel="noopener">Twitter / X</a><a href="https://www.instagram.com/teastudios_/" target="_blank" rel="noopener">Instagram</a><a href="https://www.behance.net/thomasemmanuel1" target="_blank" rel="noopener">Behance</a><a href="https://www.pinterest.com/teastudios_/" target="_blank" rel="noopener">Pinterest</a></div>
