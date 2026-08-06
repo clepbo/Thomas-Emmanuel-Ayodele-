@@ -60,11 +60,15 @@ def embedded_fonts():
     return cached.read_text()
 
 PAGES = [
-    ("index.html",   "Home",    "Thomas Emmanuel Ayodele — Brand Designer & Creative Director"),
+    ("index.html",   "Home",    "Thomas Emmanuel Ayodele — Brand Designer & Illustrator"),
     ("work.html",    "Work",    "Work — Thomas Emmanuel Ayodele"),
     ("about.html",   "About",   "About — Thomas Emmanuel Ayodele"),
     ("journal.html", "Journal", "Journal — Thomas Emmanuel Ayodele"),
     ("contact.html", "Contact", "Contact — Thomas Emmanuel Ayodele"),
+    # One page div for all thirteen case studies. project.html is already a
+    # template driven by ?p=slug, so the bundle keeps a single copy and
+    # re-renders it on navigation rather than inlining thirteen near-copies.
+    ("project.html", "Project", "Case study — Thomas Emmanuel Ayodele"),
 ]
 
 def read(p):
@@ -95,6 +99,46 @@ shared_css = shared_css.replace(
 shared_js = read("shared.js")
 
 
+def image_map():
+    """Every project shot as a data URI, keyed `<slug>-<n>`.
+
+    Only the 600w variants: in one file there is no viewport-dependent
+    fetch to optimise, so carrying the 1080w set too would add 4.3MB for
+    an image the bundle would never choose. 2.0MB of WebP becomes ~2.7MB
+    of base64, comfortably inside the 16MB page limit.
+    """
+    entries = []
+    for f in sorted((ROOT / "assets" / "img").glob("*-600.webp")):
+        key = f.name[: -len("-600.webp")]
+        b64 = base64.b64encode(f.read_bytes()).decode()
+        entries.append('"%s":"data:image/webp;base64,%s"' % (key, b64))
+    if not entries:
+        sys.exit("no images found in assets/img — run the image build first")
+    return "window.TEA_IMG={%s};" % ",".join(entries)
+
+
+content_js = read("content.js")
+
+# Point the img() helper at the embedded map instead of the filesystem, and
+# drop srcset/sizes with it — every candidate would resolve to the same data
+# URI, so the browser would parse three identical multi-KB strings per image
+# and gain nothing.
+content_js = content_js.replace(
+    "const src = a => `assets/img/${slug}-${n}-${a}.webp`;",
+    "const src = () => (window.TEA_IMG[slug + '-' + n] || '');")
+content_js = content_js.replace(
+    """    return `<img class="${cls || ''}" src="${src(600)}" ` +
+           `srcset="${W.map(w => src(w) + ' ' + w + 'w').join(', ')}" ` +
+           `sizes="${sizes}" alt="" ` +
+           `loading="${eager ? 'eager' : 'lazy'}" decoding="async" ` +
+           `${eager ? 'fetchpriority="high"' : ''}>`;""",
+    """    return `<img class="${cls || ''}" src="${src()}" alt="" ` +
+           `loading="${eager ? 'eager' : 'lazy'}" decoding="async">`;""")
+
+if "TEA_IMG" not in content_js:
+    sys.exit("could not rewrite the img() helper in content.js — it has moved")
+
+
 # ── per-page pieces ───────────────────────────────────────────────────
 page_css, page_html, page_js = [], [], []
 
@@ -104,7 +148,8 @@ for fname, _label, title in PAGES:
 
     page_css.append("/* ── %s ── */\n%s" % (fname, grab(r"<style>(.*?)</style>", src)))
 
-    main = grab(r"(<main>.*?</main>)", src)
+    # project.html's is `<main id="cs-root">`, so match attributes too.
+    main = grab(r"(<main\b[^>]*>.*?</main>)", src)
     # The <picture> srcset points at files that will not exist in a single
     # file; collapse it to the one embedded image.
     if slug == "about":
@@ -117,11 +162,27 @@ for fname, _label, title in PAGES:
         '<div class="pg" id="pg-%s" data-page="%s" data-title="%s">\n%s\n</div>'
         % (slug, fname, title.replace('"', "&quot;"), main))
 
-    # page-specific behaviour that lives after shared.js
+    # Page-specific behaviour. These blocks build markup out of
+    # TEA_CONTENT, so they run BEFORE shared.js in the bundle: the reveal
+    # observer only ever sees `.r` elements present at init, and anything
+    # injected afterwards would sit at opacity 0 forever.
     for block in re.findall(r'<script>(.*?)</script>', src, re.S):
         if "tea-nav" in block:       # the pre-paint curtain flag; not needed here
             continue
-        page_js.append("/* ── %s ── */\n%s" % (fname, block.strip()))
+        block = block.strip()
+        if slug == "project":
+            # Turn the one-shot IIFE into a function the router can call
+            # again with a different slug.
+            block = block.replace("(function () {",
+                                  "window.TEA_RENDER_PROJECT = function (slug) {", 1)
+            block = block.replace(
+                "  const slug = new URLSearchParams(location.search).get('p');\n", "", 1)
+            if not block.endswith("})();"):
+                raise SystemExit("project.html script no longer ends in })(); — check it")
+            block = block[: -len("})();")] + "};"
+            if "TEA_RENDER_PROJECT" not in block:
+                raise SystemExit("could not convert project.html's renderer")
+        page_js.append("/* ── %s ── */\n%s" % (fname, block))
 
 nav    = grab(r"(<nav>.*?</nav>)", read("index.html"))
 footer = grab(r"(<footer>.*?</footer>)", read("index.html"))
@@ -146,21 +207,30 @@ ROUTER = r"""
   }
 
   function show(name, instant) {
-    const target = byName(name);
+    // Case studies are one page template re-rendered per slug, so they are
+    // routed by their query string rather than by element id.
+    const q = name.indexOf('?p=');
+    const slug = q > -1 ? decodeURIComponent(name.slice(q + 3)) : null;
+    const target = byName(slug !== null ? 'project.html' : name);
+
     if (!target) {
-      // Not a page in this bundle (a case study, say). Uncover and hand
-      // off to a real navigation rather than sitting behind the curtain.
+      // Not a page in this bundle. Uncover and hand off to a real
+      // navigation rather than sitting behind the curtain.
       document.body.classList.remove('leaving');
       location.href = name;
       return;
     }
 
+    if (slug !== null) window.TEA_RENDER_PROJECT(slug);
+
     pages.forEach(p => p.classList.toggle('on', p === target));
-    document.title = target.dataset.title;
+    document.title = slug !== null ? document.title : target.dataset.title;
     setActive(name);
     window.scrollTo(0, 0);
 
-    const hash = '#' + name.replace('.html', '');
+    const hash = slug !== null
+      ? '#project=' + encodeURIComponent(slug)
+      : '#' + name.replace('.html', '');
     if (location.hash !== hash) history.pushState({ page: name }, '', hash);
 
     if (instant) return;
@@ -177,13 +247,17 @@ ROUTER = r"""
 
   window.TEA_NAVIGATE = href => show(href);
 
-  window.addEventListener('popstate', () => {
-    const name = (location.hash.slice(1) || 'index') + '.html';
-    if (byName(name)) show(name, true);
-  });
+  // '#project=herome' -> 'project.html?p=herome'; '#work' -> 'work.html'.
+  function fromHash() {
+    const h = location.hash.slice(1);
+    if (h.indexOf('project=') === 0) return 'project.html?p=' + h.slice(8);
+    return (h || 'index') + '.html';
+  }
 
-  const start = (location.hash.slice(1) || 'index') + '.html';
-  show(byName(start) ? start : 'index.html', true);
+  window.addEventListener('popstate', () => show(fromHash(), true));
+
+  const start = fromHash();
+  show(start.indexOf('?p=') > -1 || byName(start) ? start : 'index.html', true);
 })();
 """
 
@@ -212,7 +286,7 @@ EXTRA_CSS = r"""
    reads as part of the site rather than as browser chrome. */
 #preview-note{position:fixed;left:24px;bottom:26px;z-index:8500;display:flex;align-items:center;gap:10px;
   transform:translateY(14px);opacity:0;transition:opacity .5s var(--ease),transform .6s var(--ease3);
-  background:rgba(22,22,22,.88);backdrop-filter:blur(16px);border:1px solid rgba(196,169,107,.2);
+  background:rgba(22,22,22,.88);backdrop-filter:blur(16px);border:1px solid rgba(218,213,202,.2);
   border-radius:100px;padding:8px 8px 8px 18px;font-family:var(--mono);font-size:9px;
   letter-spacing:.14em;text-transform:uppercase;color:var(--muted2);pointer-events:none;
   max-width:calc(100vw - 48px)}
@@ -231,7 +305,7 @@ EXTRA_CSS = r"""
 
 # The Artifact host supplies <!doctype>, <html>, <head> and <body>, so the
 # file is a fragment: title, styles, markup, scripts — nothing more.
-doc = """<title>Thomas Emmanuel Ayodele — Brand Designer &amp; Creative Director</title>
+doc = """<title>Thomas Emmanuel Ayodele — Brand Designer &amp; Illustrator</title>
 <style>
 /* ═══ EMBEDDED WEBFONTS (latin subset) ═══
    The Artifact CSP blocks font CDNs, so the faces are inlined as data URIs
@@ -256,17 +330,25 @@ doc = """<title>Thomas Emmanuel Ayodele — Brand Designer &amp; Creative Direct
 {footer}
 
 <script>
+{images}
+</script>
+<script>
+{content_js}
+</script>
+<script>
+{page_js}
+</script>
+<script>
 {shared_js}
 </script>
 <script>
 {router}
 {banner}
 </script>
-<script>
-{page_js}
-</script>
 """.format(
     fonts=fonts,
+    images=image_map(),
+    content_js=content_js,
     shared_css=shared_css,
     extra_css=EXTRA_CSS,
     page_css="\n\n".join(page_css),
