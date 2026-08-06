@@ -59,3 +59,9 @@ jobs:
 
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # Default is 600000ms. The first deploy of the image-carrying
+          # artifact sat in `deployment_queued` for the whole ten minutes
+          # and the step aborted while Pages was still working. Waiting is
+          # cheap here; a false failure is not.
+          timeout: 1800000
