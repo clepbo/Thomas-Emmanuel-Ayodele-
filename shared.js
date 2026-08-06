@@ -225,7 +225,7 @@
     const el = document.createElement('div');
     el.className = 'dock';
     el.innerHTML =
-      '<a href="index.html" class="dock-brand" aria-label="Home">T<i>EA</i></a>' +
+      '<a href="index.html" class="dock-brand" aria-label="Home">' + '<img src="assets/img/tea-logo-dark-240.webp" alt="" decoding="async">' + '</a>' +
       '<div class="dock-menu">' +
         '<button class="dock-toggle" type="button" aria-expanded="false" aria-controls="dock-links">' +
           '<span>Menu</span><span class="dt-bars" aria-hidden="true"><i></i><i></i></span>' +

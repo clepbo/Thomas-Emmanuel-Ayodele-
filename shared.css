@@ -197,8 +197,8 @@ html.nav-in #curtain{animation:curtain-failsafe .5s var(--ease2) 2.5s forwards}
    the first screen, at which point the top bar retracts. */
 .dock{position:fixed;left:50%;bottom:26px;z-index:600;display:flex;align-items:center;gap:8px;transform:translate(-50%,26px);opacity:0;visibility:hidden;transition:transform .6s var(--ease3),opacity .45s var(--ease),visibility .45s}
 .dock.on{transform:translate(-50%,0);opacity:1;visibility:visible}
-.dock-brand{font-family:var(--serif);font-size:15px;letter-spacing:.05em;color:var(--black);background:var(--gold);padding:11px 20px;border-radius:100px;line-height:1;transition:background .25s,transform .3s var(--ease3);flex-shrink:0}
-.dock-brand i{font-style:italic;color:var(--black)}
+.dock-brand{background:var(--gold);padding:11px 18px;border-radius:100px;line-height:0;transition:background .25s,transform .3s var(--ease3);flex-shrink:0}
+.dock-brand img{display:block;width:44px;height:auto}
 .dock-brand:hover{background:var(--gold2);transform:translateY(-2px)}
 
 .dock-menu{display:flex;align-items:center;background:rgba(22,22,22,.86);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.08);border-radius:100px;padding:4px;transition:border-color .3s,background .3s}
@@ -304,7 +304,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 /* ── RESPONSIVE ── */
 @media (max-width:900px){
   .dock{bottom:14px;gap:6px;max-width:calc(100vw - 24px)}
-  .dock-brand{padding:10px 15px;font-size:14px}
+  .dock-brand{padding:10px 15px}
+  .dock-brand img{width:40px}
   .dock-toggle{padding:8px 12px}
   .dock-links a{padding:8px 10px;font-size:8px;letter-spacing:.12em}
   #peek{width:220px;height:98px}
@@ -362,7 +363,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 }
 
 @media (max-width:480px){
-  .dock-brand{padding:9px 13px;font-size:13px}
+  .dock-brand{padding:9px 13px}
+  .dock-brand img{width:36px}
   .dock-toggle{padding:8px 10px;letter-spacing:.12em}
   .dock-links a{padding:7px 8px;letter-spacing:.08em}
   .footer-cols{flex-direction:column;gap:28px}

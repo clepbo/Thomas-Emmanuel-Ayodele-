@@ -95,6 +95,9 @@ portrait = data_uri("assets/images/portrait-900.jpg", "image/jpeg")
 # those live outside <main> — so they are copied verbatim rather than built
 # from TEA_CONTENT, and their src/srcset have to be rewritten here.
 logo = data_uri("assets/img/tea-logo-720.webp", "image/webp")
+# The dock is built by shared.js and carries the dark cut of the mark, for
+# the bone pill it sits on.
+logo_dark = data_uri("assets/img/tea-logo-dark-240.webp", "image/webp")
 
 shared_css = read("shared.css")
 shared_css = shared_css.replace(
@@ -372,6 +375,7 @@ doc = """<title>Thomas Emmanuel Ayodele — Brand Designer &amp; Illustrator</ti
 doc = re.sub(
     r'srcset="assets/img/tea-logo-240\.webp 240w, assets/img/tea-logo-720\.webp 720w"\s*'
     r'sizes="[^"]*"\s*', "", doc)
+doc = doc.replace("assets/img/tea-logo-dark-240.webp", logo_dark)
 doc = doc.replace("assets/img/tea-logo-240.webp", logo)
 if "assets/img/tea-logo" in doc:
     sys.exit("a tea-logo path survived inlining — the markup has changed")
