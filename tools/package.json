@@ -1,0 +1,14 @@
+{
+  "name": "tea-portfolio-tools",
+  "private": true,
+  "type": "module",
+  "description": "Browser-driven checks for the site. Run `npm install` in this directory, then `npm run audit` (see ../README.md).",
+  "scripts": {
+    "audit": "node audit.mjs",
+    "audit:bundle": "node bundle-audit.mjs",
+    "mirror": "./mirror.sh"
+  },
+  "devDependencies": {
+    "playwright": "^1.49.0"
+  }
+}
