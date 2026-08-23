@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<style>html{background-color:#080808}</style>
+<script>try{if(sessionStorage.getItem("tea-nav"))document.documentElement.classList.add("nav-in")}catch(e){}</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080808'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='15' fill='%23c4a96b' text-anchor='middle'%3ETEA%3C/text%3E%3C/svg%3E">
+<title>Work — Thomas Emmanuel Ayodele · TEA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@300;400;500;700&family=Syne+Mono&display=swap" media="print" onload="this.media='all';this.onload=null">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@300;400;500;700&family=Syne+Mono&display=swap"></noscript>
+<link rel="stylesheet" href="shared.css?v=3">
+<style>
+.page-hero{padding:180px 60px 100px;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.06)}
+.ph-bg{position:absolute;right:0;top:0;bottom:0;width:55%;background:linear-gradient(135deg,transparent 40%,rgba(218,213,202,.03) 100%);pointer-events:none}
+.ph-num{position:absolute;right:56px;top:170px;font-family:var(--serif);font-size:220px;font-weight:700;font-style:italic;color:rgba(255,255,255,.022);line-height:1;user-select:none}
+.page-title{font-family:var(--serif);font-size:clamp(64px,9vw,120px);font-weight:400;line-height:.9;letter-spacing:-.03em;color:var(--off)}
+.page-title i{font-style:italic;color:var(--gold)}
+.page-sub{font-size:14px;color:var(--muted);margin-top:26px;max-width:400px;line-height:1.8;font-weight:300}
+
+/* Filter */
+.filter-bar{padding:0 60px;border-bottom:1px solid rgba(255,255,255,.06);background:var(--black2);display:flex;gap:0;position:sticky;top:76px;z-index:200}
+.filter-btn{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);background:none;border:none;padding:20px 28px;cursor:none;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;font-family:var(--sans);font-weight:500}
+.filter-btn:hover{color:var(--off2)}
+.filter-btn.active{color:var(--gold);border-color:var(--gold)}
+
+/* Grid */
+.work-section{padding:72px 60px 120px}
+/* Three even columns of squares — his source material is mostly 1:1, so a
+   square grid is honest to it and never leaves ragged rows. A 2x2 card is
+   still square, so the implicit rows stay in step. */
+.project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:2px}
+.project-card{background:var(--black2);position:relative;overflow:hidden;display:block;aspect-ratio:1}
+/* Filtering. `scale` is the standalone property rather than part of a
+   transform, so it composes with the hover tilt instead of cancelling it.
+   `transform` stays in the transition list for the same reason. */
+.project-card{transition:opacity .42s var(--ease),scale .42s var(--ease),transform .5s var(--ease)}
+.project-card.pc-hide{opacity:0;scale:.96;pointer-events:none}
+.project-card.pc-gone{display:none}
+.filter-empty{font-family:var(--serif);font-size:20px;font-style:italic;color:var(--muted);padding:80px 0 40px;text-align:center}
+.filter-empty i{color:var(--gold)}
+.project-card.big{grid-column:span 2;grid-row:span 2}
+
+.pc-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:32px;transition:transform .65s var(--ease)}
+.project-card:hover .pc-inner{transform:scale(1.025)}
+.pc-art{position:absolute;inset:0}
+.pc-art img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s var(--ease2)}
+.project-card:hover .pc-art img{transform:scale(1.045)}
+.pc-over{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,.92) 0%,rgba(8,8,8,.15) 50%,transparent 100%)}
+.pc-over-top{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,8,.5) 0%,transparent 40%)}
+.pc-arrow{position:absolute;top:26px;right:26px;z-index:3;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;color:var(--off);opacity:0;transform:scale(.7) rotate(-45deg);transition:opacity .32s,transform .32s,border-color .3s,color .3s}
+.project-card:hover .pc-arrow{opacity:1;transform:scale(1) rotate(0deg);border-color:var(--gold);color:var(--gold)}
+.pc-content{position:relative;z-index:2}
+.pc-tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}
+.pc-tag{font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(218,213,202,.28);padding:3px 9px;border-radius:1px}
+.pc-name{font-family:var(--serif);font-size:clamp(20px,2.2vw,30px);font-weight:400;color:var(--off);line-height:1.1}
+.pc-name i{font-style:italic}
+.pc-year{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:5px}
+.pc-bottom-line{position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width .5s var(--ease);z-index:4}
+.project-card:hover .pc-bottom-line{width:100%}
+.coming-soon .pc-name{opacity:.38}
+.cs-tag{position:absolute;top:24px;left:24px;z-index:3;font-family:var(--mono);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted2);border:1px solid rgba(255,255,255,.1);padding:4px 10px;border-radius:1px}
+
+.work-cta{background:var(--black2);border-top:1px solid rgba(255,255,255,.06);padding:80px 60px;display:flex;justify-content:space-between;align-items:center}
+.wc-label{font-family:var(--mono);font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.wc-h{font-family:var(--serif);font-size:36px;font-weight:400;color:var(--off)}
+.wc-h i{font-style:italic;color:var(--gold)}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width:1100px){
+  .page-hero{padding:150px 40px 76px}
+  .filter-bar{padding:0 40px}
+  .work-section{padding:56px 40px 96px}
+  .work-cta{padding:64px 40px}
+  .ph-num{font-size:150px;right:32px;top:150px}
+}
+
+@media (max-width:860px){
+  .page-hero{padding:130px 28px 60px}
+  .ph-num{display:none}
+  .work-section{padding:44px 28px 80px}
+  /* Sticky + horizontally scrollable so every discipline stays reachable.
+     top matches the shorter mobile nav. */
+  .filter-bar{top:62px;padding:0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .filter-bar::-webkit-scrollbar{display:none}
+  .filter-btn{padding:16px 20px;white-space:nowrap;flex-shrink:0}
+  .filter-btn:first-child{padding-left:28px}
+  .work-cta{flex-direction:column;align-items:flex-start;gap:26px;padding:56px 28px}
+}
+
+@media (max-width:600px){
+  .page-hero{padding:112px 20px 48px}
+  .work-section{padding:36px 20px 72px}
+  .project-grid{grid-template-columns:1fr}
+  .project-grid{grid-template-columns:repeat(2,1fr)}
+  .project-card.big{grid-column:span 2;grid-row:span 2}
+  .pc-inner{padding:22px}
+  .pc-arrow{top:18px;right:18px;width:34px;height:34px}
+  .filter-btn:first-child{padding-left:20px}
+  .work-cta{padding:48px 20px}
+  .wc-h{font-size:28px}
+}
+</style>
+</head>
+<body>
+<div id="curtain" aria-hidden="true"><div class="curtain-mark"><img src="assets/img/tea-logo-240.webp" srcset="assets/img/tea-logo-240.webp 240w, assets/img/tea-logo-720.webp 720w" sizes="120px" alt="" decoding="async"></div></div>
+<div id="loader"><div class="loader-monogram"><img src="assets/img/tea-logo-240.webp" srcset="assets/img/tea-logo-240.webp 240w, assets/img/tea-logo-720.webp 720w" sizes="150px" alt="" decoding="async"></div><div class="loader-bar-wrap"><div class="loader-bar"></div></div><div class="loader-text">Work</div></div>
+<div id="cur"></div><div id="cur-ring"></div>
+<nav>
+  <a href="index.html" class="nav-logo"><img src="assets/img/tea-logo-240.webp" srcset="assets/img/tea-logo-240.webp 240w, assets/img/tea-logo-720.webp 720w" sizes="72px" alt="TEA Studios — home" decoding="async"></a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-link">Home</a><a href="work.html" class="nav-link">Work</a>
+    <a href="about.html" class="nav-link">About</a><a href="journal.html" class="nav-link">Journal</a>
+    <a href="contact.html" class="nav-btn"><span>Let's Talk</span></a>
+  </div>
+</nav>
+<main>
+<section class="page-hero spot">
+  <div class="ph-bg"></div><div class="ph-num" data-parallax="0.18">W</div>
+  <div class="label r" style="margin-bottom:28px">2017 — 2025</div>
+  <h1 class="page-title r d1" data-split>All<br><i>Work.</i></h1>
+  <p class="page-sub r d2">Brand identities, packaging systems, type explorations and digital experiences — built for businesses that mean it.</p>
+</section>
+<div class="filter-bar" role="tablist" aria-label="Filter projects by discipline">
+  <button class="filter-btn active" type="button" aria-pressed="true">All</button>
+  <button class="filter-btn" type="button" aria-pressed="false">Brand Identity</button>
+  <button class="filter-btn" type="button" aria-pressed="false">Logo Design</button>
+  <button class="filter-btn" type="button" aria-pressed="false">Packaging</button>
+  <button class="filter-btn" type="button" aria-pressed="false">Art Direction</button>
+  <button class="filter-btn" type="button" aria-pressed="false">Motion</button>
+</div>
+<section class="work-section">
+  <p class="filter-empty" hidden>No projects tagged <i></i> yet.</p>
+  <div class="project-grid r" id="work-grid"></div>
+</section>
+
+<div class="work-cta r spot">
+  <div><div class="wc-label">Ready to begin?</div><div class="wc-h" data-split>Let's build something <i>great.</i></div></div>
+  <a href="contact.html" class="btn-gold magnetic"><span>Start a Project</span> <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+</div>
+</main>
+<footer>
+  <div class="footer-top">
+    <div><div class="footer-brand-name">Thomas <i>Emmanuel</i><br>Ayodele</div><div class="footer-tagline">Brand Designer & Illustrator · TEA Design Co.</div></div>
+    <div class="footer-cols">
+      <div class="footer-col"><div class="footer-col-label">Navigate</div><a href="index.html">Home</a><a href="work.html">Work</a><a href="about.html">About</a><a href="journal.html">Journal</a></div>
+      <div class="footer-col"><div class="footer-col-label">Elsewhere</div><a href="https://x.com/teastudios_" target="_blank" rel="noopener">Twitter / X</a><a href="https://www.instagram.com/teastudios_/" target="_blank" rel="noopener">Instagram</a><a href="https://www.behance.net/thomasemmanuel1" target="_blank" rel="noopener">Behance</a><a href="https://www.pinterest.com/teastudios_/" target="_blank" rel="noopener">Pinterest</a></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><div class="footer-copy">© 2025 TEA Design Co. All rights reserved.</div><a href="mailto:hello@teadesign.co" class="footer-email">hello@teadesign.co</a></div>
+</footer>
+<script src="content.js?v=4"></script>
+<script>
+/* Builds the grid from TEA_CONTENT, then filters it. Both live here so the
+   markup and the filter can never drift apart. */
+(function () {
+  const grid = document.getElementById('work-grid');
+  const data = window.TEA_CONTENT;
+  if (!grid || !data) return;
+
+  // A repeating span rhythm stops a grid of square crops reading flat.
+  // Two hero-sized cards break up an otherwise even grid.
+  const BIG = new Set([0, 7]);
+
+  grid.innerHTML = data.projects.map((p, i) => `
+    <a href="project.html?p=${p.slug}" class="project-card ${BIG.has(i) ? 'big' : ''}"
+       data-cursor="View project" data-tags="${p.tags.join('|').toLowerCase()}">
+      <div class="pc-art">${data.img(p.slug, 1, '(max-width:600px) 50vw, 33vw', '', i < 3)}</div>
+      <div class="pc-over"></div>
+      <div class="pc-inner"><div class="pc-content">
+        <div class="pc-tags">${p.tags.map(t => `<span class="pc-tag">${t}</span>`).join('')}</div>
+        <div class="pc-name">${p.display}</div>
+        <div class="pc-year">${p.year}</div>
+      </div></div>
+      <div class="pc-arrow"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+      <div class="pc-bottom-line"></div>
+    </a>`).join('');
+
+  const buttons = Array.from(document.querySelectorAll('.filter-btn'));
+  const cards = Array.from(grid.querySelectorAll('.project-card'));
+  const empty = document.querySelector('.filter-empty');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let timer;
+
+  function apply(label) {
+    const all = label === 'all';
+    const keep = cards.map(c => all || c.dataset.tags.split('|').includes(label));
+    cards.forEach((c, i) => { if (!keep[i]) c.classList.add('pc-hide'); });
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      let shown = 0;
+      cards.forEach((c, i) => {
+        c.classList.toggle('pc-gone', !keep[i]);
+        c.style.transitionDelay = keep[i] ? (shown++ * 0.04).toFixed(3) + 's' : '0s';
+      });
+      requestAnimationFrame(() => cards.forEach((c, i) => { if (keep[i]) c.classList.remove('pc-hide'); }));
+      empty.hidden = shown > 0;
+      empty.querySelector('i').textContent = label;
+    }, reduced ? 0 : 420);
+  }
+
+  buttons.forEach(btn => btn.addEventListener('click', () => {
+    buttons.forEach(b => {
+      const on = b === btn;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-pressed', String(on));
+    });
+    const label = btn.textContent.trim().toLowerCase();
+    apply(label === 'all' ? 'all' : label);
+  }));
+})();
+</script>
+<script src="shared.js?v=3"></script>
+<script>
+/* Discipline filter. Cards are matched against their own .pc-tag labels, so
+   adding a project needs no extra wiring — just tag it. Hiding runs in two
+   steps: fade out, then take the card out of the grid once the fade has
+   finished, otherwise `display:none` would cut the transition short. */
+(function () {
+  const buttons = Array.from(document.querySelectorAll('.filter-btn'));
+  const cards   = Array.from(document.querySelectorAll('.project-card'));
+  const empty   = document.querySelector('.filter-empty');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const tagsOf = card =>
+    Array.from(card.querySelectorAll('.pc-tag')).map(t => t.textContent.trim().toLowerCase());
+
+  let timer;
+
+  function apply(label) {
+    const all = label === 'all';
+    const keep = cards.map(c => all || tagsOf(c).includes(label));
+
+    // Only fade the departures here. Cards that are staying — or coming back
+    // from a previous filter — keep their faded state until the grid has
+    // resized, so they ease in rather than snap in at full opacity.
+    cards.forEach((c, i) => { if (!keep[i]) c.classList.add('pc-hide'); });
+
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      let shown = 0;
+      cards.forEach((c, i) => {
+        c.classList.toggle('pc-gone', !keep[i]);
+        c.style.transitionDelay = keep[i] ? (shown++ * 0.045).toFixed(3) + 's' : '0s';
+      });
+      // Let the grid reflow at its new size before easing the survivors back.
+      requestAnimationFrame(() => cards.forEach((c, i) => {
+        if (keep[i]) c.classList.remove('pc-hide');
+      }));
+      empty.hidden = shown > 0;
+      empty.querySelector('i').textContent = label;
+    }, reduced ? 0 : 420);
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => {
+        const on = b === btn;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-pressed', String(on));
+      });
+      const label = btn.textContent.trim().toLowerCase();
+      apply(label === 'all' ? 'all' : label);
+    });
+  });
+})();
+</script>
+</body>
+</html>

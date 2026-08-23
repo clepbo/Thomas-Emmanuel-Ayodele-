@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<style>html{background-color:#080808}</style>
+<script>try{if(sessionStorage.getItem("tea-nav"))document.documentElement.classList.add("nav-in")}catch(e){}</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080808'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='15' fill='%23c4a96b' text-anchor='middle'%3ETEA%3C/text%3E%3C/svg%3E">
+<title>About — Thomas Emmanuel Ayodele · TEA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@300;400;500;700&family=Syne+Mono&display=swap" media="print" onload="this.media='all';this.onload=null">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@300;400;500;700&family=Syne+Mono&display=swap"></noscript>
+<link rel="stylesheet" href="shared.css?v=3">
+<style>
+/* INTRO */
+.about-intro{padding:180px 60px 100px;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:end;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.06)}
+.ai-bg{position:absolute;inset:0;background:radial-gradient(ellipse 55% 75% at 85% 40%,rgba(218,213,202,.05) 0%,transparent 60%);pointer-events:none}
+.about-name{font-family:var(--serif);font-size:clamp(56px,8vw,108px);font-weight:400;line-height:.88;letter-spacing:-.03em;color:var(--off)}
+.about-name i{font-style:italic;color:var(--gold);display:block}
+.about-roles{margin-top:32px;display:flex;flex-direction:column;gap:11px}
+.about-role{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px;transition:color .4s}
+.role-dot{width:5px;height:5px;border-radius:50%;background:rgba(218,213,202,.3);flex-shrink:0;transition:background .4s,transform .4s}
+.about-role.active{color:var(--gold)}
+.about-role.active .role-dot{background:var(--gold);transform:scale(1.8)}
+
+/* Portrait */
+.portrait-wrap{position:relative}
+.portrait-frame{width:100%;aspect-ratio:4/5;background:var(--black3);border-radius:2px;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center}
+/* The photograph is shot on near-black, so it sits in the page without a
+   cut-out. A slow settle from a slight zoom gives it a little life on load. */
+.portrait-img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;display:block;transform:scale(1.06);transition:transform 1.8s var(--ease2),filter .6s var(--ease);filter:saturate(.92) contrast(1.04)}
+body.loaded .portrait-img{transform:scale(1)}
+.portrait-wrap:hover .portrait-img{transform:scale(1.03);filter:saturate(1) contrast(1.06);transition-duration:1s}
+.portrait-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,rgba(8,8,8,.65) 100%)}
+.portrait-caption{position:absolute;bottom:22px;left:22px;right:22px;background:rgba(8,8,8,.78);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(10px);padding:15px 18px;border-radius:2px;display:flex;align-items:center;justify-content:space-between}
+.pc-name-tag{font-family:var(--serif);font-size:15px;font-weight:400}
+.pc-status{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--muted)}
+.pulse-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;animation:pdot 2.2s ease-in-out infinite;flex-shrink:0}
+@keyframes pdot{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(74,222,128,.4)}50%{opacity:.3;box-shadow:0 0 0 6px rgba(74,222,128,0)}}
+.years-badge{position:absolute;top:-18px;right:-18px;width:86px;height:86px;border-radius:50%;background:var(--black3);border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 0 0 6px var(--black)}
+.yb-num{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--gold);line-height:1}
+.yb-label{font-family:var(--mono);font-size:7px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;margin-top:2px}
+
+/* BIO */
+.about-bio{padding:100px 60px;display:grid;grid-template-columns:1fr 1.4fr;gap:100px;align-items:start}
+.bio-left{position:sticky;top:110px}
+.bio-quote{font-family:var(--serif);font-size:clamp(20px,2.5vw,32px);font-weight:400;font-style:italic;line-height:1.45;color:var(--off2)}
+.bio-quote::before{content:'\201C';font-size:72px;color:rgba(218,213,202,.3);line-height:0;vertical-align:-28px;margin-right:-2px;font-style:normal;display:block;margin-bottom:10px}
+.bio-para{font-size:15px;line-height:1.9;color:var(--muted);font-weight:300;margin-bottom:26px}
+.bio-para strong{color:var(--off2);font-weight:400}
+.bio-para:last-of-type{margin-bottom:0}
+
+/* SKILLS */
+.skills-section{padding:100px 60px;background:var(--black2);border-top:1px solid rgba(255,255,255,.06)}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:52px}
+.skill-card{padding:38px 34px;background:var(--black);transition:background .3s;border-top:2px solid transparent;transition:border-color .32s,background .3s;position:relative;overflow:hidden}
+.skill-card::before{content:'';position:absolute;bottom:0;right:0;width:0;height:0;border-style:solid;border-width:0 0 40px 40px;border-color:transparent transparent rgba(218,213,202,.06) transparent;transition:border-width .3s var(--ease)}
+.skill-card:hover{background:var(--black3);border-color:var(--gold)}
+.skill-card:hover::before{border-width:0 0 70px 70px}
+.sc-num{font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:.14em;display:block;margin-bottom:14px}
+.sc-title{font-family:var(--serif);font-size:21px;font-weight:400;color:var(--off);margin-bottom:10px}
+.sc-desc{font-size:12px;color:var(--muted);line-height:1.75;font-weight:300}
+
+/* EXPERIENCE */
+.exp-section{padding:100px 60px;border-top:1px solid rgba(255,255,255,.06)}
+.exp-layout{display:grid;grid-template-columns:280px 1fr;gap:96px;margin-top:52px}
+.exp-intro-title{font-family:var(--serif);font-size:clamp(32px,3.8vw,50px);font-weight:400;line-height:1.1;color:var(--off);margin-bottom:16px}
+.exp-intro-title i{font-style:italic;color:var(--gold)}
+.exp-intro-sub{font-size:13px;color:var(--muted);line-height:1.75;font-weight:300}
+.exp-row{display:grid;grid-template-columns:1.5fr 1.2fr 1fr;align-items:center;padding:26px 0;border-bottom:1px solid rgba(255,255,255,.06);gap:20px;transition:padding-left .25s;cursor:default}
+.exp-row:first-child{border-top:1px solid rgba(255,255,255,.06)}
+.exp-row:hover{padding-left:8px}
+.exp-co{font-family:var(--serif);font-size:19px;font-weight:400;color:var(--off)}
+.exp-role-txt{font-size:12px;color:var(--muted);letter-spacing:.02em}
+.exp-period{font-family:var(--mono);font-size:10px;color:var(--muted);text-align:right;letter-spacing:.08em}
+.exp-cur{display:inline-block;background:rgba(218,213,202,.1);color:var(--gold);font-family:var(--mono);font-size:7px;letter-spacing:.18em;text-transform:uppercase;padding:3px 8px;border-radius:1px;margin-left:8px;vertical-align:middle}
+
+/* TESTIMONIALS */
+.testi-section{padding:100px 60px;background:var(--black2);border-top:1px solid rgba(255,255,255,.06)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:52px}
+.testi-card{background:var(--black);padding:42px 34px;border-top:2px solid transparent;transition:border-color .32s;position:relative;overflow:hidden}
+.testi-card::after{content:'';position:absolute;top:0;left:0;right:0;height:0;background:linear-gradient(to bottom,rgba(218,213,202,.04),transparent);transition:height .4s}
+.testi-card:hover{border-color:var(--gold)}
+.testi-card:hover::after{height:100%}
+.testi-quote{font-family:var(--serif);font-style:italic;font-size:16px;line-height:1.7;color:var(--off2);margin-bottom:30px;position:relative;z-index:1}
+.testi-quote::before{content:'\201C';font-size:44px;color:rgba(218,213,202,.3);line-height:0;vertical-align:-18px;margin-right:2px}
+.testi-name{font-size:13px;color:var(--off);margin-bottom:3px;font-weight:500;position:relative;z-index:1}
+.testi-co{font-size:11px;color:var(--muted);font-family:var(--mono);letter-spacing:.06em;position:relative;z-index:1}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width:1100px){
+  .about-intro{padding:150px 40px 76px;gap:56px}
+  .about-bio{padding:76px 40px;gap:56px}
+  .skills-section,.exp-section,.testi-section{padding:76px 40px}
+  .exp-layout{gap:56px;grid-template-columns:220px 1fr}
+  .skills-grid,.testi-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media (max-width:860px){
+  .about-intro{grid-template-columns:1fr;padding:120px 28px 64px;gap:56px;align-items:start}
+  .portrait-wrap{max-width:440px}
+  .years-badge{width:70px;height:70px;top:-14px;right:-8px}
+  .yb-num{font-size:23px}
+
+  .about-bio{grid-template-columns:1fr;padding:64px 28px;gap:36px}
+  .bio-left{position:static}
+  .bio-quote::before{font-size:56px;vertical-align:-20px}
+
+  .skills-section,.exp-section,.testi-section{padding:64px 28px}
+  .exp-layout{grid-template-columns:1fr;gap:36px}
+  /* Company and role on one line, dates beneath — three columns at this
+     width squeezes every one of them */
+  .exp-row{grid-template-columns:1fr;gap:6px;padding:20px 0}
+  .exp-period{text-align:left}
+}
+
+@media (max-width:600px){
+  .about-intro{padding:104px 20px 52px}
+  .about-bio,.skills-section,.exp-section,.testi-section{padding:52px 20px}
+  .skills-grid,.testi-grid{grid-template-columns:1fr}
+  .skill-card{padding:30px 26px}
+  .testi-card{padding:32px 26px}
+  .portrait-caption{left:14px;right:14px;bottom:14px;padding:12px 14px;flex-direction:column;align-items:flex-start;gap:6px}
+  .about-roles{margin-top:26px;gap:9px}
+}
+</style>
+</head>
+<body>
+<div id="curtain" aria-hidden="true"><div class="curtain-mark"><img src="assets/img/tea-logo-240.webp" srcset="assets/img/tea-logo-240.webp 240w, assets/img/tea-logo-720.webp 720w" sizes="120px" alt="" decoding="async"></div></div>
+<div id="loader"><div class="loader-monogram"><img src="assets/img/tea-logo-240.webp" srcset="assets/img/tea-logo-240.webp 240w, assets/img/tea-logo-720.webp 720w" sizes="150px" alt="" decoding="async"></div><div class="loader-bar-wrap"><div class="loader-bar"></div></div><div class="loader-text">About</div></div>
+<div id="cur"></div><div id="cur-ring"></div>
+<nav>
+  <a href="index.html" class="nav-logo"><img src="assets/img/tea-logo-240.webp" srcset="assets/img/tea-logo-240.webp 240w, assets/img/tea-logo-720.webp 720w" sizes="72px" alt="TEA Studios — home" decoding="async"></a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-link">Home</a><a href="work.html" class="nav-link">Work</a>
+    <a href="about.html" class="nav-link">About</a><a href="journal.html" class="nav-link">Journal</a>
+    <a href="contact.html" class="nav-btn"><span>Let's Talk</span></a>
+  </div>
+</nav>
+<main>
+<section class="about-intro spot">
+  <div class="ai-bg"></div>
+  <div>
+    <div class="label r" style="margin-bottom:32px">About</div>
+    <h1 class="about-name r d1" data-split>Thomas<br>Emmanuel<br><i>Ayodele.</i></h1>
+    <div class="about-roles r d2">
+      <div class="about-role active"><span class="role-dot"></span>Brand Designer</div>
+      <div class="about-role"><span class="role-dot"></span>3D Designer</div>
+      <div class="about-role"><span class="role-dot"></span>Motion Designer</div>
+      <div class="about-role"><span class="role-dot"></span>Type Enthusiast</div>
+      <div class="about-role"><span class="role-dot"></span>Illustrator</div>
+      <div class="about-role"><span class="role-dot"></span>Design Generalist</div>
+    </div>
+  </div>
+  <div class="r d2">
+    <div class="portrait-wrap">
+      <div class="portrait-frame">
+        <picture>
+          <source type="image/webp"
+                  srcset="assets/images/portrait-600.webp 600w,
+                          assets/images/portrait-900.webp 900w,
+                          assets/images/portrait-1400.webp 1400w"
+                  sizes="(max-width:760px) 100vw, (max-width:1100px) 50vw, 42vw">
+          <img class="portrait-img"
+               src="assets/images/portrait-900.jpg"
+               srcset="assets/images/portrait-600.jpg 600w,
+                       assets/images/portrait-900.jpg 900w,
+                       assets/images/portrait-1400.jpg 1400w"
+               sizes="(max-width:760px) 100vw, (max-width:1100px) 50vw, 42vw"
+               width="3686" height="4470"
+               alt="Thomas Emmanuel Ayodele, brand designer and creative director"
+               fetchpriority="high" decoding="async">
+        </picture>
+        <div class="portrait-overlay"></div>
+        <div class="portrait-caption">
+          <div class="pc-name-tag">Thomas E. Ayodele</div>
+          <div class="pc-status"><div class="pulse-dot"></div>Available for work</div>
+        </div>
+      </div>
+      <div class="years-badge"><div class="yb-num">6+</div><div class="yb-label">Years</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BIO -->
+<section class="about-bio">
+  <div class="bio-left r">
+    <div class="bio-quote" data-split>Detail-driven, finesse-obsessed, highly creative.</div>
+  </div>
+  <div>
+    <p class="bio-para r d1">Hi, I'm <strong>Thomas Emmanuel Ayodele</strong> — TEA Studios. I'm a brand designer and illustrator based in Nigeria, working with founders and small teams on identity systems, logo marks and packaging.</p>
+    <p class="bio-para r d2">Most of what I do starts with a mark and ends with a system — construction grids, a palette, type, and the applications the client will actually use. <strong>Badges, packaging, apparel, app icons and campaign work</strong> across grooming, fashion, food, music, civic and mobility.</p>
+    <p class="bio-para r d3">The work is on <strong>Behance</strong> and <strong>Instagram</strong>, and there is more of it than is shown here. If something in it looks like the problem you have, get in touch.</p>
+    <div style="margin-top:40px" class="r d4"><a href="contact.html" class="btn-gold magnetic"><span>Work With Me</span> <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section spot">
+  <div class="label r">Expertise — Multidisciplinary</div>
+  <div class="skills-grid">
+    <div class="skill-card r"><span class="sc-num">01</span><div class="sc-title">Brand Identity</div><div class="sc-desc">Logo systems, visual language, brand guidelines and identity assets that scale across every touchpoint.</div></div>
+    <div class="skill-card r d1"><span class="sc-num">02</span><div class="sc-title">Packaging Design</div><div class="sc-desc">Structural and graphic packaging that turns products into shelf presences worth picking up.</div></div>
+    <div class="skill-card r d2"><span class="sc-num">03</span><div class="sc-title">Type Design</div><div class="sc-desc">Custom typefaces and lettering with character — built from cultural references and genuine craft.</div></div>
+    <div class="skill-card r d1"><span class="sc-num">04</span><div class="sc-title">Motion & 3D</div><div class="sc-desc">Animated brand identities and 3D visualisations that bring static marks to life.</div></div>
+    <div class="skill-card r d2"><span class="sc-num">05</span><div class="sc-title">Creative Direction</div><div class="sc-desc">Art direction for campaigns, photo shoots and multi-channel brand activations.</div></div>
+    <div class="skill-card r d3"><span class="sc-num">06</span><div class="sc-title">Web Design</div><div class="sc-desc">Brand-aligned digital experiences — from marketing sites to product landing pages.</div></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+
+<!-- TESTIMONIALS -->
+</main>
+<footer>
+  <div class="footer-top">
+    <div><div class="footer-brand-name">Thomas <i>Emmanuel</i><br>Ayodele</div><div class="footer-tagline">Brand Designer & Illustrator · TEA Design Co.</div></div>
+    <div class="footer-cols">
+      <div class="footer-col"><div class="footer-col-label">Navigate</div><a href="index.html">Home</a><a href="work.html">Work</a><a href="about.html">About</a><a href="journal.html">Journal</a></div>
+      <div class="footer-col"><div class="footer-col-label">Elsewhere</div><a href="https://x.com/teastudios_" target="_blank" rel="noopener">Twitter / X</a><a href="https://www.instagram.com/teastudios_/" target="_blank" rel="noopener">Instagram</a><a href="https://www.behance.net/thomasemmanuel1" target="_blank" rel="noopener">Behance</a><a href="https://www.pinterest.com/teastudios_/" target="_blank" rel="noopener">Pinterest</a></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><div class="footer-copy">© 2025 TEA Design Co. All rights reserved.</div><a href="mailto:hello@teadesign.co" class="footer-email">hello@teadesign.co</a></div>
+</footer>
+<script src="shared.js?v=3"></script>
+<script>
+const roles = document.querySelectorAll('.about-role');
+let cur = 0;
+setInterval(() => {
+  roles[cur].classList.remove('active');
+  cur = (cur + 1) % roles.length;
+  roles[cur].classList.add('active');
+}, 1900);
+</script>
+</body>
+</html>

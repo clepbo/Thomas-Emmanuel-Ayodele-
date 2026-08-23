@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>WordPress Advisory — TEA Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Syne:wght@400;500;700&family=Syne+Mono&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#080808;--black2:#0f0f0f;--black3:#161616;--off:#f4f1ea;--muted:#68655e;--gold:#c4a96b;--serif:'Playfair Display',serif;--sans:'Syne',sans-serif;--mono:'Syne Mono',monospace}
+body{font-family:var(--sans);background:var(--black);color:var(--off);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--off)}
+.doc{max-width:860px;margin:0 auto;padding:80px 60px 120px}
+.doc-header{margin-bottom:72px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.06)}
+.doc-eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+.doc-title{font-family:var(--serif);font-size:clamp(44px,6vw,72px);font-weight:400;line-height:.95;letter-spacing:-.025em}
+.doc-title i{font-style:italic;color:var(--gold)}
+.doc-sub{font-size:14px;color:var(--muted);margin-top:22px;max-width:520px;line-height:1.8}
+h2{font-family:var(--serif);font-size:clamp(28px,3.5vw,42px);font-weight:400;color:var(--off);margin:72px 0 28px;line-height:1.1}
+h2 i{font-style:italic;color:var(--gold)}
+h3{font-family:var(--sans);font-size:15px;font-weight:700;color:var(--off);margin:36px 0 12px;letter-spacing:.04em}
+p{font-size:14px;color:var(--muted);line-height:1.85;margin-bottom:18px}
+p strong{color:var(--off2,#e8e4db);font-weight:500}
+ul{margin:0 0 20px 0;padding-left:0;list-style:none}
+ul li{font-size:14px;color:var(--muted);line-height:1.8;padding:6px 0 6px 22px;position:relative;border-bottom:1px solid rgba(255,255,255,.03)}
+ul li::before{content:'→';position:absolute;left:0;color:var(--gold);font-size:12px}
+.card{background:var(--black2);border:1px solid rgba(255,255,255,.06);padding:32px 36px;border-radius:2px;margin:32px 0;border-left:3px solid var(--gold)}
+.card-title{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.step-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin:32px 0}
+.step{background:var(--black2);padding:28px 28px;border-top:2px solid transparent;transition:border-color .3s}
+.step:hover{border-color:var(--gold)}
+.step-num{font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:.14em;margin-bottom:10px}
+.step-title{font-family:var(--sans);font-size:14px;font-weight:700;color:var(--off);margin-bottom:8px}
+.step-desc{font-size:12px;color:var(--muted);line-height:1.7}
+code{font-family:var(--mono);font-size:12px;background:rgba(255,255,255,.06);color:var(--gold);padding:2px 7px;border-radius:2px}
+.warn{background:rgba(196,169,107,.06);border:1px solid rgba(196,169,107,.2);padding:20px 24px;border-radius:2px;margin:24px 0}
+.warn p{margin:0;font-size:13px}
+.toc{background:var(--black2);padding:32px 36px;margin-bottom:60px;border-radius:2px}
+.toc-title{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.toc a{display:block;font-size:13px;color:var(--muted);padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);transition:color .2s,padding-left .2s}
+.toc a:hover{color:var(--gold);padding-left:6px}
+.toc-num{color:rgba(196,169,107,.4);font-family:var(--mono);font-size:11px;margin-right:10px}
+.divider{height:1px;background:rgba(255,255,255,.06);margin:64px 0}
+</style>
+</head>
+<body>
+<div class="doc">
+  <div class="doc-header">
+    <div class="doc-eyebrow">TEA Design Co. · Developer Advisory</div>
+    <h1 class="doc-title">WordPress<br><i>Implementation</i><br>Guide</h1>
+    <p class="doc-sub">A complete advisory on how to faithfully recreate all animations, interactions, and design features of the TEA portfolio in WordPress — for developers and site builders.</p>
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">Contents</div>
+    <a href="#theme"><span class="toc-num">01</span>Theme Strategy</a>
+    <a href="#plugins"><span class="toc-num">02</span>Recommended Plugins</a>
+    <a href="#animations"><span class="toc-num">03</span>Animations & Motion</a>
+    <a href="#cursor"><span class="toc-num">04</span>Custom Cursor</a>
+    <a href="#loader"><span class="toc-num">05</span>Page Loader</a>
+    <a href="#parallax"><span class="toc-num">06</span>Parallax & Particles</a>
+    <a href="#marquee"><span class="toc-num">07</span>Scrolling Marquee</a>
+    <a href="#forms"><span class="toc-num">08</span>Contact Form</a>
+    <a href="#portfolio"><span class="toc-num">09</span>Portfolio Grid & Filter</a>
+    <a href="#typography"><span class="toc-num">10</span>Typography & Fonts</a>
+    <a href="#performance"><span class="toc-num">11</span>Performance Tips</a>
+  </div>
+
+  <!-- 01 THEME -->
+  <h2 id="theme">01 — Theme <i>Strategy</i></h2>
+  <p>The TEA portfolio is a bespoke, hand-coded design. To replicate it faithfully in WordPress, choose one of these approaches:</p>
+  <div class="step-grid">
+    <div class="step">
+      <div class="step-num">Option A</div>
+      <div class="step-title">Custom Child Theme (Recommended)</div>
+      <div class="step-desc">Use a minimal blank theme like <strong>Underscores (_s)</strong> or <strong>Blocksy</strong> as a parent, then build a child theme that enqueues your custom CSS and JS. This gives full control with zero bloat.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">Option B</div>
+      <div class="step-title">Page Builder (Bricks Builder)</div>
+      <div class="step-desc"><strong>Bricks Builder</strong> outputs clean semantic HTML, supports custom CSS per element, and allows injecting raw JS. It is the closest page builder to hand-coded output and handles dynamic portfolio posts natively.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">Option C</div>
+      <div class="step-title">Headless WordPress</div>
+      <div class="step-desc">Use WordPress as a headless CMS (WPGraphQL + Next.js or Astro) and serve the HTML/CSS/JS files directly. Best for performance and design fidelity; requires a developer.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">Avoid</div>
+      <div class="step-title">Elementor / WPBakery</div>
+      <div class="step-desc">These builders inject heavy bloat that conflicts with custom animations and cursor behaviour. Avoid for a design this bespoke.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 02 PLUGINS -->
+  <h2 id="plugins">02 — Recommended <i>Plugins</i></h2>
+  <h3>Core Plugins</h3>
+  <ul>
+    <li><strong>Advanced Custom Fields (ACF) Pro</strong> — manage project data, testimonials, journal posts as custom post types with custom fields. Powers the portfolio grid dynamically.</li>
+    <li><strong>WP Rocket</strong> — caching and performance optimisation. Critical for keeping animation-heavy pages fast.</li>
+    <li><strong>Smush or ShortPixel</strong> — image compression. When real project photos are added, use WebP format for cards.</li>
+    <li><strong>Yoast SEO or RankMath</strong> — SEO meta, Open Graph for social sharing of portfolio pages.</li>
+    <li><strong>WPForms or Gravity Forms</strong> — contact form with conditional logic for the budget selector and email notifications.</li>
+    <li><strong>CPT UI</strong> — register custom post types: <code>tea_project</code>, <code>tea_journal</code>, <code>tea_testimonial</code>.</li>
+  </ul>
+  <h3>Optional but Useful</h3>
+  <ul>
+    <li><strong>None required.</strong> Scroll reveals, masked word reveals, the scroll-reactive marquee, magnetic buttons, card tilt, the custom cursor, the floating dock and page transitions are all in <code>shared.js</code> — roughly 20KB unminified, no dependencies.</li>
+    <li><strong>GSAP (optional, via CDN)</strong> — only worth adding if you later need timeline choreography that <code>shared.js</code> does not cover. It duplicates what is already there, so do not enqueue it "just in case".</li>
+  </ul>
+
+  <div class="divider"></div>
+
+  <!-- 03 ANIMATIONS -->
+  <h2 id="animations">03 — Animations <i>&amp; Motion</i></h2>
+  <p>All scroll-reveal animations in the HTML prototype use a lightweight <code>IntersectionObserver</code>. In WordPress, enqueue this in <code>functions.php</code>:</p>
+  <div class="card">
+    <div class="card-title">functions.php — Enqueue Scripts</div>
+    <p><code>wp_enqueue_script('tea-shared', get_stylesheet_directory_uri().'/shared.js', [], '1.0', true);</code><br>
+    <code>wp_enqueue_style('tea-shared', get_stylesheet_directory_uri().'/shared.css', [], '1.0');</code></p>
+  </div>
+  <h3>Scroll Reveal (.r / .on system)</h3>
+  <p>Add the class <code>r</code> to any element you want to animate in. The <code>shared.js</code> IntersectionObserver watches all <code>.r</code> elements and adds <code>.on</code> when they enter the viewport. Delay variants <code>.d1</code> through <code>.d5</code> stagger children.</p>
+  <p><strong>In Bricks Builder:</strong> Add <code>r</code> to the element's Custom CSS Class field. No PHP needed.</p>
+
+  <h3>Masked Word Reveal (data-split)</h3>
+  <p>The large serif headings animate word by word out from behind a mask. This is built into <code>shared.js</code> — no GSAP or SplitType needed. Add the attribute <code>data-split</code> to any heading:</p>
+  <div class="card">
+    <div class="card-title">Markup</div>
+    <p><code>&lt;h1 class="hero-title" data-split&gt;Shaping&lt;br&gt;&lt;i&gt;brands&lt;/i&gt;&lt;/h1&gt;</code></p>
+  </div>
+  <p>The splitter walks child elements rather than flattening them, so nested <code>&lt;i&gt;</code>, <code>&lt;br&gt;</code> and <code>&lt;span&gt;</code> tags keep their styling. Headings inside <code>.hero</code>, <code>.page-hero</code>, <code>.journal-hero</code>, <code>.about-intro</code> or <code>.contact-left</code> are treated as above-the-fold and play as one sequence after the loader clears; everything else reveals on scroll.</p>
+  <div class="warn"><p><strong>Bricks/Elementor note:</strong> add <code>data-split</code> in the element's Attributes panel. Do not also apply a builder entrance animation to the same element — the two will fight over <code>opacity</code>.</p></div>
+
+  <h3>Scroll-Reactive Marquee, Tilt and Spotlight</h3>
+  <p>Three more opt-in hooks, all handled by <code>shared.js</code>:</p>
+  <ul>
+    <li><code>data-parallax="0.3"</code> — element drifts at 30% of scroll speed. Written to the standalone <code>translate</code> property, so it stacks with any <code>transform</code> the element already has.</li>
+    <li><code>class="spot"</code> — a soft gold wash follows the pointer across the section.</li>
+    <li><code>data-cursor="View project"</code> — swaps the cursor for a labelled pill while hovering.</li>
+  </ul>
+
+  <h3>Case Studies and Journal Articles</h3>
+  <p>Detail pages are two templates rather than one file per project: <code>project.html?p=slug</code> and <code>article.html?a=slug</code>, both rendered from the arrays in <code>content.js</code>. Previous/next links, related-article lists and the 404 fallbacks all derive from that data, so adding an entry is the only step needed.</p>
+  <p><strong>In WordPress:</strong> map each array to a custom post type — <code>project</code> and <code>article</code> — and move the per-item fields (client, sector, palette, stats, approach steps) to ACF field groups. The templates become <code>single-project.php</code> and <code>single-article.php</code>, and previous/next come from <code>get_adjacent_post()</code>. The inline SVG motif library in <code>content.js</code> can stay as-is or be replaced with real photography via a featured-image field.</p>
+
+  <div class="divider"></div>
+
+  <!-- 04 CURSOR -->
+  <h2 id="cursor">04 — Custom <i>Cursor</i></h2>
+  <p>The gold dot cursor and trailing ring are built in <code>shared.js</code>. In WordPress, this works out of the box once the script is enqueued. Just ensure the two cursor divs are in every page's HTML:</p>
+  <div class="card">
+    <div class="card-title">Add to header.php (or via wp_body_open hook)</div>
+    <p><code>&lt;div id="cur"&gt;&lt;/div&gt;</code><br><code>&lt;div id="cur-ring"&gt;&lt;/div&gt;</code></p>
+  </div>
+  <p>In your theme's <code>header.php</code>, after the opening <code>&lt;body&gt;</code> tag, add the above two divs. The CSS in <code>shared.css</code> handles <code>cursor:none</code> on <code>body</code> and positions both elements via JS mouse tracking.</p>
+  <div class="warn"><p><strong>Note:</strong> Set <code>cursor: none !important</code> on <code>*, a, button</code> in your theme's CSS to prevent the default cursor showing over interactive elements that override body styles.</p></div>
+
+  <div class="divider"></div>
+
+  <!-- 05 LOADER -->
+  <h2 id="loader">05 — Page <i>Loader</i></h2>
+  <p>The TEA monogram loader fades out after the page loads. Add this to <code>header.php</code> immediately after the opening <code>&lt;body&gt;</code> tag:</p>
+  <div class="card">
+    <div class="card-title">Loader HTML in header.php</div>
+    <p><code>&lt;div id="loader"&gt;</code><br>
+    <code>&nbsp;&nbsp;&lt;div class="loader-monogram"&gt;T&lt;i&gt;EA&lt;/i&gt;&lt;/div&gt;</code><br>
+    <code>&nbsp;&nbsp;&lt;div class="loader-bar-wrap"&gt;&lt;div class="loader-bar"&gt;&lt;/div&gt;&lt;/div&gt;</code><br>
+    <code>&nbsp;&nbsp;&lt;div class="loader-text"&gt;Loading&lt;/div&gt;</code><br>
+    <code>&lt;/div&gt;</code></p>
+  </div>
+  <p><code>shared.js</code> listens for <code>window.load</code> and adds the class <code>done</code> to <code>#loader</code>, which CSS transitions to <code>opacity:0; visibility:hidden</code>. A 3.5s failsafe clears it even if an asset never resolves.</p>
+  <h3>Page Transitions</h3>
+  <p>The loader only plays on the first page of a session. Every navigation after that uses a curtain that wipes up on exit and peels down on arrival. Two pieces of markup are required in <code>header.php</code>:</p>
+  <div class="card">
+    <div class="card-title">1. First thing in &lt;head&gt;, before any stylesheet</div>
+    <p><code>&lt;script&gt;try{if(sessionStorage.getItem("tea-nav"))document.documentElement.classList.add("nav-in")}catch(e){}&lt;/script&gt;</code></p>
+  </div>
+  <div class="card">
+    <div class="card-title">2. Immediately after &lt;body&gt;, before #loader</div>
+    <p><code>&lt;div id="curtain" aria-hidden="true"&gt;&lt;div class="curtain-mark"&gt;T&lt;i&gt;EA&lt;/i&gt;&lt;/div&gt;&lt;/div&gt;</code></p>
+  </div>
+  <div class="warn"><p><strong>Order matters.</strong> A pending <code>&lt;link rel="stylesheet"&gt;</code> blocks execution of every script after it. If that inline script sits below the Google Fonts link, the incoming page paints before the curtain is in place and the transition flashes.</p></div>
+
+  <div class="divider"></div>
+
+  <!-- 06 PARALLAX & PARTICLES -->
+  <h2 id="parallax">06 — Parallax <i>&amp; Particles</i></h2>
+  <h3>Floating Particle Canvas</h3>
+  <p>The animated gold dust particles on the homepage hero use an HTML5 <code>&lt;canvas&gt;</code> element driven by <code>shared.js</code>. In WordPress, include the canvas in your hero template part:</p>
+  <div class="card">
+    <div class="card-title">In hero template (page-home.php or Bricks widget)</div>
+    <p><code>&lt;canvas id="particles" style="position:absolute;inset:0;pointer-events:none;z-index:1"&gt;&lt;/canvas&gt;</code></p>
+  </div>
+  <p><code>shared.js</code> picks the canvas up by its <code>id</code> automatically. It resizes via <code>ResizeObserver</code>, accounts for device pixel ratio, and stops drawing entirely whenever the canvas scrolls off screen or the tab is hidden — so it costs nothing on the rest of the page.</p>
+
+  <h3>CSS Parallax (Background elements)</h3>
+  <p>The large background glyph text that shifts on scroll uses the <code>data-parallax</code> attribute approach in <code>shared.js</code>. Add <code>data-parallax="0.3"</code> to any element to make it scroll at 30% speed. Works in any WordPress page builder by adding a custom attribute.</p>
+
+  <div class="divider"></div>
+
+  <!-- 07 MARQUEE -->
+  <h2 id="marquee">07 — Scrolling <i>Marquee</i></h2>
+  <p>The discipline marquee drifts on its own and then speeds up, slows down and reverses with the scroll. <code>shared.js</code> adds a <code>js</code> class to <code>.marquee-outer</code> and drives the transform per frame; the CSS <code>@keyframes</code> version stays in place as the no-JS fallback. Set <code>data-speed</code> on <code>.marquee-outer</code> to change the resting drift (default <code>0.9</code>). To make it dynamic in WordPress (editable from the admin), use ACF to create a repeater field <code>marquee_items</code> and loop through it:</p>
+  <div class="card">
+    <div class="card-title">Dynamic marquee with ACF repeater</div>
+    <p><code>&lt;div class="marquee-outer"&gt;</code><br>
+    <code>&nbsp;&nbsp;&lt;div class="marquee-track"&gt;</code><br>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;?php if(have_rows('marquee_items','option')): while(have_rows('marquee_items','option')): the_row(); ?&gt;</code><br>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="marquee-item"&gt;&lt;?php the_sub_field('label'); ?&gt;&lt;/span&gt;</code><br>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;?php endwhile; endif; ?&gt;</code><br>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Duplicate for seamless loop --&gt;</code><br>
+    <code>&nbsp;&nbsp;&lt;/div&gt;</code><br>
+    <code>&lt;/div&gt;</code></p>
+  </div>
+  <div class="warn"><p><strong>Tip:</strong> Duplicate the items in PHP (output them twice) to ensure the marquee loops seamlessly, since the CSS animation translates by <code>-50%</code> of the total width.</p></div>
+
+  <div class="divider"></div>
+
+  <!-- 08 FORMS -->
+  <h2 id="forms">08 — Contact <i>Form</i></h2>
+  <p>The contact form uses a custom HTML layout with budget pill selectors and a smooth success animation. In WordPress:</p>
+  <ul>
+    <li><strong>Use WPForms Pro</strong> — it supports custom CSS classes on fields. Map each field to the corresponding <code>.field</code> div wrapper using WPForms' "CSS Class" option in field settings.</li>
+    <li>For the <strong>budget pill buttons</strong>: add a hidden WPForms field for budget, then use the custom JS in <code>shared.js</code>'s <code>selectBudget()</code> function to update the hidden field's value on pill click.</li>
+    <li>For the <strong>success animation</strong>: use WPForms' "Confirmation" setting to trigger a custom JS callback instead of a page redirect. Add an event listener to WPForms' <code>wpformsAjaxSubmitSuccess</code> hook:</li>
+  </ul>
+  <div class="card">
+    <div class="card-title">WPForms success callback</div>
+    <p><code>document.addEventListener('wpformsAjaxSubmitSuccess', function() {</code><br>
+    <code>&nbsp;&nbsp;document.getElementById('contactForm').style.opacity = '0';</code><br>
+    <code>&nbsp;&nbsp;setTimeout(() => {</code><br>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById('contactForm').style.display = 'none';</code><br>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById('formSuccess').style.display = 'block';</code><br>
+    <code>&nbsp;&nbsp;}, 420);</code><br>
+    <code>});</code></p>
+  </div>
+  <p>Set the WPForms confirmation type to "Message" with an empty message, so no default success text appears before your custom animation triggers.</p>
+
+  <div class="divider"></div>
+
+  <!-- 09 PORTFOLIO -->
+  <h2 id="portfolio">09 — Portfolio Grid <i>&amp; Filter</i></h2>
+  <p>Register a custom post type <code>tea_project</code> using CPT UI or in <code>functions.php</code>. Add ACF fields: <code>project_category</code>, <code>project_year</code>, <code>project_tags</code>, <code>project_thumbnail</code> (image), <code>project_coming_soon</code> (true/false).</p>
+  <h3>Dynamic Grid Query</h3>
+  <div class="card">
+    <div class="card-title">WP_Query for portfolio grid (page-work.php)</div>
+    <p><code>$projects = new WP_Query(['post_type'=>'tea_project', 'posts_per_page'=>-1, 'orderby'=>'menu_order', 'order'=>'ASC']);</code><br>
+    <code>while($projects->have_posts()): $projects->the_post();</code><br>
+    <code>&nbsp;&nbsp;$cat = get_field('project_category');</code><br>
+    <code>&nbsp;&nbsp;$coming = get_field('project_coming_soon');</code><br>
+    <code>&nbsp;&nbsp;echo '&lt;a class="project-card '.($coming?'coming-soon':'').'" data-cat="'.$cat.'"&gt;...';</code><br>
+    <code>endwhile;</code></p>
+  </div>
+  <h3>Isotope / Native Filter</h3>
+  <p>For the filter bar, use <strong>Isotope.js</strong> (loaded from CDN) for smooth layout transitions when filtering. Alternatively, the current prototype uses a simple CSS opacity toggle which works without any library — just add <code>data-cat</code> to each card and filter via JS as shown in <code>work.html</code>.</p>
+
+  <div class="divider"></div>
+
+  <!-- 10 TYPOGRAPHY -->
+  <h2 id="typography">10 — Typography <i>&amp; Fonts</i></h2>
+  <p>The TEA portfolio uses two Google Fonts: <strong>Playfair Display</strong> (serif, for all headings and editorial text) and <strong>Syne</strong> (sans-serif, for UI labels and body copy), plus <strong>Syne Mono</strong> for metadata and monospace labels.</p>
+  <p>Enqueue via <code>functions.php</code> using <code>wp_enqueue_style</code>, or use the <strong>Google Fonts</strong> plugin. For best performance, self-host the fonts using the <strong>OMGF (Optimize My Google Fonts)</strong> plugin — this eliminates the external DNS lookup and improves Core Web Vitals.</p>
+  <div class="card">
+    <div class="card-title">functions.php font enqueue</div>
+    <p><code>wp_enqueue_style('tea-fonts', 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Syne:wght@300;400;500;700&family=Syne+Mono&display=swap', [], null);</code></p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 11 PERFORMANCE -->
+  <h2 id="performance">11 — Performance <i>Tips</i></h2>
+  <ul>
+    <li><strong>Defer non-critical JS</strong> — pass <code>true</code> for <code>$in_footer</code> in <code>wp_enqueue_script</code> so <code>shared.js</code> loads at the end of the body. Do <em>not</em> defer the inline <code>nav-in</code> snippet: it has to run before first paint.</li>
+    <li><strong>Replace SVG artwork with real photos</strong> — when actual project photography is available, use <code>&lt;img&gt;</code> with <code>loading="lazy"</code> and WebP format. The SVG placeholders are designed to be dropped in place.</li>
+    <li><strong>Avoid animation on mobile</strong> — add a media query: <code>@media (prefers-reduced-motion: reduce) { .r { transition: none; opacity: 1; transform: none; } }</code>. Also conditionally disable the particle canvas on mobile using JS: <code>if(window.innerWidth &lt; 768) return;</code> in <code>initParticles</code>.</li>
+    <li><strong>WP Rocket settings</strong> — enable "Delay JavaScript Execution" but exclude <code>shared.js</code>: delaying it leaves the loader on screen until first interaction. Enable CSS minification but exclude <code>shared.css</code> to avoid selector mangling.</li>
+    <li><strong>Disable unused animations on pages</strong> — the particle canvas, scramble effect, and magnetic buttons are optional. Conditionally load them only on the homepage using <code>is_front_page()</code> in a PHP check before enqueuing the relevant JS block.</li>
+    <li><strong>Core Web Vitals</strong> — the custom cursor can cause LCP issues if the body cursor:none style is applied before the font loads. Wrap cursor init in a <code>DOMContentLoaded</code> listener, not just inline.</li>
+  </ul>
+
+  <div class="divider"></div>
+
+  <div class="card">
+    <div class="card-title">Summary: WordPress Stack for TEA Portfolio</div>
+    <ul style="margin:0">
+      <li><strong>Theme:</strong> Custom child of Underscores (_s) or Bricks Builder</li>
+      <li><strong>Custom Post Types:</strong> CPT UI — tea_project, tea_journal</li>
+      <li><strong>Custom Fields:</strong> Advanced Custom Fields (ACF) Pro</li>
+      <li><strong>Forms:</strong> WPForms Pro with custom CSS classes</li>
+      <li><strong>Animation:</strong> <code>shared.js</code> — IntersectionObserver + a single requestAnimationFrame loop, no dependencies</li>
+      <li><strong>Accessibility:</strong> honours <code>prefers-reduced-motion</code>; the custom cursor and hover-only effects switch off on touch and coarse pointers</li>
+      <li><strong>Portfolio Filter:</strong> Isotope.js or native JS data-cat filter</li>
+      <li><strong>Fonts:</strong> Google Fonts via OMGF (self-hosted)</li>
+      <li><strong>Performance:</strong> WP Rocket + Smush/ShortPixel</li>
+      <li><strong>SEO:</strong> RankMath Pro</li>
+    </ul>
+  </div>
+
+  <p style="margin-top:48px;font-size:12px;color:var(--muted);font-family:var(--mono);letter-spacing:.06em">© 2025 TEA Design Co. — WordPress Advisory prepared by Claude / Anthropic</p>
+</div>
+</body>
+</html>

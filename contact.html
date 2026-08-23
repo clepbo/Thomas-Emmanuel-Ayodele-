@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<style>html{background-color:#080808}</style>
+<script>try{if(sessionStorage.getItem("tea-nav"))document.documentElement.classList.add("nav-in")}catch(e){}</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080808'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='15' fill='%23c4a96b' text-anchor='middle'%3ETEA%3C/text%3E%3C/svg%3E">
+<title>Contact — Thomas Emmanuel Ayodele · TEA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@300;400;500;700&family=Syne+Mono&display=swap" media="print" onload="this.media='all';this.onload=null">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@300;400;500;700&family=Syne+Mono&display=swap"></noscript>
+<link rel="stylesheet" href="shared.css?v=3">
+<style>
+.contact-wrap{min-height:100svh;display:grid;grid-template-columns:1fr 1fr;padding-top:76px}
+
+/* LEFT */
+.contact-left{background:var(--black2);padding:80px 68px;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden}
+.cl-bg{position:absolute;inset:0;background:radial-gradient(ellipse 65% 55% at 20% 80%,rgba(218,213,202,.06) 0%,transparent 60%);pointer-events:none}
+.cl-bg2{position:absolute;bottom:-100px;right:-100px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(218,213,202,.04),transparent 70%);pointer-events:none}
+.cl-top{position:relative;z-index:1}
+.cl-title{font-family:var(--serif);font-size:clamp(44px,5.5vw,76px);font-weight:400;line-height:.9;letter-spacing:-.025em;color:var(--off);margin-bottom:28px}
+.cl-title i{font-style:italic;color:var(--gold)}
+.cl-sub{font-size:14px;color:var(--muted);line-height:1.85;max-width:360px;font-weight:300;margin-bottom:0}
+.cl-sub strong{color:var(--off2);font-weight:400}
+
+.cl-info{position:relative;z-index:1;margin-top:52px}
+.ci-row{padding:22px 0;border-bottom:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;transition:padding-left .25s}
+.ci-row:first-child{border-top:1px solid rgba(255,255,255,.06)}
+.ci-row:hover{padding-left:6px}
+.ci-label{font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.ci-val{font-size:13px;color:var(--off2)}
+.ci-val a{color:var(--gold);transition:color .2s}
+.ci-val a:hover{color:var(--off)}
+
+.cl-social{position:relative;z-index:1;margin-top:36px}
+.soc-label{font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.soc-links{display:flex;gap:10px;flex-wrap:wrap}
+.soc-link{font-size:10px;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(255,255,255,.1);color:var(--muted2);padding:9px 17px;border-radius:1px;transition:border-color .22s,color .22s,transform .22s}
+.soc-link:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+
+.avail-banner{position:relative;z-index:1;margin-top:44px;display:flex;align-items:center;gap:14px;padding:18px 22px;border:1px solid rgba(255,255,255,.07);border-radius:2px;background:rgba(255,255,255,.02)}
+.avail-dot{width:8px;height:8px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:avdot 2.2s ease-in-out infinite}
+@keyframes avdot{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(74,222,128,.45)}60%{opacity:.3;box-shadow:0 0 0 7px rgba(74,222,128,0)}}
+.avail-text{font-size:13px;color:var(--off2)}
+.avail-text span{display:block;font-size:11px;color:var(--muted);margin-top:2px;font-family:var(--mono);letter-spacing:.06em}
+
+/* RIGHT */
+.contact-right{padding:80px 68px;background:var(--black);display:flex;flex-direction:column;justify-content:center}
+.form-head{margin-bottom:48px}
+.form-eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.form-title{font-family:var(--serif);font-size:26px;font-weight:400;color:var(--off);line-height:1.25}
+.form-title i{font-style:italic}
+
+/* Form */
+.cform{display:flex;flex-direction:column;gap:0}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-bottom:1px}
+.form-row.full{grid-template-columns:1fr}
+.field{display:flex;flex-direction:column;background:var(--black2);position:relative;transition:background .25s}
+.field:focus-within{background:var(--black3)}
+.field label{font-family:var(--mono);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);padding:14px 22px 0;transition:color .25s}
+.field:focus-within label{color:var(--gold)}
+.field input,.field textarea,.field select{font-family:var(--sans);font-size:14px;font-weight:300;background:none;border:none;outline:none;color:var(--off);padding:7px 22px 14px;width:100%;resize:none;-webkit-appearance:none}
+.field input::placeholder,.field textarea::placeholder{color:var(--black5)}
+.field textarea{min-height:110px}
+.field select option{background:var(--black3);color:var(--off)}
+.field-line{position:absolute;bottom:0;left:0;right:0;height:1px;background:rgba(255,255,255,.06);transition:background .25s}
+.field:focus-within .field-line{background:var(--gold)}
+
+/* Budget pills */
+.budget-wrap{background:var(--black2);margin-bottom:1px}
+.budget-label{font-family:var(--mono);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);padding:14px 22px 0}
+.budget-pills{display:flex;gap:8px;flex-wrap:wrap;padding:10px 22px 14px}
+.bpill{font-size:11px;letter-spacing:.06em;color:var(--muted);border:1px solid rgba(255,255,255,.08);padding:6px 14px;border-radius:1px;cursor:none;transition:border-color .22s,color .22s,background .22s;background:none;font-family:var(--sans)}
+.bpill.active,.bpill:hover{border-color:var(--gold);color:var(--gold);background:rgba(218,213,202,.06)}
+
+.form-submit-row{margin-top:1px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.form-note{font-size:11px;color:var(--muted);max-width:260px;line-height:1.65}
+.submit-btn{display:inline-flex;align-items:center;gap:12px;background:var(--gold);color:var(--black);padding:17px 38px;border:none;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;font-family:var(--sans);border-radius:1px;white-space:nowrap;position:relative;overflow:hidden;transition:transform .25s var(--ease3),box-shadow .25s;cursor:none}
+.submit-btn::before{content:'';position:absolute;inset:0;background:var(--off);transform:translateX(-101%);transition:transform .34s var(--ease2)}
+.submit-btn>*{position:relative;z-index:1}
+.submit-btn:hover::before{transform:translateX(0)}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(218,213,202,.3)}
+
+/* Success */
+.form-success{display:none;text-align:center;padding:60px 0;animation:sfade .6s var(--ease) forwards}
+@keyframes sfade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.fs-icon{width:56px;height:56px;border-radius:50%;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.25);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;color:#4ade80}
+.fs-title{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--off);margin-bottom:10px}
+.fs-title i{font-style:italic;color:var(--gold)}
+.fs-sub{font-size:13px;color:var(--muted)}
+.fs-back{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-top:28px;transition:gap .2s;cursor:none}
+.fs-back:hover{gap:14px}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width:1100px){
+  .contact-left,.contact-right{padding:64px 44px}
+}
+
+@media (max-width:860px){
+  .contact-wrap{grid-template-columns:1fr;min-height:0}
+  .contact-left{border-right:none;border-bottom:1px solid rgba(255,255,255,.06);padding:100px 28px 56px}
+  .contact-right{padding:56px 28px 80px}
+  .cl-info{margin-top:36px}
+  .avail-banner{margin-top:32px}
+}
+
+@media (max-width:600px){
+  .contact-left{padding:88px 20px 44px}
+  .contact-right{padding:44px 20px 88px}
+  .form-row{grid-template-columns:1fr}
+  .form-submit-row{flex-direction:column;align-items:stretch;gap:16px}
+  .submit-btn{justify-content:center;width:100%}
+  .ci-row{flex-direction:column;align-items:flex-start;gap:5px}
+  .soc-links{gap:7px}
+  .soc-link{padding:8px 13px;font-size:9px}
+  .budget-pills{gap:6px}
+}
+</style>
+</head>
+<body>
+<div id="curtain" aria-hidden="true"><div class="curtain-mark"><img src="assets/img/tea-logo-240.webp" srcset="assets/img/tea-logo-240.webp 240w, assets/img/tea-logo-720.webp 720w" sizes="120px" alt="" decoding="async"></div></div>
+<div id="loader"><div class="loader-monogram"><img src="assets/img/tea-logo-240.webp" srcset="assets/img/tea-logo-240.webp 240w, assets/img/tea-logo-720.webp 720w" sizes="150px" alt="" decoding="async"></div><div class="loader-bar-wrap"><div class="loader-bar"></div></div><div class="loader-text">Contact</div></div>
+<div id="cur"></div><div id="cur-ring"></div>
+<nav>
+  <a href="index.html" class="nav-logo"><img src="assets/img/tea-logo-240.webp" srcset="assets/img/tea-logo-240.webp 240w, assets/img/tea-logo-720.webp 720w" sizes="72px" alt="TEA Studios — home" decoding="async"></a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-link">Home</a><a href="work.html" class="nav-link">Work</a>
+    <a href="about.html" class="nav-link">About</a><a href="journal.html" class="nav-link">Journal</a>
+    <a href="contact.html" class="nav-btn"><span>Let's Talk</span></a>
+  </div>
+</nav>
+<main>
+<div class="contact-wrap">
+
+  <!-- LEFT PANEL -->
+  <div class="contact-left spot">
+    <div class="cl-bg"></div><div class="cl-bg2"></div>
+    <div class="cl-top">
+      <div class="label r" style="margin-bottom:32px">Get In Touch</div>
+      <h1 class="cl-title r d1" data-split>Let's build<br>something<br><i>brilliant.</i></h1>
+      <p class="cl-sub r d2">Tell me about your brand, your project, your ambitions. Have a <strong>launch date or budget</strong> in mind? Share it — the more detail, the better we can work together.</p>
+      <div class="cl-info r d2">
+        <div class="ci-row"><div class="ci-label">Email</div><div class="ci-val"><a href="mailto:hello@teadesign.co">hello@teadesign.co</a></div></div>
+        <div class="ci-row"><div class="ci-label">Based in</div><div class="ci-val">Lagos, Nigeria</div></div>
+        <div class="ci-row"><div class="ci-label">Response time</div><div class="ci-val">Within 24 hours</div></div>
+        <div class="ci-row"><div class="ci-label">Also available</div><div class="ci-val">Remote · Worldwide</div></div>
+      </div>
+      <div class="cl-social r d3">
+        <div class="soc-label">Find me elsewhere</div>
+        <div class="soc-links">
+          <a href="#" class="soc-link">Twitter</a>
+          <a href="#" class="soc-link">Instagram</a>
+          <a href="#" class="soc-link">LinkedIn</a>
+          <a href="#" class="soc-link">Behance</a>
+        </div>
+      </div>
+    </div>
+    <div class="avail-banner r d3">
+      <div class="avail-dot"></div>
+      <div class="avail-text">Currently accepting new projects<span>Available from March 2025</span></div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="contact-right">
+    <div class="form-head r">
+      <div class="form-eyebrow">New Project Enquiry</div>
+      <div class="form-title" data-split>Tell me what<br>you're <i>building.</i></div>
+    </div>
+
+    <form class="cform r d1" id="contactForm" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="field"><label>Your Name</label><input type="text" placeholder="John Denim" required><div class="field-line"></div></div>
+        <div class="field"><label>Email Address</label><input type="email" placeholder="john@company.com" required><div class="field-line"></div></div>
+      </div>
+      <div class="form-row full" style="margin-bottom:1px">
+        <div class="field"><label>Company / Brand</label><input type="text" placeholder="Your company name"><div class="field-line"></div></div>
+      </div>
+      <div class="form-row full" style="margin-bottom:1px">
+        <div class="field">
+          <label>Project Type</label>
+          <select>
+            <option value="" disabled selected>Select a service</option>
+            <option>Brand Identity</option><option>Packaging Design</option>
+            <option>Type Design</option><option>Motion / 3D</option>
+            <option>Creative Direction</option><option>Other</option>
+          </select>
+          <div class="field-line"></div>
+        </div>
+      </div>
+      <div class="budget-wrap">
+        <div class="budget-label">Budget Range</div>
+        <div class="budget-pills">
+          <button type="button" class="bpill" onclick="selectBudget(this)">Under $2k</button>
+          <button type="button" class="bpill" onclick="selectBudget(this)">$2k – $5k</button>
+          <button type="button" class="bpill active" onclick="selectBudget(this)">$5k – $10k</button>
+          <button type="button" class="bpill" onclick="selectBudget(this)">$10k – $20k</button>
+          <button type="button" class="bpill" onclick="selectBudget(this)">$20k+</button>
+          <button type="button" class="bpill" onclick="selectBudget(this)">Let's talk</button>
+        </div>
+      </div>
+      <div class="form-row full" style="margin-bottom:1px">
+        <div class="field"><label>Project Details</label><textarea placeholder="Tell me about your brand, what you need, your timeline, and any other details..."></textarea><div class="field-line"></div></div>
+      </div>
+      <div class="form-submit-row" style="margin-top:20px">
+        <p class="form-note">I read every enquiry personally and respond within 24 hours.</p>
+        <button type="submit" class="submit-btn"><span>Send Enquiry</span><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </form>
+
+    <div class="form-success" id="formSuccess">
+      <div class="fs-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+      <div class="fs-title">Message <i>sent!</i></div>
+      <div class="fs-sub">Thank you — I'll be in touch within 24 hours.</div>
+      <a href="index.html" class="fs-back">Back to Home <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</div>
+</main>
+<script src="shared.js?v=3"></script>
+<script>
+function selectBudget(btn) {
+  document.querySelectorAll('.bpill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function handleSubmit(e) {
+  e.preventDefault();
+  const form = document.getElementById('contactForm');
+  form.style.transition = 'opacity .4s';
+  form.style.opacity = '0';
+  setTimeout(() => {
+    form.style.display = 'none';
+    const success = document.getElementById('formSuccess');
+    success.style.display = 'block';
+  }, 420);
+}
+</script>
+</body>
+</html>
