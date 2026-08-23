@@ -1,3 +1,8 @@
 # Build output from tools/build-single-file.py
 dist/
 tools/.fontcache/
+
+# Browser-check working files
+tools/node_modules/
+.audit-shots/
+.livemirror/
